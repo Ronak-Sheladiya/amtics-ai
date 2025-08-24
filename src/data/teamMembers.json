@@ -80,7 +80,7 @@
       "email": "lisa.thompson@amtics.com",
       "phone": "+1 (555) 678-9012",
       "joinDate": "2024-02-10",
-      "imageUrl": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop&crop=face",
+      "imageUrl": "/src/data/member-images/default-avatar.svgphoto-1534528741775-53994a69daeb?w=400&h=400&fit=crop&crop=face",
       "skills": ["Portrait Photography", "Event Photography", "Photo Editing", "Lighting"],
       "location": "Miami, FL"
     },
@@ -94,7 +94,7 @@
       "email": "alex.kumar@amtics.com",
       "phone": "+1 (555) 789-0123",
       "joinDate": "2024-05-01",
-      "imageUrl": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
+      "imageUrl": "/src/data/member-images/default-avatar.svgphoto-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
       "skills": ["Product Photography", "Studio Setup", "Commercial Photography", "Retouching"],
       "location": "Chicago, IL"
     },
@@ -108,7 +108,7 @@
       "email": "maria.garcia@amtics.com",
       "phone": "+1 (555) 890-1234",
       "joinDate": "2024-03-15",
-      "imageUrl": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=400&fit=crop&crop=face",
+      "imageUrl": "/src/data/member-images/default-avatar.svgphoto-1544005313-94ddf0286df2?w=400&h=400&fit=crop&crop=face",
       "skills": ["Cinematography", "Documentary Filming", "Corporate Videos", "Equipment Management"],
       "location": "Denver, CO"
     },
@@ -122,7 +122,7 @@
       "email": "james.wilson@amtics.com",
       "phone": "+1 (555) 901-2345",
       "joinDate": "2024-06-01",
-      "imageUrl": "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop&crop=face",
+      "imageUrl": "/src/data/member-images/default-avatar.svgphoto-1560250097-0b93528c311a?w=400&h=400&fit=crop&crop=face",
       "skills": ["Event Coverage", "Live Streaming", "Multi-camera Setup", "Real-time Production"],
       "location": "Nashville, TN"
     },
@@ -136,7 +136,7 @@
       "email": "rachel.adams@amtics.com",
       "phone": "+1 (555) 012-3456",
       "joinDate": "2024-02-20",
-      "imageUrl": "https://images.unsplash.com/photo-1521146764736-56c929d59c83?w=400&h=400&fit=crop&crop=face",
+      "imageUrl": "/src/data/member-images/default-avatar.svgphoto-1521146764736-56c929d59c83?w=400&h=400&fit=crop&crop=face",
       "skills": ["Adobe Premiere Pro", "After Effects", "Color Correction", "Motion Graphics"],
       "location": "Portland, OR"
     },
@@ -150,7 +150,7 @@
       "email": "kevin.lee@amtics.com",
       "phone": "+1 (555) 123-4567",
       "joinDate": "2024-04-01",
-      "imageUrl": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=400&fit=crop&crop=face",
+      "imageUrl": "/src/data/member-images/default-avatar.svgphoto-1519085360753-af0119f7cbe7?w=400&h=400&fit=crop&crop=face",
       "skills": ["3D Animation", "Visual Effects", "Motion Design", "Cinema 4D"],
       "location": "San Diego, CA"
     },
@@ -164,7 +164,7 @@
       "email": "jennifer.brown@amtics.com",
       "phone": "+1 (555) 234-5678",
       "joinDate": "2024-01-30",
-      "imageUrl": "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400&h=400&fit=crop&crop=face",
+      "imageUrl": "/src/data/member-images/default-avatar.svgphoto-1487412720507-e7ab37603c6f?w=400&h=400&fit=crop&crop=face",
       "skills": ["Content Strategy", "Copywriting", "Blog Writing", "SEO Writing"],
       "location": "Boston, MA"
     },
@@ -178,7 +178,7 @@
       "email": "tom.anderson@amtics.com",
       "phone": "+1 (555) 345-6789",
       "joinDate": "2024-05-15",
-      "imageUrl": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop&crop=face",
+      "imageUrl": "/src/data/member-images/default-avatar.svgphoto-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop&crop=face",
       "skills": ["Technical Documentation", "API Documentation", "User Manuals", "Process Documentation"],
       "location": "Phoenix, AZ"
     }
