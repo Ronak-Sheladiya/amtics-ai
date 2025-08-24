@@ -1,5 +1,5 @@
 import React from 'react';
-import { User, Code, Github, Linkedin, Mail, MapPin, Calendar, Trophy } from 'lucide-react';
+import { User, Code, Github, Linkedin, Mail, MapPin, Calendar } from 'lucide-react';
 
 export const DeveloperPage = () => {
   // Single developer information
@@ -13,34 +13,9 @@ export const DeveloperPage = () => {
     phone: "+1 (555) 987-6543",
     joinDate: "2024-01-10",
     imageUrl: "/src/data/member-images/developer-avatar.svg",
-    skills: ["React", "Node.js", "Python", "JavaScript", "TypeScript", "MongoDB", "PostgreSQL", "AWS"],
     location: "San Francisco, CA",
-    bio: "Passionate full-stack developer with 5+ years of experience building scalable web applications. Specialized in modern JavaScript frameworks and cloud technologies. Lead developer behind the AMTICS AI Graphic Designer platform.",
     github: "https://github.com/alexthompson",
-    linkedin: "https://linkedin.com/in/alexthompson",
-    achievements: [
-      "Led development of AMTICS AI Platform",
-      "Winner of 2023 Tech Innovation Award",
-      "Open source contributor with 10k+ GitHub stars",
-      "Published 15+ technical articles"
-    ],
-    projects: [
-      {
-        name: "AMTICS AI Graphic Designer",
-        description: "AI-powered graphic design platform with intelligent prompt generation",
-        tech: ["React", "Node.js", "OpenAI API", "MongoDB"]
-      },
-      {
-        name: "Smart Automation Suite", 
-        description: "Workflow automation tools for creative teams",
-        tech: ["Python", "FastAPI", "PostgreSQL", "Docker"]
-      },
-      {
-        name: "Design System Library",
-        description: "Reusable component library for AMTICS products",
-        tech: ["React", "TypeScript", "Storybook", "CSS-in-JS"]
-      }
-    ]
+    linkedin: "https://linkedin.com/in/alexthompson"
   };
 
   return (
