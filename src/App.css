@@ -1375,6 +1375,460 @@ select.form-control option {
   border: 1px solid var(--glass-border);
 }
 
+/* Professional ID Card Styles */
+.section-subtitle {
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 32px;
+  font-style: italic;
+}
+
+.professional-id-card {
+  position: relative;
+  padding: 0;
+  overflow: hidden;
+  cursor: pointer;
+  transition: var(--transition-normal);
+  min-height: 320px;
+  background: linear-gradient(135deg, var(--glass-bg) 0%, var(--glass-bg-light) 100%);
+}
+
+.professional-id-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(212, 0, 117, 0.2);
+}
+
+.id-card-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--amtics-blue) 0%, var(--amtics-magenta) 100%);
+  opacity: 0.1;
+}
+
+.card-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 2px, transparent 2px),
+    radial-gradient(circle at 80% 50%, rgba(255,255,255,0.1) 2px, transparent 2px);
+  background-size: 30px 30px;
+}
+
+.card-shine {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+  opacity: 0;
+  transition: var(--transition-slow);
+}
+
+.professional-id-card:hover .card-shine {
+  opacity: 1;
+  transform: translateX(100%) translateY(100%);
+}
+
+.id-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.company-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--amtics-magenta);
+}
+
+.card-type {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  background: var(--glass-bg-dark);
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.id-card-content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.member-photo-container {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.member-photo-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--amtics-magenta);
+  box-shadow: 0 8px 20px rgba(212, 0, 117, 0.3);
+}
+
+.employee-id-badge {
+  position: absolute;
+  bottom: -8px;
+  right: -8px;
+  background: var(--amtics-blue);
+  color: white;
+  border-radius: 12px;
+  padding: 4px 8px;
+  font-size: 10px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 4px 12px rgba(0, 51, 102, 0.4);
+}
+
+.member-info-card {
+  width: 100%;
+}
+
+.member-name-card {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.member-position-card {
+  font-size: 14px;
+  color: var(--amtics-magenta);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.member-department {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+
+.member-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.meta-label {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.meta-value {
+  font-size: 12px;
+  color: var(--text-primary);
+  font-weight: 600;
+  font-family: var(--font-family-mono);
+}
+
+.id-card-footer {
+  padding: 16px 24px;
+  background: var(--glass-bg-dark);
+  border-top: 1px solid var(--glass-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-brand-card {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--amtics-magenta);
+}
+
+.card-action-hint {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modal-content {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  box-shadow: var(--glass-shadow-lg);
+  position: relative;
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.id-card-modal {
+  max-width: 700px;
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: var(--glass-bg-dark);
+  border: 1px solid var(--glass-border);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: var(--transition-normal);
+  z-index: 10;
+}
+
+.modal-close:hover {
+  background: var(--glass-bg);
+  color: var(--text-primary);
+  transform: scale(1.1);
+}
+
+.id-card-content {
+  padding: 40px;
+}
+
+.id-card-header {
+  text-align: center;
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 2px solid var(--glass-border);
+}
+
+.company-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--amtics-magenta);
+  margin-bottom: 12px;
+}
+
+.id-card-header h3 {
+  font-size: 16px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin: 0;
+}
+
+.id-card-body {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 32px;
+  align-items: start;
+  margin-bottom: 32px;
+}
+
+.member-photo-section {
+  position: relative;
+  text-align: center;
+}
+
+.member-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--amtics-magenta);
+  box-shadow: 0 12px 30px rgba(212, 0, 117, 0.3);
+  margin-bottom: 16px;
+}
+
+.id-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: var(--amtics-blue);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 6px 20px rgba(0, 51, 102, 0.4);
+}
+
+.member-details {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.member-name {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  background: var(--amtics-magenta-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.member-position {
+  font-size: 18px;
+  color: var(--amtics-blue);
+  font-weight: 600;
+  margin: 0;
+}
+
+.member-department {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.contact-item svg {
+  color: var(--amtics-magenta);
+  flex-shrink: 0;
+}
+
+.skills-section h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.skills-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skills-tags .skill-tag {
+  background: var(--amtics-magenta-gradient);
+  color: white;
+  font-weight: 500;
+  border: none;
+}
+
+.id-card-footer {
+  background: var(--glass-bg-dark);
+  border-top: 2px solid var(--glass-border);
+  padding: 20px 40px;
+  border-radius: 0 0 24px 24px;
+}
+
+.enrollment-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: var(--text-muted);
+  font-family: var(--font-family-mono);
+}
+
+.modal-actions {
+  padding: 24px 40px;
+  background: var(--glass-bg-dark);
+  border-top: 1px solid var(--glass-border);
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  border-radius: 0 0 24px 24px;
+}
+
+.modal-actions .btn {
+  min-width: 140px;
+}
+
+@media (max-width: 768px) {
+  .id-card-body {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 24px;
+  }
+
+  .member-photo-section {
+    justify-self: center;
+  }
+
+  .contact-details {
+    align-items: center;
+  }
+
+  .modal-content {
+    margin: 10px;
+    max-height: calc(100vh - 20px);
+  }
+
+  .id-card-content {
+    padding: 24px;
+  }
+
+  .modal-actions {
+    padding: 20px 24px;
+    flex-direction: column;
+  }
+}
+
 /* Developer Page Specific */
 .developer-card {
   grid-column: 1 / -1;
