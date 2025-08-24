@@ -1390,8 +1390,8 @@ select.form-control option {
   overflow: hidden;
   cursor: pointer;
   transition: var(--transition-normal);
-  width: 324px;
-  height: 204px;
+  width: 280px;
+  height: 380px;
   background: linear-gradient(135deg, var(--glass-bg) 0%, var(--glass-bg-light) 100%);
 }
 
