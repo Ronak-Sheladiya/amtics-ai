@@ -217,7 +217,7 @@ export const AboutPage = () => {
                     />
                     <div className="employee-id-badge">
                       <User size={12} />
-                      <span>{member.employeeId}</span>
+                      <span>{member.enrollmentNumber}</span>
                     </div>
                   </div>
 
