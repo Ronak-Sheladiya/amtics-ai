@@ -128,52 +128,115 @@ export class PromptInjector {
     });
   }
 
-  generateInjectionScript(prompt, platformConfig) {
+  generateInjectionScript(prompt, platformConfig, index = 0) {
     const selectors = platformConfig.selectors;
-    
+
     return `
       (function() {
-        console.log('AMTICS: Attempting to inject prompt...');
-        
+        console.log('AMTICS: Attempting to inject prompt ${index + 1}...');
+
+        let injectionAttempts = 0;
+        const maxAttempts = 10;
+
         function findAndFillInput() {
+          injectionAttempts++;
+          console.log('AMTICS: Injection attempt', injectionAttempts);
+
           const selectors = ${JSON.stringify(selectors)};
-          
+
           for (const selector of selectors) {
-            const element = document.querySelector(selector);
-            if (element) {
-              console.log('AMTICS: Found input element:', selector);
-              
-              // Clear existing content
-              element.value = '';
-              element.innerHTML = '';
-              
-              // Set the prompt
-              if (element.tagName === 'TEXTAREA' || element.tagName === 'INPUT') {
-                element.value = ${JSON.stringify(prompt)};
-                element.dispatchEvent(new Event('input', { bubbles: true }));
-                element.dispatchEvent(new Event('change', { bubbles: true }));
-              } else {
-                element.innerHTML = ${JSON.stringify(prompt)};
-                element.dispatchEvent(new Event('input', { bubbles: true }));
+            const elements = document.querySelectorAll(selector);
+
+            // Try each matching element
+            for (const element of elements) {
+              if (element && isElementVisible(element) && !element.disabled && !element.readOnly) {
+                console.log('AMTICS: Found suitable input element:', selector);
+
+                try {
+                  // Clear existing content
+                  if (element.value !== undefined) element.value = '';
+                  if (element.innerHTML !== undefined) element.innerHTML = '';
+                  if (element.textContent !== undefined) element.textContent = '';
+
+                  // Set the prompt with different methods
+                  const promptText = ${JSON.stringify(prompt)};
+
+                  if (element.tagName === 'TEXTAREA' || element.tagName === 'INPUT') {
+                    element.value = promptText;
+
+                    // Trigger multiple events for compatibility
+                    ['input', 'change', 'keyup', 'paste'].forEach(eventType => {
+                      element.dispatchEvent(new Event(eventType, { bubbles: true }));
+                    });
+                  } else if (element.contentEditable === 'true' || element.getAttribute('contenteditable') === 'true') {
+                    element.textContent = promptText;
+
+                    // For contenteditable elements
+                    ['input', 'change', 'keyup', 'DOMCharacterDataModified'].forEach(eventType => {
+                      element.dispatchEvent(new Event(eventType, { bubbles: true }));
+                    });
+                  } else {
+                    element.innerHTML = promptText;
+                    element.dispatchEvent(new Event('input', { bubbles: true }));
+                  }
+
+                  // Focus and select
+                  element.focus();
+                  if (element.select) element.select();
+
+                  console.log('AMTICS: Prompt ${index + 1} injected successfully into', selector);
+
+                  // Visual confirmation
+                  const originalBorder = element.style.border;
+                  element.style.border = '2px solid #00ff00';
+                  setTimeout(() => {
+                    element.style.border = originalBorder;
+                  }, 2000);
+
+                  return true;
+                } catch (err) {
+                  console.error('AMTICS: Error setting value:', err);
+                  continue;
+                }
               }
-              
-              // Focus the element
-              element.focus();
-              
-              console.log('AMTICS: Prompt injected successfully');
-              return true;
             }
           }
           return false;
         }
-        
-        // Try immediate injection
-        if (!findAndFillInput()) {
-          // Retry with delays for dynamic content
-          setTimeout(findAndFillInput, 1000);
-          setTimeout(findAndFillInput, 3000);
-          setTimeout(findAndFillInput, 5000);
+
+        function isElementVisible(element) {
+          const rect = element.getBoundingClientRect();
+          const style = window.getComputedStyle(element);
+          return rect.width > 0 && rect.height > 0 &&
+                 style.display !== 'none' &&
+                 style.visibility !== 'hidden' &&
+                 style.opacity !== '0';
         }
+
+        function attemptInjection() {
+          if (injectionAttempts >= maxAttempts) {
+            console.log('AMTICS: Max injection attempts reached for prompt ${index + 1}');
+            return;
+          }
+
+          if (!findAndFillInput()) {
+            // Retry with exponential backoff
+            const delay = Math.min(1000 * Math.pow(1.5, injectionAttempts), 8000);
+            console.log('AMTICS: Retrying injection in', delay, 'ms');
+            setTimeout(attemptInjection, delay);
+          }
+        }
+
+        // Start injection attempts
+        attemptInjection();
+
+        // Also listen for postMessage as backup
+        window.addEventListener('message', function(event) {
+          if (event.data.type === 'AMTICS_INJECT_PROMPT' && event.data.index === ${index}) {
+            console.log('AMTICS: Received injection request via postMessage');
+            findAndFillInput();
+          }
+        });
       })();
     `;
   }
