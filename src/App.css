@@ -1523,8 +1523,9 @@ select.form-control option {
   position: absolute;
   bottom: -6px;
   right: -6px;
-  background: var(--amtics-blue);
-  color: white;
+  background: var(--glass-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--glass-border);
   border-radius: 8px;
   padding: 2px 4px;
   font-size: 8px;
@@ -1899,8 +1900,9 @@ select.form-control option {
   align-items: center;
   justify-content: center;
   gap: 6px;
-  background: var(--amtics-blue);
-  color: white;
+  background: var(--glass-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--glass-border);
   padding: 8px 16px;
   border-radius: 20px;
   font-size: 14px;
@@ -2174,8 +2176,9 @@ select.form-control option {
 }
 
 .skill-tag:hover {
-  background: var(--amtics-blue);
-  color: white;
+  background: var(--glass-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--glass-border);
   transform: translateY(-1px);
 }
 
@@ -2263,8 +2266,9 @@ select.form-control option {
 }
 
 .tech-tag {
-  background: var(--amtics-blue);
-  color: white;
+  background: var(--glass-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--glass-border);
   border-radius: 12px;
   padding: 4px 10px;
   font-size: 12px;
