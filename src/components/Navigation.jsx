@@ -9,7 +9,8 @@ export const Navigation = () => {
 
   const navItems = [
     { path: '/', label: 'Home', icon: Home },
-    { path: '/about', label: 'About Us', icon: Info }
+    { path: '/about', label: 'About Us', icon: Info },
+    { path: '/team', label: 'Our Team', icon: Users }
   ];
 
   return (
