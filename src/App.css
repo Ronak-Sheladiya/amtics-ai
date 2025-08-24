@@ -1642,9 +1642,10 @@ select.form-control option {
 .modal-card-replica {
   position: relative;
   overflow: hidden;
-  min-height: 320px;
+  width: 324px;
+  height: 204px;
   background: linear-gradient(135deg, var(--glass-bg) 0%, var(--glass-bg-light) 100%);
-  border-radius: 24px;
+  border-radius: 16px;
 }
 
 .modal-card-replica .id-card-background {
