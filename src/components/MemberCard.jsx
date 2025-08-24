@@ -71,7 +71,7 @@ export const MemberCard = ({ member, clickable = true, standalone = false }) => 
       <div className="id-card-footer">
         <div className="footer-brand-card">
           <Zap size={14} />
-          <span>AMTICS Multi-Media</span>
+          <span>AMTICS Multi-Media, UTU</span>
         </div>
       </div>
     </div>
