@@ -2026,13 +2026,27 @@ select.form-control option {
 
 .card-actions {
   display: flex;
-  gap: 16px;
+  gap: 20px;
   justify-content: center;
   flex-wrap: wrap;
+  padding: 24px;
+  background: var(--glass-bg);
+  border-radius: 16px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: var(--glass-border);
 }
 
 .card-actions .btn {
-  min-width: 140px;
+  min-width: 160px;
+  padding: 12px 24px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.card-actions .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(212, 0, 117, 0.2);
 }
 
 @media (max-width: 768px) {
