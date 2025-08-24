@@ -41,8 +41,8 @@ export const IdCardPage = () => {
     
     import('html2canvas').then(html2canvas => {
       html2canvas.default(element, {
-        width: 324,
-        height: 204,
+        width: 280,
+        height: 380,
         backgroundColor: null,
         scale: 2
       }).then(canvas => {
@@ -54,8 +54,8 @@ export const IdCardPage = () => {
           });
           
           const imgData = canvas.toDataURL('image/png');
-          const imgWidth = 85.6; // Exact credit card width in mm
-          const imgHeight = 54;   // Exact credit card height in mm
+          const imgWidth = 74; // Vertical card width in mm
+          const imgHeight = 100;   // Vertical card height in mm
           
           // Center the image on A4 page
           const pageWidth = pdf.internal.pageSize.getWidth();
@@ -78,8 +78,8 @@ export const IdCardPage = () => {
     
     import('html2canvas').then(html2canvas => {
       html2canvas.default(element, {
-        width: 324,
-        height: 204,
+        width: 280,
+        height: 380,
         backgroundColor: null,
         scale: 2
       }).then(canvas => {
@@ -126,7 +126,7 @@ export const IdCardPage = () => {
           </div>
 
           <div className="standalone-card-container">
-            <div id="standalone-id-card" className="standalone-id-card glass-card">
+            <div id="standalone-id-card" className="professional-id-card glass-card">
               <div className="id-card-background">
                 <div className="card-pattern"></div>
                 <div className="card-shine"></div>
