@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
-import { Zap, User, Download, Share } from 'lucide-react';
+import { User, Download, Share } from 'lucide-react';
 import teamMembersData from '../../data/teamMembers.json';
 import { showToast } from '../../utils/toast';
+import { MemberCard } from '../MemberCard';
 
 export const IdCardPage = () => {
   const { id } = useParams();
