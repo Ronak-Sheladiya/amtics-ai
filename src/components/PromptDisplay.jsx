@@ -147,12 +147,30 @@ export const PromptDisplay = ({ prompts, isGenerating, onAutoExecute, hasPrompts
           {hasPrompts && (
             <>
               <button
-                className="btn btn-copy btn-sm"
-                onClick={copyAllPrompts}
+                className={`btn btn-copy btn-sm ${copyingAll ? 'copying' : ''}`}
+                onClick={handleCopyAllPrompts}
+                disabled={copyingAll}
                 title="Copy all prompts to clipboard"
               >
-                <Clipboard size={16} />
-                <span className="btn-text">Copy All</span>
+                {copyingAll ? (
+                  <>
+                    <span className="loading-spinner-sm"></span>
+                    <span className="btn-text">Copying...</span>
+                  </>
+                ) : (
+                  <>
+                    <Clipboard size={16} />
+                    <span className="btn-text">Copy All</span>
+                  </>
+                )}
+              </button>
+              <button
+                className="btn btn-download btn-sm"
+                onClick={downloadAllPrompts}
+                title="Download prompts as text file"
+              >
+                <Download size={16} />
+                <span className="btn-text">Download</span>
               </button>
               <button
                 className="btn btn-execute btn-sm"
