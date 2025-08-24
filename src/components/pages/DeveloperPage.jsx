@@ -95,32 +95,79 @@ export const DeveloperPage = () => {
             </div>
           </div>
           
-          {/* Development Team */}
-          <div className="glass-card">
-            <div className="card-header">
-              <h2 className="card-title">
-                <Users size={20} />
-                Development Team
-              </h2>
-            </div>
-            <div className="card-body">
-              <div className="team-member">
-                <div className="member-avatar">
-                  <Users size={24} />
-                </div>
-                <div className="member-info">
-                  <h3>AMTICS Development Team</h3>
-                  <p>Full-Stack Developers & AI Specialists</p>
-                  <div className="member-skills">
-                    <span className="skill-tag">Frontend Development</span>
-                    <span className="skill-tag">AI Integration</span>
-                    <span className="skill-tag">UX Design</span>
-                    <span className="skill-tag">API Development</span>
+          {/* Lead Developer */}
+        <div className="glass-card developer-card">
+          <div className="card-header">
+            <h2 className="card-title">
+              <Users size={20} />
+              Lead Developer
+            </h2>
+          </div>
+          <div className="card-body">
+            <div className="developer-profile">
+              <div className="developer-photo">
+                <img
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face&auto=format&q=80"
+                  alt="Lead Developer"
+                  className="profile-image"
+                />
+                <div className="status-indicator online"></div>
+              </div>
+              <div className="developer-info">
+                <h3 className="developer-name">Alex Rivera</h3>
+                <p className="developer-title">Senior Full-Stack Developer & AI Architect</p>
+                <p className="developer-description">
+                  Passionate software engineer with 8+ years of experience in building scalable web applications
+                  and AI-powered solutions. Specialized in React, Node.js, and machine learning integration.
+                </p>
+
+                <div className="developer-details">
+                  <div className="detail-item">
+                    <Globe size={16} />
+                    <span>San Francisco, CA</span>
                   </div>
+                  <div className="detail-item">
+                    <Award size={16} />
+                    <span>8+ Years Experience</span>
+                  </div>
+                  <div className="detail-item">
+                    <Zap size={16} />
+                    <span>AI & Web Development</span>
+                  </div>
+                </div>
+
+                <div className="developer-skills">
+                  <h4>Core Technologies</h4>
+                  <div className="skill-tags">
+                    <span className="skill-tag primary">React</span>
+                    <span className="skill-tag primary">TypeScript</span>
+                    <span className="skill-tag primary">Node.js</span>
+                    <span className="skill-tag secondary">Python</span>
+                    <span className="skill-tag secondary">AI/ML</span>
+                    <span className="skill-tag secondary">PostgreSQL</span>
+                    <span className="skill-tag accent">Docker</span>
+                    <span className="skill-tag accent">AWS</span>
+                  </div>
+                </div>
+
+                <div className="developer-contact">
+                  <a href="mailto:alex@amtics.com" className="contact-button">
+                    <span>📧</span>
+                    alex@amtics.com
+                  </a>
+                  <a href="#" className="contact-button">
+                    <span>💼</span>
+                    LinkedIn
+                  </a>
+                  <a href="#" className="contact-button">
+                    <span>🐙</span>
+                    GitHub
+                  </a>
                 </div>
               </div>
             </div>
           </div>
+        </div>
           
           {/* API Integrations */}
           <div className="glass-card">
