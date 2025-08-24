@@ -1283,40 +1283,76 @@ select.form-control option {
 }
 
 .team-member-card {
-  padding: 32px;
-  text-align: center;
+  padding: 0;
+  overflow: hidden;
 }
 
-.member-avatar {
+.member-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 24px;
+}
+
+.member-image {
   width: 80px;
   height: 80px;
   background: var(--glass-bg-dark);
-  border-radius: 50%;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 16px;
   color: var(--amtics-magenta);
+  flex-shrink: 0;
+  border: 2px solid var(--glass-border);
 }
 
-.member-info h3 {
+.member-details {
+  flex: 1;
+}
+
+.member-details h3 {
   font-size: 20px;
   font-weight: 600;
   color: var(--text-primary);
   margin-bottom: 8px;
 }
 
-.member-info p {
+.member-position {
   font-size: 14px;
   color: var(--text-secondary);
-  margin-bottom: 16px;
+  margin-bottom: 6px;
+  font-weight: 500;
 }
 
-.member-skills {
+.enrollment-number {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-family: var(--font-family-mono);
+  background: var(--glass-bg-dark);
+  padding: 4px 8px;
+  border-radius: 6px;
+  display: inline-block;
+  border: 1px solid var(--glass-border);
+}
+
+.card-footer {
+  background: var(--glass-bg-dark);
+  border-top: 1px solid var(--glass-border);
+  padding: 12px 24px;
+}
+
+.footer-brand {
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
   gap: 8px;
-  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--amtics-magenta);
+}
+
+.footer-brand span {
+  color: var(--text-secondary);
 }
 
 .skill-tag {
