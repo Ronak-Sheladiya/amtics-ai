@@ -2813,9 +2813,55 @@ select.form-control option {
   .metrics-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .modal-content {
     width: 95%;
     margin: 10px;
   }
+}
+
+/* Vertical ID Card Overrides */
+.professional-id-card .member-name-card {
+  font-size: 16px !important;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+
+.professional-id-card .member-position-card {
+  font-size: 12px !important;
+  color: var(--amtics-magenta);
+  font-weight: 600;
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+
+.professional-id-card .member-department {
+  font-size: 10px !important;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+.professional-id-card .member-meta {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.professional-id-card .meta-label {
+  font-size: 8px;
+  color: var(--text-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.professional-id-card .meta-value {
+  font-size: 10px;
+  color: var(--text-primary);
+  font-weight: 600;
+  font-family: var(--font-family-mono);
+  line-height: 1;
 }
