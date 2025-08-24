@@ -1,0 +1,80 @@
+/* Import the main app styles */
+@import './App.css';
+
+/* Reset and base styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #ffffff;
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(212, 0, 117, 0.5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(212, 0, 117, 0.7);
+}
+
+/* Selection styling */
+::selection {
+  background: rgba(212, 0, 117, 0.3);
+  color: #ffffff;
+}
+
+::-moz-selection {
+  background: rgba(212, 0, 117, 0.3);
+  color: #ffffff;
+}
+
+/* Focus visible styling */
+:focus-visible {
+  outline: 2px solid #d40075;
+  outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .bg-gradient,
+  .bg-shapes,
+  .navbar,
+  .footer {
+    display: none !important;
+  }
+}
