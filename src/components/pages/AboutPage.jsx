@@ -156,9 +156,9 @@ export const AboutPage = () => {
           </div>
         </div>
 
-        {/* Our Body Section */}
+        {/* Our Board Section */}
         <div className="team-section">
-          <h2 className="section-title">Our Body</h2>
+          <h2 className="section-title">Our Board</h2>
           <p className="section-subtitle">Click on any ID card to view details and share</p>
           <div className="team-grid">
             {teamMembersData.teamMembers.filter(member => member.section === 'body').map((member) => (
