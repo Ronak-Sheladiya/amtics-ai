@@ -24,7 +24,7 @@
       "email": "sarah.johnson@amtics.com",
       "phone": "+1 (555) 234-5678",
       "joinDate": "2024-02-01",
-      "imageUrl": "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face",
+      "imageUrl": "/src/data/member-images/sarah-johnson.svg",
       "skills": ["Administration", "Project Coordination", "Communication", "Operations"],
       "location": "New York, NY"
     },
