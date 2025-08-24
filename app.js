@@ -1,4 +1,4 @@
-// AMTICS Graphics AI - Advanced Prompt Generator with Auto-Injection (Bug Fixed)
+// AMTICS Graphics AI - Professional Design Platform with Navigation
 class AmticsGraphicsAI {
     constructor() {
         this.data = this.initializeData();
@@ -8,9 +8,10 @@ class AmticsGraphicsAI {
             selectedSize: null,
             selectedPlatform: null,
             isExecuting: false,
-            executionProgress: 0
+            executionProgress: 0,
+            currentPage: 'home'
         };
-        
+
         this.platformInjectors = this.initializePlatformInjectors();
         this.init();
     }
@@ -147,6 +148,7 @@ class AmticsGraphicsAI {
     init() {
         this.waitForDOM(() => {
             console.log('DOM ready, initializing interface...');
+            this.setupNavigation();
             this.renderInterface();
             this.bindEvents();
             this.setupKeyboardShortcuts();
@@ -163,89 +165,65 @@ class AmticsGraphicsAI {
     }
 
     renderInterface() {
-        this.renderPostTypes();
-        this.renderSizes();
-        this.renderPlatforms();
-        this.setupNumberInput();
+        // Only initialize form elements if we're on the home page
+        if (this.state.currentPage === 'home') {
+            this.setupNumberInput();
+        }
     }
 
-    renderPostTypes() {
-        const container = document.getElementById('postTypeGrid');
-        if (!container) {
-            console.error('Post type container not found');
-            return;
+    setupNavigation() {
+        // Handle navigation clicks
+        document.addEventListener('click', (e) => {
+            const navLink = e.target.closest('[data-page]');
+            if (navLink) {
+                e.preventDefault();
+                this.navigateToPage(navLink.dataset.page);
+            }
+        });
+
+        // Initialize Lucide icons
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
         }
-
-        container.innerHTML = this.data.postTypes.map(type => `
-            <div class="post-type-card" data-type="${type.id}" tabindex="0">
-                <span class="post-type-icon">${type.icon}</span>
-                <div class="post-type-name">${type.name}</div>
-                <div class="post-type-desc">${type.description}</div>
-            </div>
-        `).join('');
-
-        container.addEventListener('click', (e) => {
-            const card = e.target.closest('.post-type-card');
-            if (card) {
-                this.selectPostType(card.dataset.type);
-            }
-        });
-
-        container.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                const card = e.target.closest('.post-type-card');
-                if (card) {
-                    e.preventDefault();
-                    this.selectPostType(card.dataset.type);
-                }
-            }
-        });
     }
 
-    renderSizes() {
-        const container = document.getElementById('sizeSelector');
-        if (!container) {
-            console.error('Size selector container not found');
-            return;
+    navigateToPage(pageName) {
+        console.log('Navigating to page:', pageName);
+
+        // Update current page state
+        this.state.currentPage = pageName;
+
+        // Hide all pages
+        document.querySelectorAll('.page').forEach(page => {
+            page.classList.remove('active');
+        });
+
+        // Show target page
+        const targetPage = document.getElementById(`${pageName}-page`);
+        if (targetPage) {
+            targetPage.classList.add('active');
         }
 
-        container.innerHTML = this.data.sizes.map(size => `
-            <div class="size-card" data-size="${size.id}" tabindex="0">
-                <span class="size-preview">${size.preview}</span>
-                <div class="size-name">${size.name}</div>
-                <div class="size-dimensions">${size.dimensions}</div>
-            </div>
-        `).join('');
-
-        container.addEventListener('click', (e) => {
-            const card = e.target.closest('.size-card');
-            if (card) {
-                this.selectSize(card.dataset.size);
-            }
+        // Update navigation active states
+        document.querySelectorAll('.nav-link, .footer-link').forEach(link => {
+            link.classList.remove('active');
         });
-    }
 
-    renderPlatforms() {
-        const container = document.getElementById('platformGrid');
-        if (!container) {
-            console.error('Platform grid container not found');
-            return;
+        document.querySelectorAll(`[data-page="${pageName}"]`).forEach(link => {
+            link.classList.add('active');
+        });
+
+        // Re-initialize Lucide icons for new content
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
         }
 
-        container.innerHTML = this.data.platforms.map(platform => `
-            <div class="platform-card" data-platform="${platform.id}" tabindex="0">
-                <div class="platform-icon">${platform.icon}</div>
-                <div class="platform-name">${platform.name}</div>
-                <div class="platform-desc">${platform.description}</div>
-            </div>
-        `).join('');
-
-        container.addEventListener('click', (e) => {
-            const card = e.target.closest('.platform-card');
-            if (card) {
-                this.selectPlatform(card.dataset.platform);
-            }
-        });
+        // If navigating to home, ensure form functionality is ready
+        if (pageName === 'home') {
+            setTimeout(() => {
+                this.renderInterface();
+            }, 100);
+        }
     }
 
     setupNumberInput() {
@@ -270,61 +248,21 @@ class AmticsGraphicsAI {
         }
     }
 
-    selectPostType(typeId) {
-        console.log('Selecting post type:', typeId);
-        
-        document.querySelectorAll('.post-type-card').forEach(card => {
-            card.classList.toggle('selected', card.dataset.type === typeId);
-        });
-        
-        this.state.selectedPostType = typeId;
-        const hiddenInput = document.getElementById('selectedPostType');
-        if (hiddenInput) {
-            hiddenInput.value = typeId;
-        }
-        
-        const selectedType = this.data.postTypes.find(t => t.id === typeId);
-        if (selectedType) {
-            this.showToast('info', `Selected: ${selectedType.name}`);
-        }
-    }
-
-    selectSize(sizeId) {
-        console.log('Selecting size:', sizeId);
-        
-        document.querySelectorAll('.size-card').forEach(card => {
-            card.classList.toggle('selected', card.dataset.size === sizeId);
-        });
-        
-        this.state.selectedSize = sizeId;
-        const hiddenInput = document.getElementById('selectedSize');
-        if (hiddenInput) {
-            hiddenInput.value = sizeId;
+    // Form handling methods for the updated HTML structure
+    handleFormFieldChange(field, value) {
+        switch(field) {
+            case 'postType':
+                this.state.selectedPostType = value;
+                break;
+            case 'size':
+                this.state.selectedSize = value;
+                break;
+            case 'platform':
+                this.state.selectedPlatform = value;
+                break;
         }
 
-        const selectedSize = this.data.sizes.find(s => s.id === sizeId);
-        if (selectedSize) {
-            this.showToast('info', `Selected: ${selectedSize.name} (${selectedSize.dimensions})`);
-        }
-    }
-
-    selectPlatform(platformId) {
-        console.log('Selecting platform:', platformId);
-        
-        document.querySelectorAll('.platform-card').forEach(card => {
-            card.classList.toggle('selected', card.dataset.platform === platformId);
-        });
-        
-        this.state.selectedPlatform = platformId;
-        const hiddenInput = document.getElementById('selectedPlatform');
-        if (hiddenInput) {
-            hiddenInput.value = platformId;
-        }
-
-        const selectedPlatform = this.data.platforms.find(p => p.id === platformId);
-        if (selectedPlatform) {
-            this.showToast('info', `Selected: ${selectedPlatform.name}`);
-        }
+        console.log(`Updated ${field}:`, value);
     }
 
     bindEvents() {
@@ -451,17 +389,20 @@ class AmticsGraphicsAI {
     }
 
     gatherFormData() {
+        const postTypeEl = document.getElementById('postType');
+        const sizeEl = document.getElementById('size');
+        const platformEl = document.getElementById('platform');
         const postDetailsEl = document.getElementById('postDetails');
         const promptCountEl = document.getElementById('promptCount');
-        
+
         const data = {
-            postType: this.state.selectedPostType,
-            size: this.state.selectedSize,
-            platform: this.state.selectedPlatform,
+            postType: postTypeEl ? postTypeEl.value : '',
+            size: sizeEl ? sizeEl.value : '',
+            platform: platformEl ? platformEl.value : '',
             postDetails: postDetailsEl ? postDetailsEl.value.trim() : '',
             promptCount: parseInt(promptCountEl ? promptCountEl.value : '3') || 3
         };
-        
+
         console.log('Gathered form data:', data);
         return data;
     }
