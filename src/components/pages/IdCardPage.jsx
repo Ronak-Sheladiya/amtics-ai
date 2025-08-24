@@ -126,9 +126,7 @@ export const IdCardPage = () => {
             <p className="page-subtitle">{member.name} - {member.position}</p>
           </div>
 
-          <div className="standalone-card-container">
-            <MemberCard member={member} clickable={false} standalone={true} />
-          </div>
+          <MemberCard member={member} clickable={false} standalone={true} />
 
           <div className="card-actions">
             <button className="btn btn-secondary" onClick={handleShare}>
