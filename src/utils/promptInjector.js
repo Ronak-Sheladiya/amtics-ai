@@ -7,31 +7,64 @@ export class PromptInjector {
 
   async openTabsWithPrompts(platform, prompts) {
     const platformConfig = this.getPlatformConfig(platform);
-    
-    try {
-      // Open tabs with staggered timing
-      for (let i = 0; i < prompts.length; i++) {
-        setTimeout(async () => {
-          const newWindow = window.open(platformConfig.url, `amtics_tab_${Date.now()}_${i}`);
-          
-          if (newWindow) {
-            this.openTabs.push({
-              window: newWindow,
-              prompt: prompts[i],
-              platform: platform,
-              index: i
-            });
+    this.openTabs = []; // Clear existing tabs
 
-            // Wait for page to load then inject prompt
-            setTimeout(() => {
-              this.injectPromptIntoTab(newWindow, prompts[i], platform);
-            }, this.injectionDelay);
-          }
-        }, i * 500); // 500ms delay between tab openings
+    try {
+      console.log(`Opening ${prompts.length} tabs for ${platform}`);
+
+      // Open all tabs first
+      const tabPromises = [];
+      for (let i = 0; i < prompts.length; i++) {
+        const tabPromise = new Promise((resolve) => {
+          setTimeout(() => {
+            try {
+              const newWindow = window.open(platformConfig.url, `amtics_${platform}_${Date.now()}_${i}`);
+
+              if (newWindow) {
+                console.log(`Tab ${i + 1} opened successfully`);
+                this.openTabs.push({
+                  window: newWindow,
+                  prompt: prompts[i],
+                  platform: platform,
+                  index: i
+                });
+
+                // Schedule prompt injection after page loads
+                setTimeout(() => {
+                  this.injectPromptIntoTab(newWindow, prompts[i], platform, i);
+                }, this.injectionDelay + (i * 1000)); // Stagger injections
+
+                resolve({ success: true, index: i });
+              } else {
+                console.error(`Failed to open tab ${i + 1} - popup blocked?`);
+                resolve({ success: false, index: i, error: 'Popup blocked' });
+              }
+            } catch (error) {
+              console.error(`Error opening tab ${i + 1}:`, error);
+              resolve({ success: false, index: i, error: error.message });
+            }
+          }, i * 300); // Reduced delay between tab openings
+        });
+
+        tabPromises.push(tabPromise);
       }
+
+      // Wait for all tabs to be processed
+      const results = await Promise.all(tabPromises);
+      const successfulTabs = results.filter(r => r.success).length;
+      const failedTabs = results.filter(r => !r.success).length;
+
+      console.log(`${successfulTabs} tabs opened successfully, ${failedTabs} failed`);
+
+      if (successfulTabs === 0) {
+        throw new Error('No tabs could be opened. Please disable popup blocker and try again.');
+      }
+
+      return { successfulTabs, failedTabs, results };
+
     } catch (error) {
-      console.error('Error opening tabs:', error);
-      throw new Error('Failed to open tabs. Please check popup blocker settings.');
+      console.error('Error in openTabsWithPrompts:', error);
+      throw new Error(`Failed to open tabs: ${error.message}`);
     }
   }
 
