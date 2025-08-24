@@ -1010,6 +1010,11 @@ select.form-control option {
   margin-bottom: 16px;
 }
 
+.prompt-actions {
+  display: flex;
+  gap: 8px;
+}
+
 .prompt-number {
   font-size: 14px;
   font-weight: 600;
