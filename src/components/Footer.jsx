@@ -55,15 +55,15 @@ export const Footer = () => {
               Quick Links
             </h3>
             <div className="footer-links">
-              {quickLinks.map(({ id, label, icon: Icon }) => (
-                <button
-                  key={id}
-                  onClick={() => onPageChange(id)}
+              {quickLinks.map(({ path, label, icon: Icon }) => (
+                <Link
+                  key={path}
+                  to={path}
                   className="footer-link"
                 >
                   <Icon size={16} />
                   <span>{label}</span>
-                </button>
+                </Link>
               ))}
             </div>
           </div>
