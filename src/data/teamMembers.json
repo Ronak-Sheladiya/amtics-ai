@@ -10,7 +10,7 @@
       "email": "john.smith@amtics.com",
       "phone": "+1 (555) 123-4567",
       "joinDate": "2024-01-15",
-      "imageUrl": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
+      "imageUrl": "/src/data/member-images/john-smith.svg",
       "skills": ["Leadership", "Strategic Planning", "Team Management", "Vision Development"],
       "location": "San Francisco, CA"
     },
