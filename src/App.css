@@ -1482,11 +1482,11 @@ select.form-control option {
 }
 
 .member-photo-circle {
-  width: 50px;
-  height: 50px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid var(--amtics-magenta);
+  border: 3px solid var(--amtics-magenta);
   box-shadow: 0 4px 12px rgba(212, 0, 117, 0.3);
 }
 
