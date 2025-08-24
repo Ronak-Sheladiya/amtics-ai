@@ -5,11 +5,11 @@ import { MemberCard } from '../MemberCard';
 
 export const AboutPage = () => {
   const values = [
-    { icon: Lightbulb, text: "Innovation in AI technology" },
+    { icon: Lightbulb, text: "Innovation in multimedia technology" },
     { icon: Users, text: "User-centric design approach" },
     { icon: Award, text: "Quality and professionalism" },
     { icon: Heart, text: "Accessibility and inclusivity" },
-    { icon: Shield, text: "Ethical AI development" },
+    { icon: Shield, text: "Ethical media production" },
     { icon: Globe, text: "Global design standards" }
   ];
 
@@ -51,7 +51,7 @@ export const AboutPage = () => {
             <Users className="page-icon" />
             About AMTICS
           </h1>
-          <p className="page-subtitle">Revolutionizing graphic design with artificial intelligence</p>
+          <p className="page-subtitle">Professional multimedia services and creative solutions</p>
         </div>
 
         {/* Stats Section */}
@@ -75,10 +75,10 @@ export const AboutPage = () => {
             </div>
             <div className="card-body">
               <p>
-                At AMTICS, we're dedicated to democratizing professional graphic design through cutting-edge artificial intelligence. Our platform empowers creators, marketers, and businesses to generate stunning visuals with intelligent prompt engineering.
+                At AMTICS, we're dedicated to providing professional multimedia services through cutting-edge technology. Our platform empowers creators, marketers, and businesses to achieve their media and creative goals.
               </p>
               <p>
-                We believe that great design should be accessible to everyone, regardless of their technical expertise or design background. Our AI-powered platform bridges the gap between creative vision and technical execution.
+                We believe that great media should be accessible to everyone, regardless of their technical expertise or background. Our platform bridges the gap between creative vision and professional execution.
               </p>
             </div>
           </div>
@@ -93,10 +93,10 @@ export const AboutPage = () => {
             </div>
             <div className="card-body">
               <p>
-                To become the leading AI-powered design platform that bridges the gap between creativity and technology, making professional-grade graphic design accessible to everyone.
+                To become the leading multimedia platform that bridges the gap between creativity and technology, making professional-grade media services accessible to everyone.
               </p>
               <p>
-                We envision a future where AI amplifies human creativity rather than replacing it, enabling designers and non-designers alike to create exceptional visual content.
+                We envision a future where technology amplifies human creativity rather than replacing it, enabling creators to produce exceptional multimedia content.
               </p>
             </div>
           </div>
