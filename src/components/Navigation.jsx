@@ -7,8 +7,7 @@ export const Navigation = ({ currentPage, onPageChange }) => {
 
   const navItems = [
     { id: 'home', label: 'Home', icon: Home },
-    { id: 'about', label: 'About Us', icon: Info },
-    { id: 'developer', label: 'Developer', icon: Code }
+    { id: 'about', label: 'About Us', icon: Info }
   ];
 
   return (
