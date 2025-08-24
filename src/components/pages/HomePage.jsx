@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { PromptGenerator } from '../PromptGenerator';
 import { PromptDisplay } from '../PromptDisplay';
 
-export const HomePage = ({ onShowModal }) => {
+export const HomePage = () => {
   const [generatedPrompts, setGeneratedPrompts] = useState([]);
   const [isGenerating, setIsGenerating] = useState(false);
   const [formData, setFormData] = useState(null);
