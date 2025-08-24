@@ -5,35 +5,10 @@ import { IdCardModal } from '../IdCardModal';
 import teamMembersData from '../../data/teamMembers.json';
 
 export const AboutPage = () => {
-  const [selectedMember, setSelectedMember] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  useEffect(() => {
-    // Check if there's an ID in the URL parameters
-    const urlParams = new URLSearchParams(window.location.search);
-    const memberId = urlParams.get('id');
-
-    if (memberId) {
-      const member = teamMembersData.teamMembers.find(m => m.id === memberId);
-      if (member) {
-        setSelectedMember(member);
-        setIsModalOpen(true);
-      }
-    }
-  }, []);
+  const navigate = useNavigate();
 
   const handleCardClick = (member) => {
-    setSelectedMember(member);
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-    setSelectedMember(null);
-    // Clear URL parameters
-    const url = new URL(window.location);
-    url.searchParams.delete('id');
-    window.history.replaceState({}, '', url);
+    navigate(`/card/${member.id}`);
   };
   const values = [
     { icon: Lightbulb, text: "Innovation in AI technology" },
