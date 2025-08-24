@@ -13,9 +13,9 @@ export const OurTeamPage = () => {
   const sections = [
     {
       id: 'body',
-      title: 'Body',
+      title: 'Board',
       icon: Crown,
-      description: 'Our leadership team guiding the organization',
+      description: 'Our board members guiding the organization',
       color: 'var(--amtics-magenta)'
     },
     {
