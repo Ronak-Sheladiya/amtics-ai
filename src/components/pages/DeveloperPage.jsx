@@ -105,48 +105,6 @@ export const DeveloperPage = () => {
             </div>
           </div>
 
-          <div className="developer-bio">
-            <h3>About</h3>
-            <p>{developer.bio}</p>
-          </div>
-
-          <div className="developer-skills">
-            <h3>Technical Skills</h3>
-            <div className="skills-grid">
-              {developer.skills.map((skill, index) => (
-                <span key={index} className="skill-tag">{skill}</span>
-              ))}
-            </div>
-          </div>
-
-          <div className="developer-achievements">
-            <h3>
-              <Trophy size={20} />
-              Key Achievements
-            </h3>
-            <ul className="achievements-list">
-              {developer.achievements.map((achievement, index) => (
-                <li key={index}>{achievement}</li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="developer-projects">
-            <h3>Featured Projects</h3>
-            <div className="projects-grid">
-              {developer.projects.map((project, index) => (
-                <div key={index} className="project-card glass-card">
-                  <h4>{project.name}</h4>
-                  <p>{project.description}</p>
-                  <div className="project-tech">
-                    {project.tech.map((tech, techIndex) => (
-                      <span key={techIndex} className="tech-tag">{tech}</span>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </div>
     </div>
