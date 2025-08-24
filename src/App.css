@@ -805,6 +805,36 @@ select.form-control option {
   min-height: 44px;
 }
 
+.btn-copy {
+  background: var(--amtics-green-gradient);
+  color: white;
+  box-shadow: 0 4px 16px rgba(0, 104, 55, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-copy:hover {
+  transform: var(--hover-transform);
+  box-shadow: 0 6px 24px rgba(0, 104, 55, 0.4);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.btn-copy:active {
+  transform: var(--active-transform);
+}
+
+.btn-execute {
+  background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+  color: white;
+  box-shadow: 0 4px 16px rgba(124, 58, 237, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-execute:hover {
+  transform: var(--hover-transform);
+  box-shadow: 0 6px 24px rgba(124, 58, 237, 0.4);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
 .btn-shortcut {
   font-size: 12px;
   opacity: 0.7;
