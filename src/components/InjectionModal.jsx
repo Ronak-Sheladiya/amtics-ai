@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Rocket, X, Play, Copy, Activity } from 'lucide-react';
 import { promptInjector } from '../utils/promptInjector';
-import { showToast } from '../utils/toast';
+import { copyAllPrompts } from '../utils/copyUtils';
 
 export const InjectionModal = ({ prompts, platform, platformName, onClose }) => {
   const [isExecuting, setIsExecuting] = useState(false);
@@ -98,17 +98,11 @@ export const InjectionModal = ({ prompts, platform, platformName, onClose }) => 
     }
   };
 
-  const handleManualCopy = () => {
-    const allPrompts = prompts
-      .map((prompt, i) => `=== PROMPT ${i + 1} ===\n${prompt}`)
-      .join('\n\n');
-    
-    navigator.clipboard.writeText(allPrompts).then(() => {
-      showToast('success', 'All prompts copied! Paste them manually in the opened tabs.');
+  const handleManualCopy = async () => {
+    const success = await copyAllPrompts(prompts, 'PROMPT');
+    if (success) {
       onClose();
-    }).catch(() => {
-      showToast('error', 'Failed to copy prompts to clipboard');
-    });
+    }
   };
 
   const steps = [
