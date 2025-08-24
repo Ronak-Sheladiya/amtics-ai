@@ -1496,6 +1496,7 @@ select.form-control option {
 
 .id-card-content {
   padding: 16px;
+  padding-top: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
