@@ -1,36 +1,38 @@
 import React from 'react';
-import { Zap, Home, Info, Code, Sun, Moon } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
+import { Zap, Home, Info, Sun, Moon } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 
-export const Navigation = ({ currentPage, onPageChange }) => {
+export const Navigation = () => {
   const { theme, toggleTheme, isDark } = useTheme();
+  const location = useLocation();
 
   const navItems = [
-    { id: 'home', label: 'Home', icon: Home },
-    { id: 'about', label: 'About Us', icon: Info }
+    { path: '/', label: 'Home', icon: Home },
+    { path: '/about', label: 'About Us', icon: Info }
   ];
 
   return (
     <nav className="navbar">
       <div className="container">
         <div className="nav-content">
-          <div className="nav-brand">
+          <Link to="/" className="nav-brand">
             <Zap className="nav-brand-icon" />
             <span className="nav-brand-text">AMTICS</span>
-          </div>
-          
+          </Link>
+
           <div className="nav-menu">
-            {navItems.map(({ id, label, icon: Icon }) => (
-              <button
-                key={id}
-                className={`nav-link ${currentPage === id ? 'active' : ''}`}
-                onClick={() => onPageChange(id)}
+            {navItems.map(({ path, label, icon: Icon }) => (
+              <Link
+                key={path}
+                to={path}
+                className={`nav-link ${location.pathname === path ? 'active' : ''}`}
               >
                 <Icon size={18} />
                 <span>{label}</span>
-              </button>
+              </Link>
             ))}
-            
+
             <button className="theme-toggle" onClick={toggleTheme} title="Toggle theme">
               {isDark ? <Sun size={18} /> : <Moon size={18} />}
               <span>{isDark ? 'Light' : 'Dark'}</span>
