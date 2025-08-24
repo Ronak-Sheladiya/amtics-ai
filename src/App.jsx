@@ -1,16 +1,28 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { Layout } from './components/Layout';
+import { HomePage } from './components/pages/HomePage';
+import { AboutPage } from './components/pages/AboutPage';
+import { IdCardPage } from './components/pages/IdCardPage';
 import { ToastContainer } from './components/ToastContainer';
 import './App.css';
 
 function App() {
   return (
     <ThemeProvider>
-      <div className="app">
-        <Layout />
-        <ToastContainer />
-      </div>
+      <Router>
+        <div className="app">
+          <Layout>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/card/:id" element={<IdCardPage />} />
+            </Routes>
+          </Layout>
+          <ToastContainer />
+        </div>
+      </Router>
     </ThemeProvider>
   );
 }
