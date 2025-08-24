@@ -4,11 +4,6 @@ import teamMembersData from '../../data/teamMembers.json';
 import { MemberCard } from '../MemberCard';
 
 export const AboutPage = () => {
-  const navigate = useNavigate();
-
-  const handleCardClick = (member) => {
-    navigate(`/card/${member.id}`);
-  };
   const values = [
     { icon: Lightbulb, text: "Innovation in AI technology" },
     { icon: Users, text: "User-centric design approach" },
