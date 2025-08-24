@@ -1,5 +1,5 @@
 import React from 'react';
-import { Users, Target, Eye, Award, CheckCircle, Lightbulb, Heart, Globe, Zap, Shield } from 'lucide-react';
+import { Users, Target, Eye, Award, Check, Lightbulb, Heart, Globe, Zap, Shield } from 'lucide-react';
 
 export const AboutPage = () => {
   const values = [
