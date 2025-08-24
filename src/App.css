@@ -1594,19 +1594,19 @@ select.form-control option {
 }
 
 .id-card-footer {
-  padding: 6px 16px;
+  padding: 8px 16px;
   background: var(--glass-bg-dark);
   border-top: 1px solid var(--glass-border);
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
 
 .footer-brand-card {
   display: flex;
   align-items: center;
-  gap: 4px;
-  font-size: 8px;
+  gap: 6px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--amtics-magenta);
 }
