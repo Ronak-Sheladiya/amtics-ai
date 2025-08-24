@@ -1,7 +1,7 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Users, Target, Eye, Award, Check, Lightbulb, Heart, Globe, Zap, Shield, User } from 'lucide-react';
+import { Users, Target, Eye, Award, Check, Lightbulb, Heart, Globe, Zap, Shield } from 'lucide-react';
 import teamMembersData from '../../data/teamMembers.json';
+import { MemberCard } from '../MemberCard';
 
 export const AboutPage = () => {
   const navigate = useNavigate();
