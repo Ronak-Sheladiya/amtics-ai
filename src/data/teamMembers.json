@@ -38,7 +38,7 @@
       "email": "mike.chen@amtics.com",
       "phone": "+1 (555) 345-6789",
       "joinDate": "2024-01-20",
-      "imageUrl": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
+      "imageUrl": "/src/data/member-images/mike-chen.svg",
       "skills": ["Support Operations", "Team Coordination", "Process Management", "Quality Assurance"],
       "location": "Seattle, WA"
     },
