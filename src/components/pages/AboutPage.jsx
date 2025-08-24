@@ -227,12 +227,6 @@ export const AboutPage = () => {
             ))}
           </div>
         </div>
-
-        <IdCardModal
-          member={selectedMember}
-          isOpen={isModalOpen}
-          onClose={handleCloseModal}
-        />
       </div>
     </div>
   );
