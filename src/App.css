@@ -1072,6 +1072,51 @@ select.form-control option {
   font-size: 14px;
 }
 
+.prompt-copy-meta {
+  background: var(--amtics-blue-gradient);
+  box-shadow: 0 3px 12px rgba(0, 51, 102, 0.3);
+}
+
+.prompt-copy-meta:hover {
+  background: linear-gradient(135deg, #002a4d 0%, #1565c0 100%);
+  box-shadow: 0 6px 20px rgba(0, 51, 102, 0.4);
+}
+
+.prompt-footer {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--glass-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.prompt-stats {
+  display: flex;
+  gap: 16px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.char-count,
+.word-count {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.clipboard-warning {
+  font-size: 12px;
+  color: #fbbf24;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.clipboard-warning span {
+  cursor: help;
+}
+
 .prompt-text {
   background: var(--glass-bg-dark);
   border: 1px solid var(--glass-border);
