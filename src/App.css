@@ -1308,10 +1308,14 @@ select.form-control option {
 .team-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 32px;
+  gap: 40px;
   justify-items: center;
   align-items: start;
-  margin-top: 32px;
+  margin-top: 40px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 20px;
 }
 
 .team-member-card {
