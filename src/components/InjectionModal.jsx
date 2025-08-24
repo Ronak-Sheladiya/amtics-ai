@@ -36,29 +36,65 @@ export const InjectionModal = ({ prompts, platform, platformName, onClose }) => 
       showToast('info', `Opening ${prompts.length} tabs for ${platformName}...`);
       addStatusItem(`Starting auto-injection for ${prompts.length} prompts`, 'info');
 
-      await promptInjector.openTabsWithPrompts(platform, prompts);
-      
-      // Simulate progress updates
-      for (let i = 1; i <= prompts.length; i++) {
-        setTimeout(() => {
-          updateProgress(i / prompts.length);
-          addStatusItem(`Tab ${i} opened and prompt injected`, 'success');
-        }, i * 500);
+      // Open tabs and get results
+      const result = await promptInjector.openTabsWithPrompts(platform, prompts);
+
+      // Update progress based on actual results
+      const { successfulTabs, failedTabs, results } = result;
+
+      if (successfulTabs > 0) {
+        addStatusItem(`${successfulTabs} tabs opened successfully`, 'success');
+        updateProgress(0.5); // 50% for opening tabs
       }
 
+      if (failedTabs > 0) {
+        addStatusItem(`${failedTabs} tabs failed to open (popup blocker?)`, 'error');
+      }
+
+      // Simulate injection progress with realistic timing
+      let injectionProgress = 0.5; // Start from 50% (tabs opened)
+      const progressIncrement = 0.5 / successfulTabs; // Remaining 50% for injections
+
+      for (let i = 0; i < prompts.length; i++) {
+        setTimeout(() => {
+          const tabResult = results[i];
+          if (tabResult.success) {
+            injectionProgress += progressIncrement;
+            updateProgress(injectionProgress);
+            addStatusItem(`Prompt ${i + 1} injection started`, 'info');
+
+            // Simulate injection completion
+            setTimeout(() => {
+              addStatusItem(`Prompt ${i + 1} injected successfully`, 'success');
+            }, 2000 + (i * 500));
+          } else {
+            addStatusItem(`Prompt ${i + 1} failed: ${tabResult.error}`, 'error');
+          }
+        }, i * 300);
+      }
+
+      // Final status update
       setTimeout(() => {
-        addStatusItem('All prompts injected successfully!', 'success');
-        showToast('success', 'Auto-injection completed! Check your opened tabs.');
-      }, prompts.length * 500 + 1000);
+        updateProgress(1.0);
+        const successMessage = successfulTabs === prompts.length
+          ? 'All prompts injected successfully!'
+          : `${successfulTabs}/${prompts.length} prompts injected successfully!`;
+        addStatusItem(successMessage, successfulTabs > 0 ? 'success' : 'error');
+        showToast(successfulTabs > 0 ? 'success' : 'error',
+          successfulTabs > 0
+            ? 'Auto-injection completed! Check your opened tabs.'
+            : 'Auto-injection failed. Try manual copy instead.');
+      }, prompts.length * 300 + 3000);
 
     } catch (error) {
-      addStatusItem('Failed to complete auto-injection', 'error');
-      showToast('error', 'Auto-injection failed. Try manual copy instead.');
+      addStatusItem(`Failed to complete auto-injection: ${error.message}`, 'error');
+      showToast('error', `Auto-injection failed: ${error.message}`);
       console.error('Injection error:', error);
+      updateProgress(0);
     } finally {
       setTimeout(() => {
         setIsExecuting(false);
-      }, prompts.length * 500 + 2000);
+      }, prompts.length * 300 + 4000);
     }
   };
 
