@@ -152,9 +152,13 @@ export const IdCardModal = ({ member, isOpen, onClose }) => {
             <Share size={18} />
             Share Card
           </button>
-          <button className="btn btn-primary" onClick={handleDownload}>
+          <button className="btn btn-primary" onClick={downloadAsPDF}>
             <Download size={18} />
             Download PDF
+          </button>
+          <button className="btn btn-outline" onClick={downloadAsPNG}>
+            <Download size={18} />
+            Download PNG
           </button>
         </div>
       </div>
