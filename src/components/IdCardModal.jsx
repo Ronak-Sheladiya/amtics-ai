@@ -226,70 +226,58 @@ export const IdCardModal = ({ member, isOpen, onClose }) => {
           <X size={24} />
         </button>
         
-        <div id="id-card-content" className="id-card-content">
-          <div className="id-card-header">
-            <div className="company-brand">
-              <Zap size={24} />
-              <span>AMTICS Multi-Media</span>
-            </div>
-            <h3>Employee Identification Card</h3>
+        <div id="id-card-content" className="modal-card-replica">
+          <div className="id-card-background">
+            <div className="card-pattern"></div>
+            <div className="card-shine"></div>
           </div>
-          
-          <div className="id-card-body">
-            <div className="member-photo-section">
-              <img 
-                src={member.imageUrl} 
+
+          <div className="id-card-header">
+            <div className="company-logo">
+              <Zap size={20} />
+              <span>AMTICS</span>
+            </div>
+            <div className="card-type">MEDIA ID</div>
+          </div>
+
+          <div className="id-card-content">
+            <div className="member-photo-container">
+              <img
+                src={member.imageUrl}
                 alt={member.name}
-                className="member-photo"
+                className="member-photo-circle"
                 onError={(e) => {
-                  e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgdmlld0JveD0iMCAwIDEyMCAxMjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiBmaWxsPSIjRjFGNUY5Ii8+CjxjaXJjbGUgY3g9IjYwIiBjeT0iNDAiIHI9IjE2IiBmaWxsPSIjRDQwMDc1Ii8+CjxwYXRoIGQ9Ik0zMCA4MEMzMCA3MS43MTU3IDM2LjcxNTcgNjUgNDUgNjVINzVDODMuMjg0MyA2NSA5MCA3MS43MTU3IDkwIDgwVjkwSDMwVjgwWiIgZmlsbD0iI0Q0MDA3NSIvPgo8L3N2Zz4K';
+                  e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHZpZXdCb3g9IjAgMCA4MCA4MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjgwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjRjFGNUY5Ii8+CjxjaXJjbGUgY3g9IjQwIiBjeT0iMzAiIHI9IjEyIiBmaWxsPSIjRDQwMDc1Ii8+CjxwYXRoIGQ9Ik0yMCA2MEMyMCA1My4zNzI2IDI1LjM3MjYgNDggMzIgNDhINDhDNTQuNjI3NCA0OCA2MCA1My4zNzI2IDYwIDYwVjY1SDIwVjYwWiIgZmlsbD0iI0Q0MDA3NSIvPgo8L3N2Zz4K';
                 }}
               />
-              <div className="id-badge">
-                <User size={16} />
-                <span>{member.employeeId}</span>
+              <div className="employee-id-badge">
+                <User size={12} />
+                <span>{member.enrollmentNumber}</span>
               </div>
             </div>
-            
-            <div className="member-details">
-              <h2 className="member-name">{member.name}</h2>
-              <p className="member-position">{member.position}</p>
+
+            <div className="member-info-card">
+              <h3 className="member-name-card">{member.name}</h3>
+              <p className="member-position-card">{member.position}</p>
               <p className="member-department">{member.department}</p>
-              
-              <div className="contact-details">
-                <div className="contact-item">
-                  <Mail size={16} />
-                  <span>{member.email}</span>
+
+              <div className="member-meta">
+                <div className="meta-item">
+                  <span className="meta-label">ID:</span>
+                  <span className="meta-value">{member.enrollmentNumber}</span>
                 </div>
-                <div className="contact-item">
-                  <Phone size={16} />
-                  <span>{member.phone}</span>
-                </div>
-                <div className="contact-item">
-                  <MapPin size={16} />
-                  <span>{member.location}</span>
-                </div>
-                <div className="contact-item">
-                  <Calendar size={16} />
-                  <span>Joined {new Date(member.joinDate).toLocaleDateString()}</span>
-                </div>
-              </div>
-              
-              <div className="skills-section">
-                <h4>Skills & Expertise</h4>
-                <div className="skills-tags">
-                  {member.skills.map((skill, index) => (
-                    <span key={index} className="skill-tag">{skill}</span>
-                  ))}
+                <div className="meta-item">
+                  <span className="meta-label">Since:</span>
+                  <span className="meta-value">{new Date(member.joinDate).getFullYear()}</span>
                 </div>
               </div>
             </div>
           </div>
-          
+
           <div className="id-card-footer">
-            <div className="enrollment-info">
-              <span>ID: {member.enrollmentNumber}</span>
-              <span>Generated: {new Date().toLocaleDateString()}</span>
+            <div className="footer-brand-card">
+              <Zap size={14} />
+              <span>AMTICS Multi-Media</span>
             </div>
           </div>
         </div>
