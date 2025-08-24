@@ -2791,6 +2791,32 @@ select.form-control option {
   .container {
     padding: 0 16px;
   }
+
+  .team-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 0 10px;
+  }
+
+  .professional-id-card {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .team-actions {
+    margin-top: 60px;
+    padding: 32px 24px;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .action-buttons .btn {
+    width: 100%;
+    max-width: 250px;
+  }
   
   .nav-content {
     flex-direction: column;
