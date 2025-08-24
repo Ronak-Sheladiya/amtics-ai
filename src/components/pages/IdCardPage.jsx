@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
-import { User, Download, Share } from 'lucide-react';
+import { User, Download, Share, Zap } from 'lucide-react';
 import teamMembersData from '../../data/teamMembers.json';
 import { showToast } from '../../utils/toast';
 import { MemberCard } from '../MemberCard';
