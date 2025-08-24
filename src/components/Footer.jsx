@@ -1,11 +1,11 @@
 import React from 'react';
-import { Zap, Navigation, Mail, Tools, Github, Twitter, Linkedin, Instagram, Globe, Phone } from 'lucide-react';
+import { Zap, Navigation, Mail, Wrench, Github, Twitter, Linkedin, Instagram, Globe, Phone } from 'lucide-react';
 
 export const Footer = ({ onPageChange }) => {
   const quickLinks = [
     { id: 'home', label: 'Home', icon: Navigation },
     { id: 'about', label: 'About Us', icon: Mail },
-    { id: 'developer', label: 'Developer', icon: Tools }
+    { id: 'developer', label: 'Developer', icon: Wrench }
   ];
 
   const platforms = [
@@ -91,7 +91,7 @@ export const Footer = ({ onPageChange }) => {
           
           <div className="footer-section">
             <h3 className="footer-title">
-              <Tools size={18} />
+              <Wrench size={18} />
               AI Platforms
             </h3>
             <div className="footer-platforms">
