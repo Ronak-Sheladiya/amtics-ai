@@ -3181,6 +3181,50 @@ select.form-control option {
   }
 }
 
+/* Institute Info Section */
+.institute-info {
+  background: var(--glass-bg);
+  border-top: 1px solid var(--glass-border);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  margin-top: 60px;
+  padding: 40px 0;
+}
+
+.institute-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+}
+
+.institute-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.institute-item svg {
+  color: var(--amtics-magenta);
+}
+
+@media (max-width: 768px) {
+  .institute-content {
+    gap: 12px;
+  }
+
+  .institute-item {
+    font-size: 14px;
+    flex-direction: column;
+    text-align: center;
+    gap: 4px;
+  }
+}
+
 /* Team Actions Section */
 .team-actions {
   margin-top: 80px;
