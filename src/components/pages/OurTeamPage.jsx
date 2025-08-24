@@ -82,7 +82,9 @@ export const OurTeamPage = () => {
               </div>
               
               <div className="team-grid">
-                {sectionMembers.map(renderMemberCard)}
+                {sectionMembers.map((member) => (
+                  <MemberCard key={member.id} member={member} />
+                ))}
               </div>
             </div>
           );
