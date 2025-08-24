@@ -4,6 +4,7 @@ import { ThemeProvider } from './contexts/ThemeContext';
 import { Layout } from './components/Layout';
 import { HomePage } from './components/pages/HomePage';
 import { AboutPage } from './components/pages/AboutPage';
+import { OurTeamPage } from './components/pages/OurTeamPage';
 import { IdCardPage } from './components/pages/IdCardPage';
 import { ToastContainer } from './components/ToastContainer';
 import './App.css';
@@ -17,6 +18,7 @@ function App() {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/about" element={<AboutPage />} />
+              <Route path="/team" element={<OurTeamPage />} />
               <Route path="/card/:id" element={<IdCardPage />} />
             </Routes>
           </Layout>
