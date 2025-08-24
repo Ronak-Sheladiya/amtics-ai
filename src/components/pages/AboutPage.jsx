@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Users, Target, Eye, Award, Check, Lightbulb, Heart, Globe, Zap, Shield, User } from 'lucide-react';
 import { IdCardModal } from '../IdCardModal';
 import teamMembersData from '../../data/teamMembers.json';
