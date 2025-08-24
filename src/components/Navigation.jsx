@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Zap, Home, Info, Sun, Moon } from 'lucide-react';
+import { Zap, Home, Info, Users, Sun, Moon } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 
 export const Navigation = () => {
