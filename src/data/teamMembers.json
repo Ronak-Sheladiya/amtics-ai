@@ -108,7 +108,7 @@
       "email": "maria.garcia@amtics.com",
       "phone": "+1 (555) 890-1234",
       "joinDate": "2024-03-15",
-      "imageUrl": "/src/data/member-images/default-avatar.svgphoto-1544005313-94ddf0286df2?w=400&h=400&fit=crop&crop=face",
+      "imageUrl": "/src/data/member-images/default-avatar.svg",
       "skills": ["Cinematography", "Documentary Filming", "Corporate Videos", "Equipment Management"],
       "location": "Denver, CO"
     },
