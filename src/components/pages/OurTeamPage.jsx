@@ -95,10 +95,10 @@ export const OurTeamPage = () => {
           <h3>Want to Join Our Team?</h3>
           <p>We're always looking for talented individuals to join our mission of revolutionizing graphic design with AI.</p>
           <div className="action-buttons">
-            <button className="btn btn-primary">
-              View Open Positions
-            </button>
-            <button className="btn btn-secondary">
+            <button
+              className="btn btn-primary"
+              onClick={() => window.open('mailto:22amtics221@gmail.com?subject=Application for joining in AMTICS multi-media team', '_blank')}
+            >
               Contact Us
             </button>
           </div>
