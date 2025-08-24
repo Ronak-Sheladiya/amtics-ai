@@ -1600,14 +1600,14 @@ select.form-control option {
   border-radius: 24px;
   box-shadow: var(--glass-shadow-lg);
   position: relative;
-  max-width: 600px;
-  width: 100%;
-  max-height: 90vh;
-  overflow-y: auto;
+  width: 400px;
+  height: auto;
+  overflow: visible;
 }
 
 .id-card-modal {
-  max-width: 700px;
+  width: 400px;
+  height: auto;
 }
 
 .modal-close {
