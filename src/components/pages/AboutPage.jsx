@@ -156,12 +156,12 @@ export const AboutPage = () => {
           </div>
         </div>
 
-        {/* Team Section */}
+        {/* Our Body Section */}
         <div className="team-section">
-          <h2 className="section-title">Meet Our Team</h2>
+          <h2 className="section-title">Our Body</h2>
           <p className="section-subtitle">Click on any ID card to view details and share</p>
           <div className="team-grid">
-            {teamMembersData.teamMembers.map((member) => (
+            {teamMembersData.teamMembers.filter(member => member.section === 'body').map((member) => (
               <div
                 key={member.id}
                 className="professional-id-card glass-card"
