@@ -1,11 +1,11 @@
 import React from 'react';
-import { Zap, Navigation, Mail, Wrench, Github, Twitter, Linkedin, Instagram, Globe, Phone } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Zap, Navigation, Mail, Github, Twitter, Linkedin, Instagram, Globe, Phone } from 'lucide-react';
 
-export const Footer = ({ onPageChange }) => {
+export const Footer = () => {
   const quickLinks = [
-    { id: 'home', label: 'Home', icon: Navigation },
-    { id: 'about', label: 'About Us', icon: Mail },
-    { id: 'developer', label: 'Developer', icon: Wrench }
+    { path: '/', label: 'Home', icon: Navigation },
+    { path: '/about', label: 'About Us', icon: Mail }
   ];
 
   const platforms = [
