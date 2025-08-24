@@ -202,7 +202,7 @@ export const AboutPage = () => {
                     <Zap size={20} />
                     <span>AMTICS</span>
                   </div>
-                  <div className="card-type">EMPLOYEE ID</div>
+                  <div className="card-type">MEDIA ID</div>
                 </div>
 
                 <div className="id-card-content">
