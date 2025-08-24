@@ -219,9 +219,6 @@ export const AboutPage = () => {
                     <Zap size={14} />
                     <span>AMTICS Multi-Media</span>
                   </div>
-                  <div className="card-action-hint">
-                    Click to view details
-                  </div>
                 </div>
               </div>
             ))}
