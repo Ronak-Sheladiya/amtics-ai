@@ -1,46 +1,43 @@
 {
   "teamMembers": [
     {
-      "id": "emp-001",
+      "id": "MED-2024-001",
       "name": "John Smith",
       "position": "AI Research Lead",
-      "department": "Research & Development", 
-      "enrollmentNumber": "EMP-2024-001",
+      "department": "Research & Development",
+      "enrollmentNumber": "MED-2024-001",
       "email": "john.smith@amtics.com",
       "phone": "+1 (555) 123-4567",
       "joinDate": "2024-01-15",
       "imageUrl": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
       "skills": ["Machine Learning", "Deep Learning", "Computer Vision", "NLP"],
-      "location": "San Francisco, CA",
-      "employeeId": "A001"
+      "location": "San Francisco, CA"
     },
     {
-      "id": "emp-002", 
+      "id": "MED-2024-002",
       "name": "Sarah Johnson",
       "position": "Lead UX Designer",
       "department": "Design & User Experience",
-      "enrollmentNumber": "EMP-2024-002",
+      "enrollmentNumber": "MED-2024-002",
       "email": "sarah.johnson@amtics.com",
       "phone": "+1 (555) 234-5678",
       "joinDate": "2024-02-01",
       "imageUrl": "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face",
       "skills": ["User Experience", "Visual Design", "Prototyping", "Design Systems"],
-      "location": "New York, NY",
-      "employeeId": "A002"
+      "location": "New York, NY"
     },
     {
-      "id": "emp-003",
-      "name": "Mike Chen", 
+      "id": "MED-2024-003",
+      "name": "Mike Chen",
       "position": "Full-Stack Developer",
       "department": "Software Engineering",
-      "enrollmentNumber": "EMP-2024-003",
-      "email": "mike.chen@amtics.com", 
+      "enrollmentNumber": "MED-2024-003",
+      "email": "mike.chen@amtics.com",
       "phone": "+1 (555) 345-6789",
       "joinDate": "2024-01-20",
       "imageUrl": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
       "skills": ["React", "Node.js", "AI Integration", "Cloud Architecture"],
-      "location": "Seattle, WA",
-      "employeeId": "A003"
+      "location": "Seattle, WA"
     }
   ]
 }
