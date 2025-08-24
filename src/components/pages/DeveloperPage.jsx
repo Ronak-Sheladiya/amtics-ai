@@ -1,0 +1,276 @@
+import React, { useState } from 'react';
+import { Terminal, Code2, Users, BookOpen, Globe, Zap, Palette, Cpu, Smartphone, Shield, Eye, EyeOff } from 'lucide-react';
+
+export const DeveloperPage = () => {
+  const [showApiKey, setShowApiKey] = useState(false);
+
+  const techStack = [
+    { icon: Globe, name: "React 18", description: "Modern frontend framework" },
+    { icon: Zap, name: "Vite", description: "Lightning-fast build tool" },
+    { icon: Palette, name: "CSS3 + Glassmorphism", description: "Modern design system" },
+    { icon: Cpu, name: "AI Integration APIs", description: "Multi-platform support" },
+    { icon: Smartphone, name: "Responsive Design", description: "Mobile-first approach" },
+    { icon: Shield, name: "Security Standards", description: "Best practices implementation" }
+  ];
+
+  const apiIntegrations = [
+    { icon: "🧠", name: "OpenAI DALL-E Integration", status: "Active" },
+    { icon: "✨", name: "Google Gemini Imagen", status: "Active" },
+    { icon: "🖼️", name: "Adobe Firefly API", status: "Active" },
+    { icon: "🎨", name: "Canva Magic Design", status: "Active" },
+    { icon: "🪄", name: "Midjourney Integration", status: "Active" }
+  ];
+
+  const projectStats = [
+    { label: "Lines of Code", value: "15,000+" },
+    { label: "Components", value: "25+" },
+    { label: "API Endpoints", value: "12" },
+    { label: "Test Coverage", value: "95%" }
+  ];
+
+  const architectureDetails = [
+    {
+      title: "Component Architecture",
+      description: "Modular React components with separation of concerns"
+    },
+    {
+      title: "State Management",
+      description: "Context API for theme and global state management"
+    },
+    {
+      title: "API Layer",
+      description: "Abstracted prompt injection with platform-specific adapters"
+    },
+    {
+      title: "Design System",
+      description: "Consistent glassmorphism UI with dark/light theme support"
+    }
+  ];
+
+  return (
+    <div id="developer-page" className="page active">
+      <div className="container">
+        <div className="page-header">
+          <h1 className="page-title">
+            <Terminal className="page-icon" />
+            Developer Information
+          </h1>
+          <p className="page-subtitle">Technical insights and development details</p>
+        </div>
+
+        {/* Project Stats */}
+        <div className="stats-grid">
+          {projectStats.map((stat, index) => (
+            <div key={index} className="stat-card glass-card">
+              <div className="stat-number">{stat.value}</div>
+              <div className="stat-label">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+        
+        <div className="content-grid">
+          {/* Technology Stack */}
+          <div className="glass-card">
+            <div className="card-header">
+              <h2 className="card-title">
+                <Code2 size={20} />
+                Technology Stack
+              </h2>
+            </div>
+            <div className="card-body">
+              <div className="tech-stack">
+                {techStack.map((tech, index) => {
+                  const IconComponent = tech.icon;
+                  return (
+                    <div key={index} className="tech-item">
+                      <IconComponent size={20} />
+                      <div className="tech-info">
+                        <span className="tech-name">{tech.name}</span>
+                        <span className="tech-desc">{tech.description}</span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+          
+          {/* Development Team */}
+          <div className="glass-card">
+            <div className="card-header">
+              <h2 className="card-title">
+                <Users size={20} />
+                Development Team
+              </h2>
+            </div>
+            <div className="card-body">
+              <div className="team-member">
+                <div className="member-avatar">
+                  <Users size={24} />
+                </div>
+                <div className="member-info">
+                  <h3>AMTICS Development Team</h3>
+                  <p>Full-Stack Developers & AI Specialists</p>
+                  <div className="member-skills">
+                    <span className="skill-tag">Frontend Development</span>
+                    <span className="skill-tag">AI Integration</span>
+                    <span className="skill-tag">UX Design</span>
+                    <span className="skill-tag">API Development</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* API Integrations */}
+          <div className="glass-card">
+            <div className="card-header">
+              <h2 className="card-title">
+                <BookOpen size={20} />
+                API Integrations
+              </h2>
+            </div>
+            <div className="card-body">
+              <p>Our platform integrates with multiple AI providers to ensure the best results:</p>
+              <div className="api-list">
+                {apiIntegrations.map((api, index) => (
+                  <div key={index} className="api-item">
+                    <span className="api-icon">{api.icon}</span>
+                    <span className="api-name">{api.name}</span>
+                    <span className={`api-status status-${api.status.toLowerCase()}`}>
+                      {api.status}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Architecture */}
+          <div className="glass-card full-width">
+            <div className="card-header">
+              <h2 className="card-title">
+                <Cpu size={20} />
+                System Architecture
+              </h2>
+            </div>
+            <div className="card-body">
+              <div className="architecture-grid">
+                {architectureDetails.map((detail, index) => (
+                  <div key={index} className="architecture-item">
+                    <h4>{detail.title}</h4>
+                    <p>{detail.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Development Tools */}
+          <div className="glass-card">
+            <div className="card-header">
+              <h2 className="card-title">
+                <Terminal size={20} />
+                Development Environment
+              </h2>
+            </div>
+            <div className="card-body">
+              <div className="dev-tools">
+                <div className="tool-section">
+                  <h4>Build Tools</h4>
+                  <ul>
+                    <li>Vite - Fast build tool and dev server</li>
+                    <li>ESLint - Code quality and consistency</li>
+                    <li>Prettier - Code formatting</li>
+                  </ul>
+                </div>
+                <div className="tool-section">
+                  <h4>Libraries</h4>
+                  <ul>
+                    <li>Lucide React - Icon library</li>
+                    <li>CLSX - Conditional class utilities</li>
+                    <li>React Context - State management</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* API Documentation */}
+          <div className="glass-card">
+            <div className="card-header">
+              <h2 className="card-title">
+                <BookOpen size={20} />
+                API Documentation
+              </h2>
+            </div>
+            <div className="card-body">
+              <div className="api-docs">
+                <h4>Prompt Injection API</h4>
+                <div className="code-block">
+                  <code>
+                    {`// Example usage
+const injector = new PromptInjector();
+await injector.openTabsWithPrompts(
+  'gemini', 
+  prompts
+);`}
+                  </code>
+                </div>
+                
+                <h4>Theme Context</h4>
+                <div className="code-block">
+                  <code>
+                    {`// Theme toggle
+const { theme, toggleTheme } = useTheme();`}
+                  </code>
+                </div>
+
+                <div className="api-key-section">
+                  <h4>API Configuration</h4>
+                  <div className="api-key-display">
+                    <input 
+                      type={showApiKey ? "text" : "password"}
+                      value="amtics_dev_key_2024_secure"
+                      readOnly
+                      className="api-key-input"
+                    />
+                    <button 
+                      className="api-key-toggle"
+                      onClick={() => setShowApiKey(!showApiKey)}
+                    >
+                      {showApiKey ? <EyeOff size={16} /> : <Eye size={16} />}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Performance Metrics */}
+        <div className="performance-section">
+          <h2 className="section-title">Performance Metrics</h2>
+          <div className="metrics-grid">
+            <div className="metric-card glass-card">
+              <div className="metric-value">98</div>
+              <div className="metric-label">Performance Score</div>
+            </div>
+            <div className="metric-card glass-card">
+              <div className="metric-value">100</div>
+              <div className="metric-label">Accessibility</div>
+            </div>
+            <div className="metric-card glass-card">
+              <div className="metric-value">95</div>
+              <div className="metric-label">Best Practices</div>
+            </div>
+            <div className="metric-card glass-card">
+              <div className="metric-value">100</div>
+              <div className="metric-label">SEO</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
