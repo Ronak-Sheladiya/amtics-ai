@@ -1,35 +1,61 @@
-import React from 'react';
-import { FileText, Clipboard, Rocket, Palette } from 'lucide-react';
+import React, { useState } from 'react';
+import { FileText, Clipboard, Rocket, Palette, Copy, Download } from 'lucide-react';
+import { copySinglePrompt, copyAllPrompts, copyPromptWithMetadata, isClipboardSupported } from '../utils/copyUtils';
 import { showToast } from '../utils/toast';
 
 export const PromptDisplay = ({ prompts, isGenerating, onAutoExecute, hasPrompts }) => {
-  const copyPrompt = async (prompt, index) => {
+  const [copyingIndex, setCopyingIndex] = useState(null);
+  const [copyingAll, setCopyingAll] = useState(false);
+
+  const handleCopyPrompt = async (prompt, index) => {
+    setCopyingIndex(index);
     try {
-      await navigator.clipboard.writeText(prompt);
-      showToast('success', `Prompt ${index + 1} copied successfully!`);
-    } catch (error) {
-      console.error('Copy failed:', error);
-      showToast('error', 'Failed to copy prompt');
+      await copySinglePrompt(prompt, index);
+    } finally {
+      setCopyingIndex(null);
     }
   };
 
-  const copyAllPrompts = async () => {
-    if (prompts.length === 0) {
-      showToast('error', 'No prompts to copy');
-      return;
+  const handleCopyAllPrompts = async () => {
+    setCopyingAll(true);
+    try {
+      await copyAllPrompts(prompts, 'AMTICS');
+    } finally {
+      setCopyingAll(false);
     }
-    
+  };
+
+  const handleCopyWithMetadata = async (prompt, index) => {
+    setCopyingIndex(index);
+    try {
+      const metadata = {
+        platform: 'Generated Platform',
+        postType: 'Custom Design',
+        size: 'Generated Size',
+        timestamp: Date.now()
+      };
+      await copyPromptWithMetadata(prompt, metadata);
+    } finally {
+      setCopyingIndex(null);
+    }
+  };
+
+  const downloadAllPrompts = () => {
     const formatted = prompts
       .map((prompt, i) => `=== AMTICS PROMPT ${i + 1} ===\n${prompt}`)
       .join('\n\n');
-    
-    try {
-      await navigator.clipboard.writeText(formatted);
-      showToast('success', 'All prompts copied to clipboard!');
-    } catch (error) {
-      console.error('Copy all failed:', error);
-      showToast('error', 'Failed to copy prompts');
-    }
+
+    const blob = new Blob([formatted], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `amtics-prompts-${new Date().toISOString().split('T')[0]}.txt`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    showToast('success', 'Prompts downloaded successfully! 📁');
   };
 
   const renderLoadingState = () => (
