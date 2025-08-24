@@ -991,23 +991,51 @@ select.form-control option {
 }
 
 .prompt-copy-btn {
-  background: var(--amtics-green);
+  background: var(--amtics-green-gradient);
   color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 8px;
-  font-size: 12px;
-  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
   cursor: pointer;
-  transition: var(--transition-fast);
+  transition: var(--transition-normal);
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
+  box-shadow: 0 3px 12px rgba(0, 104, 55, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.prompt-copy-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.prompt-copy-btn:hover::before {
+  left: 100%;
 }
 
 .prompt-copy-btn:hover {
-  background: #005528;
-  transform: scale(1.05);
+  background: linear-gradient(135deg, #007a42 0%, #00a855 100%);
+  transform: var(--hover-transform);
+  box-shadow: 0 6px 20px rgba(0, 104, 55, 0.4);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.prompt-copy-btn:active {
+  transform: var(--active-transform);
+}
+
+.prompt-copy-btn span {
+  font-size: 14px;
 }
 
 .prompt-text {
