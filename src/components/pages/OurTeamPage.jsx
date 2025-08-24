@@ -4,11 +4,6 @@ import teamMembersData from '../../data/teamMembers.json';
 import { MemberCard } from '../MemberCard';
 
 export const OurTeamPage = () => {
-  const navigate = useNavigate();
-
-  const handleCardClick = (member) => {
-    navigate(`/card/${member.id}`);
-  };
 
   const sections = [
     {
