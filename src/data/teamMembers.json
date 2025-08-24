@@ -66,7 +66,7 @@
       "email": "david.park@amtics.com",
       "phone": "+1 (555) 567-8901",
       "joinDate": "2024-04-15",
-      "imageUrl": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=face",
+      "imageUrl": "/src/data/member-images/default-avatar.svg",
       "skills": ["Illustrator", "Photoshop", "Layout Design", "Color Theory"],
       "location": "Austin, TX"
     },
