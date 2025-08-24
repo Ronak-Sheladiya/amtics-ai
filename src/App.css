@@ -670,6 +670,22 @@ select.form-control option {
   font-weight: 500;
 }
 
+/* Dark theme specific dropdown fixes */
+[data-theme="dark"] select.form-control option {
+  background: rgba(15, 15, 35, 0.9);
+  color: #ffffff;
+}
+
+[data-theme="dark"] select.form-control option:hover {
+  background: rgba(212, 0, 117, 0.2);
+  color: #ffffff;
+}
+
+[data-theme="dark"] select.form-control option:checked {
+  background: var(--amtics-magenta);
+  color: #ffffff;
+}
+
 [data-theme="light"] select.form-control {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%231a202c' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -683,6 +699,16 @@ select.form-control option {
 [data-theme="light"] select.form-control option {
   background: var(--glass-bg-light);
   color: var(--text-primary);
+}
+
+[data-theme="light"] select.form-control option:hover {
+  background: rgba(212, 0, 117, 0.1);
+  color: var(--text-primary);
+}
+
+[data-theme="light"] select.form-control option:checked {
+  background: var(--amtics-magenta);
+  color: #ffffff;
 }
 
 /* Number Input */
@@ -1267,40 +1293,76 @@ select.form-control option {
 }
 
 .team-member-card {
-  padding: 32px;
-  text-align: center;
+  padding: 0;
+  overflow: hidden;
 }
 
-.member-avatar {
+.member-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 24px;
+}
+
+.member-image {
   width: 80px;
   height: 80px;
   background: var(--glass-bg-dark);
-  border-radius: 50%;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 16px;
   color: var(--amtics-magenta);
+  flex-shrink: 0;
+  border: 2px solid var(--glass-border);
 }
 
-.member-info h3 {
+.member-details {
+  flex: 1;
+}
+
+.member-details h3 {
   font-size: 20px;
   font-weight: 600;
   color: var(--text-primary);
   margin-bottom: 8px;
 }
 
-.member-info p {
+.member-position {
   font-size: 14px;
   color: var(--text-secondary);
-  margin-bottom: 16px;
+  margin-bottom: 6px;
+  font-weight: 500;
 }
 
-.member-skills {
+.enrollment-number {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-family: var(--font-family-mono);
+  background: var(--glass-bg-dark);
+  padding: 4px 8px;
+  border-radius: 6px;
+  display: inline-block;
+  border: 1px solid var(--glass-border);
+}
+
+.card-footer {
+  background: var(--glass-bg-dark);
+  border-top: 1px solid var(--glass-border);
+  padding: 12px 24px;
+}
+
+.footer-brand {
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
   gap: 8px;
-  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--amtics-magenta);
+}
+
+.footer-brand span {
+  color: var(--text-secondary);
 }
 
 .skill-tag {
@@ -1311,6 +1373,675 @@ select.form-control option {
   font-size: 12px;
   font-weight: 500;
   border: 1px solid var(--glass-border);
+}
+
+/* Professional ID Card Styles */
+.section-subtitle {
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 32px;
+  font-style: italic;
+}
+
+.professional-id-card {
+  position: relative;
+  padding: 0;
+  overflow: hidden;
+  cursor: pointer;
+  transition: var(--transition-normal);
+  width: 324px;
+  height: 204px;
+  background: linear-gradient(135deg, var(--glass-bg) 0%, var(--glass-bg-light) 100%);
+}
+
+.professional-id-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(212, 0, 117, 0.2);
+}
+
+.id-card-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--amtics-blue) 0%, var(--amtics-magenta) 100%);
+  opacity: 0.1;
+}
+
+.card-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 2px, transparent 2px),
+    radial-gradient(circle at 80% 50%, rgba(255,255,255,0.1) 2px, transparent 2px);
+  background-size: 30px 30px;
+}
+
+.card-shine {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+  opacity: 0;
+  transition: var(--transition-slow);
+}
+
+.professional-id-card:hover .card-shine {
+  opacity: 1;
+  transform: translateX(100%) translateY(100%);
+}
+
+.id-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px 6px;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.company-logo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--amtics-magenta);
+}
+
+.card-type {
+  font-size: 8px;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  background: var(--glass-bg-dark);
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.id-card-content {
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: left;
+  gap: 12px;
+  height: calc(204px - 40px - 30px);
+}
+
+.member-photo-container {
+  position: relative;
+  margin-bottom: 0;
+  flex-shrink: 0;
+}
+
+.member-photo-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--amtics-magenta);
+  box-shadow: 0 4px 12px rgba(212, 0, 117, 0.3);
+}
+
+.employee-id-badge {
+  position: absolute;
+  bottom: -6px;
+  right: -6px;
+  background: var(--amtics-blue);
+  color: white;
+  border-radius: 8px;
+  padding: 2px 4px;
+  font-size: 8px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  box-shadow: 0 2px 8px rgba(0, 51, 102, 0.4);
+}
+
+.member-info-card {
+  flex: 1;
+  text-align: left;
+}
+
+.member-name-card {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+  line-height: 1.2;
+}
+
+.member-position-card {
+  font-size: 10px;
+  color: var(--amtics-magenta);
+  font-weight: 600;
+  margin-bottom: 2px;
+  line-height: 1.2;
+}
+
+.member-department {
+  font-size: 8px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.member-meta {
+  display: flex;
+  justify-content: flex-start;
+  gap: 12px;
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+}
+
+.meta-label {
+  font-size: 7px;
+  color: var(--text-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.meta-value {
+  font-size: 9px;
+  color: var(--text-primary);
+  font-weight: 600;
+  font-family: var(--font-family-mono);
+  line-height: 1;
+}
+
+.id-card-footer {
+  padding: 6px 16px;
+  background: var(--glass-bg-dark);
+  border-top: 1px solid var(--glass-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-brand-card {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 8px;
+  font-weight: 600;
+  color: var(--amtics-magenta);
+}
+
+.card-action-hint {
+  font-size: 7px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.modal-content {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  box-shadow: var(--glass-shadow-lg);
+  position: relative;
+  width: 324px;
+  height: auto;
+  overflow: hidden;
+}
+
+.id-card-modal {
+  width: 324px;
+  height: auto;
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: var(--glass-bg-dark);
+  border: 1px solid var(--glass-border);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: var(--transition-normal);
+  z-index: 10;
+}
+
+.modal-close:hover {
+  background: var(--glass-bg);
+  color: var(--text-primary);
+  transform: scale(1.1);
+}
+
+.id-card-content {
+  padding: 0;
+}
+
+.modal-card-replica {
+  position: relative;
+  overflow: hidden;
+  width: 324px;
+  height: 204px;
+  background: linear-gradient(135deg, var(--glass-bg) 0%, var(--glass-bg-light) 100%);
+  border-radius: 16px;
+}
+
+.modal-card-replica .id-card-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--amtics-blue) 0%, var(--amtics-magenta) 100%);
+  opacity: 0.1;
+}
+
+.modal-card-replica .card-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 2px, transparent 2px),
+    radial-gradient(circle at 80% 50%, rgba(255,255,255,0.1) 2px, transparent 2px);
+  background-size: 30px 30px;
+}
+
+.modal-card-replica .id-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px 6px;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.modal-card-replica .company-logo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--amtics-magenta);
+}
+
+.modal-card-replica .card-type {
+  font-size: 8px;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  background: var(--glass-bg-dark);
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.modal-card-replica .id-card-content {
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: left;
+  gap: 12px;
+  height: calc(204px - 40px - 30px);
+}
+
+.modal-card-replica .member-photo-container {
+  position: relative;
+  margin-bottom: 0;
+  flex-shrink: 0;
+}
+
+.modal-card-replica .member-photo-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--amtics-magenta);
+  box-shadow: 0 4px 12px rgba(212, 0, 117, 0.3);
+}
+
+.modal-card-replica .employee-id-badge {
+  position: absolute;
+  bottom: -6px;
+  right: -6px;
+  background: var(--amtics-blue);
+  color: white;
+  border-radius: 8px;
+  padding: 2px 4px;
+  font-size: 8px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  box-shadow: 0 2px 8px rgba(0, 51, 102, 0.4);
+}
+
+.modal-card-replica .member-info-card {
+  flex: 1;
+  text-align: left;
+}
+
+.modal-card-replica .member-name-card {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+  line-height: 1.2;
+}
+
+.modal-card-replica .member-position-card {
+  font-size: 10px;
+  color: var(--amtics-magenta);
+  font-weight: 600;
+  margin-bottom: 2px;
+  line-height: 1.2;
+}
+
+.modal-card-replica .member-department {
+  font-size: 8px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.modal-card-replica .member-meta {
+  display: flex;
+  justify-content: flex-start;
+  gap: 12px;
+}
+
+.modal-card-replica .meta-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+}
+
+.modal-card-replica .meta-label {
+  font-size: 7px;
+  color: var(--text-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.modal-card-replica .meta-value {
+  font-size: 9px;
+  color: var(--text-primary);
+  font-weight: 600;
+  font-family: var(--font-family-mono);
+  line-height: 1;
+}
+
+.modal-card-replica .id-card-footer {
+  padding: 6px 16px;
+  background: var(--glass-bg-dark);
+  border-top: 1px solid var(--glass-border);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-card-replica .footer-brand-card {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 8px;
+  font-weight: 600;
+  color: var(--amtics-magenta);
+}
+
+.company-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--amtics-magenta);
+  margin-bottom: 12px;
+}
+
+.id-card-header h3 {
+  font-size: 16px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin: 0;
+}
+
+.id-card-body {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 32px;
+  align-items: start;
+  margin-bottom: 32px;
+}
+
+.member-photo-section {
+  position: relative;
+  text-align: center;
+}
+
+.member-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--amtics-magenta);
+  box-shadow: 0 12px 30px rgba(212, 0, 117, 0.3);
+  margin-bottom: 16px;
+}
+
+.id-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: var(--amtics-blue);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 6px 20px rgba(0, 51, 102, 0.4);
+}
+
+.member-details {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.member-name {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  background: var(--amtics-magenta-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.member-position {
+  font-size: 18px;
+  color: var(--amtics-blue);
+  font-weight: 600;
+  margin: 0;
+}
+
+.member-department {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.contact-item svg {
+  color: var(--amtics-magenta);
+  flex-shrink: 0;
+}
+
+.skills-section h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.skills-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skills-tags .skill-tag {
+  background: var(--amtics-magenta-gradient);
+  color: white;
+  font-weight: 500;
+  border: none;
+}
+
+.id-card-footer {
+  background: var(--glass-bg-dark);
+  border-top: 2px solid var(--glass-border);
+  padding: 20px 40px;
+  border-radius: 0 0 24px 24px;
+}
+
+.enrollment-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: var(--text-muted);
+  font-family: var(--font-family-mono);
+}
+
+.modal-actions {
+  padding: 20px;
+  background: var(--glass-bg-dark);
+  border-top: 1px solid var(--glass-border);
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  border-radius: 0 0 24px 24px;
+}
+
+.modal-actions .btn {
+  min-width: 120px;
+  font-size: 14px;
+  padding: 12px 16px;
+}
+
+/* Standalone ID Card Page */
+.id-card-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  padding: 40px 20px;
+}
+
+.standalone-card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.standalone-id-card {
+  position: relative;
+  overflow: hidden;
+  width: 324px;
+  height: 204px;
+  background: linear-gradient(135deg, var(--glass-bg) 0%, var(--glass-bg-light) 100%);
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(212, 0, 117, 0.2);
+}
+
+.card-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.card-actions .btn {
+  min-width: 140px;
+}
+
+@media (max-width: 768px) {
+  .modal-content {
+    margin: 10px;
+  }
+
+  .modal-actions {
+    padding: 16px;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .modal-actions .btn {
+    min-width: 100%;
+  }
+
+  .card-actions {
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .card-actions .btn {
+    min-width: 100%;
+  }
+
+  .id-card-page {
+    padding: 20px 10px;
+  }
 }
 
 /* Developer Page Specific */

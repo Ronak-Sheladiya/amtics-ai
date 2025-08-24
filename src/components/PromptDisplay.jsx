@@ -109,14 +109,6 @@ export const PromptDisplay = ({ prompts, isGenerating, onAutoExecute, hasPrompts
                   </>
                 )}
               </button>
-              <button
-                className="prompt-copy-btn prompt-copy-meta"
-                onClick={() => handleCopyWithMetadata(prompt, index)}
-                title="Copy prompt with metadata"
-              >
-                <Clipboard size={14} />
-                <span>Copy+</span>
-              </button>
             </div>
           </div>
           <pre className="prompt-text">{prompt}</pre>

@@ -1,11 +1,11 @@
 import React from 'react';
-import { Zap, Navigation, Mail, Wrench, Github, Twitter, Linkedin, Instagram, Globe, Phone } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Zap, Navigation, Mail, Github, Twitter, Linkedin, Instagram, Globe, Phone } from 'lucide-react';
 
-export const Footer = ({ onPageChange }) => {
+export const Footer = () => {
   const quickLinks = [
-    { id: 'home', label: 'Home', icon: Navigation },
-    { id: 'about', label: 'About Us', icon: Mail },
-    { id: 'developer', label: 'Developer', icon: Wrench }
+    { path: '/', label: 'Home', icon: Navigation },
+    { path: '/about', label: 'About Us', icon: Mail }
   ];
 
   const platforms = [
@@ -55,15 +55,15 @@ export const Footer = ({ onPageChange }) => {
               Quick Links
             </h3>
             <div className="footer-links">
-              {quickLinks.map(({ id, label, icon: Icon }) => (
-                <button
-                  key={id}
-                  onClick={() => onPageChange(id)}
+              {quickLinks.map(({ path, label, icon: Icon }) => (
+                <Link
+                  key={path}
+                  to={path}
                   className="footer-link"
                 >
                   <Icon size={16} />
                   <span>{label}</span>
-                </button>
+                </Link>
               ))}
             </div>
           </div>
@@ -89,20 +89,6 @@ export const Footer = ({ onPageChange }) => {
             </div>
           </div>
           
-          <div className="footer-section">
-            <h3 className="footer-title">
-              <Wrench size={18} />
-              AI Platforms
-            </h3>
-            <div className="footer-platforms">
-              {platforms.map((platform, index) => (
-                <div key={index} className="platform-item">
-                  <span className="platform-icon">{platform.icon}</span>
-                  <span>{platform.name}</span>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
         
         <div className="footer-bottom">
