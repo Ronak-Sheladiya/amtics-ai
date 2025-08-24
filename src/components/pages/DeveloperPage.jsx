@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Terminal, Code2, Users, BookOpen, Globe, Zap, Palette, Cpu, Smartphone, Shield, Eye, EyeOff } from 'lucide-react';
+import { Terminal, Code2, Users, BookOpen, Globe, Zap, Palette, Cpu, Smartphone, Shield, Eye, EyeOff, Award } from 'lucide-react';
 
 export const DeveloperPage = () => {
   const [showApiKey, setShowApiKey] = useState(false);
