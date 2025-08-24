@@ -62,7 +62,7 @@ export const OurTeamPage = () => {
             <Users className="page-icon" />
             Our Team
           </h1>
-          <p className="page-subtitle">Meet the talented individuals who make AMTICS possible</p>
+          <p className="page-subtitle">Meet the talented individuals who make AMTICS Media possible</p>
         </div>
 
         {sections.map((section) => {
@@ -93,7 +93,7 @@ export const OurTeamPage = () => {
         {/* Action call */}
         <div className="team-actions glass-card">
           <h3>Want to Join Our Team?</h3>
-          <p>We're always looking for talented individuals to join our mission of revolutionizing graphic design with AI.</p>
+          <p>We're always looking for talented individuals to join our mission of providing exceptional multimedia services.</p>
           <div className="action-buttons">
             <button
               className="btn btn-primary"
