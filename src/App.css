@@ -701,6 +701,16 @@ select.form-control option {
   color: var(--text-primary);
 }
 
+[data-theme="light"] select.form-control option:hover {
+  background: rgba(212, 0, 117, 0.1);
+  color: var(--text-primary);
+}
+
+[data-theme="light"] select.form-control option:checked {
+  background: var(--amtics-magenta);
+  color: #ffffff;
+}
+
 /* Number Input */
 .number-input {
   display: flex;
