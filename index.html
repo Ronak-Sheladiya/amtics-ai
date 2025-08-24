@@ -1,135 +1,586 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AMTICS Graphics Prompt Generator</title>
-  <link rel="stylesheet" href="style.css">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600&display=swap"
-    rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMTICS Ai Graphic Designer</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 </head>
-
 <body>
-  <div class="container">
-    <header class="header">
-      <div class="header__content">
-        <h1 class="header__title">AMTICS Graphics Prompt Generator</h1>
-        <p class="header__subtitle">Generate technical prompts for your design requirements</p>
-      </div>
-    </header>
-
-    <main class="main">
-      <div class="generator">
-        <div class="generator__input">
-          <form id="promptForm" class="form">
-            <div class="form-row">
-              <div class="form-group">
-                <label for="postType" class="form-label">Post Type</label>
-                <select id="postType" name="postType" class="form-control" required>
-                                    <option value="">Select post type...</option>
-                                    <option value="placement_card">Placement Card</option>
-                                    <option value="tech_event">Tech Event</option>
-                                    <option value="cultural_festival">Cultural Festival</option>
-                                    <option value="campus_life">Campus Life</option>
-                                    <option value="workshop_invite">Workshop Invite</option>
-                                    <option value="admission_promotion">Admission Promotion</option>
-                                    <option value="achievement_highlight">Achievement Highlight</option>
-                                    <option value="brand_message">Brand Message</option>
-                                    <option value="social_cause">Social Cause</option>
-                                    <option value="informational_carousel">Informational Carousel</option>
-                                </select>
-              </div>
-              <div class="form-group">
-                <label for="size" class="form-label">Size</label>
-                <select id="size" name="size" class="form-control" required>
-                                    <option value="">Select size...</option>
-                                    <option value="square">Square (1080x1080)</option>
-                                    <option value="portrait">Portrait (1080x1350)</option>
-                                    <option value="story">Story (1080x1920)</option>
-                                    <option value="landscape">Landscape (1920x1080)</option>
-                                    <option value="carousel">Carousel (1080x1080)</option>
-                                </select>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="postDetails" class="form-label">Post Details</label>
-              <textarea id="postDetails" name="postDetails" class="form-control form-control--textarea"
-                                placeholder="Describe the specific content, messaging, and visual requirements for your graphic..."
-                                required></textarea>
-            </div>
-
-            <div class="form-row">
-              <div class="form-group">
-                <label for="promptCount" class="form-label">Number of Prompts</label>
-                <input type="number" id="promptCount" name="promptCount" class="form-control"
-                                       min="1" max="10" value="3" required>
-              </div>
-              <div class="form-group">
-                <label for="platform" class="form-label">AI Platform</label>
-                <select id="platform" name="platform" class="form-control" required>
-                                    <option value="">Select platform...</option>
-                                    <option value="gemini">Gemini Imagen</option>
-                                    <option value="chatgpt">ChatGPT DALL-E</option>
-                                    <option value="canva">Canva Magic Design</option>
-                                    <option value="midjourney">Midjourney</option>
-                                    <option value="firefly">Adobe Firefly</option>
-                                </select>
-              </div>
-            </div>
-
-            <div class="form-actions">
-              <button type="submit" class="btn btn--primary" id="generateBtn">
-                                <span class="btn__text">Generate Prompts</span>
-                                <span class="btn__shortcut">Enter</span>
-                            </button>
-              <button type="button" class="btn btn--secondary" id="executeBtn" disabled>
-                                <span class="btn__text">Execute All</span>
-                                <span class="btn__shortcut">Ctrl + Enter</span>
-                            </button>
-            </div>
-          </form>
+    <div class="app">
+        <!-- Background Elements -->
+        <div class="bg-gradient"></div>
+        <div class="bg-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
         </div>
 
-        <div class="generator__output">
-          <div id="loadingState" class="loading-state hidden">
-            <div class="loading-spinner"></div>
-            <p class="loading-text">Generating technical prompts...</p>
-          </div>
-
-          <div id="outputSection" class="output-section hidden">
-            <div class="output-header">
-              <h3 class="output-title">Generated Prompts</h3>
-              <button type="button" class="btn btn--outline btn--sm" id="copyAllBtn">
-                                Copy All
-                            </button>
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-content">
+                    <div class="nav-brand">
+                        <i data-lucide="zap" class="nav-brand-icon"></i>
+                        <span class="nav-brand-text">AMTICS</span>
+                    </div>
+                    <div class="nav-menu">
+                        <a href="#home" class="nav-link active" data-page="home">
+                            <i data-lucide="home"></i>
+                            <span>Home</span>
+                        </a>
+                        <a href="#about" class="nav-link" data-page="about">
+                            <i data-lucide="info"></i>
+                            <span>About Us</span>
+                        </a>
+                        <a href="#developer" class="nav-link" data-page="developer">
+                            <i data-lucide="code"></i>
+                            <span>Developer</span>
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div id="promptsContainer" class="prompts-container">
-              <!-- Generated prompts will be inserted here -->
-            </div>
-          </div>
+        </nav>
 
-          <div id="emptyState" class="empty-state">
-            <div class="empty-state__icon">✨</div>
-            <h3 class="empty-state__title">Ready to Generate</h3>
-            <p class="empty-state__text">Fill out the form above and click "Generate Prompts" to create technical
-              prompts for your graphics.</p>
-          </div>
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="brand">
+                        <h1 class="brand-title">
+                            <span class="brand-text">AMTICS</span>
+                            <span class="brand-subtitle">Ai Graphic Designer</span>
+                        </h1>
+                        <p class="brand-description">Advanced AI-powered graphic design and prompt generation platform</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main">
+            <!-- Home Page -->
+            <div id="home-page" class="page active">
+                <div class="container">
+                    <div class="generator-grid">
+                        <!-- Input Panel -->
+                        <div class="glass-card input-panel">
+                            <div class="card-header">
+                                <h2 class="card-title">
+                                    <i data-lucide="settings"></i>
+                                    Design Requirements
+                                </h2>
+                                <p class="card-subtitle">Configure your graphics specifications</p>
+                            </div>
+
+                            <form id="promptForm" class="generator-form">
+                                <!-- Post Type Selection -->
+                                <div class="form-section">
+                                    <label class="form-label">
+                                        <i data-lucide="layers"></i>
+                                        Post Type
+                                    </label>
+                                    <select id="postType" name="postType" class="form-control" required>
+                                        <option value="">Select post type...</option>
+                                        <option value="placement_card">🎓 Placement Card</option>
+                                        <option value="tech_event">🚀 Tech Event</option>
+                                        <option value="cultural_festival">🎨 Cultural Festival</option>
+                                        <option value="campus_life">📚 Campus Life</option>
+                                        <option value="workshop_invite">🛠️ Workshop Invite</option>
+                                        <option value="admission_promotion">📢 Admission Promotion</option>
+                                        <option value="achievement_highlight">🏆 Achievement Highlight</option>
+                                        <option value="brand_message">💼 Brand Message</option>
+                                        <option value="social_cause">🤝 Social Cause</option>
+                                        <option value="informational_carousel">📑 Informational Carousel</option>
+                                    </select>
+                                </div>
+
+                                <!-- Post Details -->
+                                <div class="form-section">
+                                    <label for="postDetails" class="form-label">
+                                        <i data-lucide="edit-3"></i>
+                                        Post Details
+                                    </label>
+                                    <div class="input-wrapper">
+                                        <textarea 
+                                            id="postDetails" 
+                                            name="postDetails" 
+                                            class="form-input form-textarea"
+                                            placeholder="Describe your specific requirements, messaging, visual elements, and any special instructions..."
+                                            rows="4"
+                                            required
+                                        ></textarea>
+                                    </div>
+                                </div>
+
+                                <!-- Size and Count Row -->
+                                <div class="form-row">
+                                    <div class="form-section">
+                                        <label for="size" class="form-label">
+                                            <i data-lucide="maximize"></i>
+                                            Size Format
+                                        </label>
+                                        <select id="size" name="size" class="form-control" required>
+                                            <option value="">Select size...</option>
+                                            <option value="square">⬜ Square (1080x1080)</option>
+                                            <option value="portrait">📱 Portrait (1080x1350)</option>
+                                            <option value="story">📲 Story (1080x1920)</option>
+                                            <option value="landscape">🖥️ Landscape (1920x1080)</option>
+                                            <option value="carousel">📑 Carousel (1080x1080)</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-section">
+                                        <label for="promptCount" class="form-label">
+                                            <i data-lucide="hash"></i>
+                                            Prompt Quantity
+                                        </label>
+                                        <div class="input-wrapper">
+                                            <div class="number-input">
+                                                <button type="button" class="number-btn" data-action="decrease">
+                                                    <i data-lucide="minus"></i>
+                                                </button>
+                                                <input type="number" id="promptCount" name="promptCount" class="form-input number-field" value="3" min="1" max="10" required>
+                                                <button type="button" class="number-btn" data-action="increase">
+                                                    <i data-lucide="plus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Platform Selection -->
+                                <div class="form-section">
+                                    <label for="platform" class="form-label">
+                                        <i data-lucide="cpu"></i>
+                                        AI Platform
+                                    </label>
+                                    <select id="platform" name="platform" class="form-control" required>
+                                        <option value="">Select platform...</option>
+                                        <option value="gemini">🔮 Gemini Imagen</option>
+                                        <option value="chatgpt">🤖 ChatGPT DALL-E</option>
+                                        <option value="canva">🎨 Canva Magic Design</option>
+                                        <option value="midjourney">🎭 Midjourney</option>
+                                        <option value="firefly">🔥 Adobe Firefly</option>
+                                    </select>
+                                </div>
+
+                                <!-- Action Buttons -->
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn-primary" id="generateBtn">
+                                        <i data-lucide="sparkles"></i>
+                                        <span class="btn-text">Generate Prompts</span>
+                                        <span class="btn-shortcut">Enter</span>
+                                    </button>
+                                    <button type="button" class="btn btn-secondary" id="executeBtn" disabled>
+                                        <i data-lucide="rocket"></i>
+                                        <span class="btn-text">Auto-Execute</span>
+                                        <span class="btn-shortcut">Ctrl+Enter</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Output Panel -->
+                        <div class="glass-card output-panel">
+                            <div class="card-header">
+                                <h2 class="card-title">
+                                    <i data-lucide="file-text"></i>
+                                    Generated Prompts
+                                </h2>
+                                <div class="header-actions">
+                                    <button type="button" class="btn btn-outline btn-sm" id="copyAllBtn" style="display: none;">
+                                        <i data-lucide="clipboard"></i>
+                                        <span class="btn-text">Copy All</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Loading State -->
+                            <div id="loadingState" class="loading-state hidden">
+                                <div class="loading-animation">
+                                    <div class="loading-spinner"></div>
+                                    <div class="loading-dots">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                </div>
+                                <p class="loading-text">Crafting your technical prompts...</p>
+                            </div>
+
+                            <!-- Empty State -->
+                            <div id="emptyState" class="empty-state">
+                                <div class="empty-icon">
+                                    <i data-lucide="palette"></i>
+                                </div>
+                                <h3 class="empty-title">Ready to Create</h3>
+                                <p class="empty-text">Configure your requirements and generate professional AI prompts for your graphics.</p>
+                            </div>
+
+                            <!-- Prompts Container -->
+                            <div id="promptsContainer" class="prompts-container hidden">
+                                <!-- Generated prompts will appear here -->
+                            </div>
+
+                            <!-- Execution Status -->
+                            <div id="executionStatus" class="execution-status hidden">
+                                <div class="status-header">
+                                    <h3 class="status-title">
+                                        <i data-lucide="activity"></i>
+                                        Auto-Execution Progress
+                                    </h3>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" id="progressFill"></div>
+                                    </div>
+                                </div>
+                                <div class="status-list" id="statusList">
+                                    <!-- Execution status items will appear here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- About Us Page -->
+            <div id="about-page" class="page">
+                <div class="container">
+                    <div class="page-header">
+                        <h1 class="page-title">
+                            <i data-lucide="users" class="page-icon"></i>
+                            About AMTICS
+                        </h1>
+                        <p class="page-subtitle">Revolutionizing graphic design with artificial intelligence</p>
+                    </div>
+                    
+                    <div class="content-grid">
+                        <div class="glass-card">
+                            <div class="card-header">
+                                <h2 class="card-title">
+                                    <i data-lucide="target"></i>
+                                    Our Mission
+                                </h2>
+                            </div>
+                            <div class="card-body">
+                                <p>At AMTICS, we're dedicated to democratizing professional graphic design through cutting-edge artificial intelligence. Our platform empowers creators, marketers, and businesses to generate stunning visuals with intelligent prompt engineering.</p>
+                                <p>We believe that great design should be accessible to everyone, regardless of their technical expertise or design background.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="glass-card">
+                            <div class="card-header">
+                                <h2 class="card-title">
+                                    <i data-lucide="eye"></i>
+                                    Our Vision
+                                </h2>
+                            </div>
+                            <div class="card-body">
+                                <p>To become the leading AI-powered design platform that bridges the gap between creativity and technology, making professional-grade graphic design accessible to everyone.</p>
+                                <p>We envision a future where AI amplifies human creativity rather than replacing it.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="glass-card">
+                            <div class="card-header">
+                                <h2 class="card-title">
+                                    <i data-lucide="award"></i>
+                                    Our Values
+                                </h2>
+                            </div>
+                            <div class="card-body">
+                                <ul class="values-list">
+                                    <li>
+                                        <i data-lucide="check-circle"></i>
+                                        <span>Innovation in AI technology</span>
+                                    </li>
+                                    <li>
+                                        <i data-lucide="check-circle"></i>
+                                        <span>User-centric design approach</span>
+                                    </li>
+                                    <li>
+                                        <i data-lucide="check-circle"></i>
+                                        <span>Quality and professionalism</span>
+                                    </li>
+                                    <li>
+                                        <i data-lucide="check-circle"></i>
+                                        <span>Accessibility and inclusivity</span>
+                                    </li>
+                                    <li>
+                                        <i data-lucide="check-circle"></i>
+                                        <span>Ethical AI development</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Developer Page -->
+            <div id="developer-page" class="page">
+                <div class="container">
+                    <div class="page-header">
+                        <h1 class="page-title">
+                            <i data-lucide="terminal" class="page-icon"></i>
+                            Developer Information
+                        </h1>
+                        <p class="page-subtitle">Technical insights and development team</p>
+                    </div>
+                    
+                    <div class="content-grid">
+                        <div class="glass-card">
+                            <div class="card-header">
+                                <h2 class="card-title">
+                                    <i data-lucide="code-2"></i>
+                                    Technology Stack
+                                </h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="tech-stack">
+                                    <div class="tech-item">
+                                        <i data-lucide="globe"></i>
+                                        <span>HTML5 & CSS3</span>
+                                    </div>
+                                    <div class="tech-item">
+                                        <i data-lucide="zap"></i>
+                                        <span>Vanilla JavaScript</span>
+                                    </div>
+                                    <div class="tech-item">
+                                        <i data-lucide="palette"></i>
+                                        <span>Glassmorphism Design</span>
+                                    </div>
+                                    <div class="tech-item">
+                                        <i data-lucide="cpu"></i>
+                                        <span>AI Integration APIs</span>
+                                    </div>
+                                    <div class="tech-item">
+                                        <i data-lucide="smartphone"></i>
+                                        <span>Responsive Design</span>
+                                    </div>
+                                    <div class="tech-item">
+                                        <i data-lucide="accessibility"></i>
+                                        <span>Accessibility Standards</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="glass-card">
+                            <div class="card-header">
+                                <h2 class="card-title">
+                                    <i data-lucide="users"></i>
+                                    Development Team
+                                </h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="team-member">
+                                    <div class="member-avatar">
+                                        <i data-lucide="user"></i>
+                                    </div>
+                                    <div class="member-info">
+                                        <h3>AMTICS Development Team</h3>
+                                        <p>Full-Stack Developers & AI Specialists</p>
+                                        <div class="member-skills">
+                                            <span class="skill-tag">Frontend Development</span>
+                                            <span class="skill-tag">AI Integration</span>
+                                            <span class="skill-tag">UX Design</span>
+                                            <span class="skill-tag">API Development</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="glass-card">
+                            <div class="card-header">
+                                <h2 class="card-title">
+                                    <i data-lucide="book-open"></i>
+                                    API Integrations
+                                </h2>
+                            </div>
+                            <div class="card-body">
+                                <p>Our platform integrates with multiple AI providers to ensure the best results:</p>
+                                <div class="api-list">
+                                    <div class="api-item">
+                                        <i data-lucide="brain"></i>
+                                        <span>OpenAI DALL-E Integration</span>
+                                    </div>
+                                    <div class="api-item">
+                                        <i data-lucide="sparkles"></i>
+                                        <span>Google Gemini Imagen</span>
+                                    </div>
+                                    <div class="api-item">
+                                        <i data-lucide="image"></i>
+                                        <span>Adobe Firefly API</span>
+                                    </div>
+                                    <div class="api-item">
+                                        <i data-lucide="palette"></i>
+                                        <span>Canva Magic Design</span>
+                                    </div>
+                                    <div class="api-item">
+                                        <i data-lucide="wand-2"></i>
+                                        <span>Midjourney Integration</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <div class="footer-brand">
+                            <i data-lucide="zap" class="footer-brand-icon"></i>
+                            <span class="footer-brand-text">AMTICS</span>
+                        </div>
+                        <p class="footer-description">
+                            Revolutionizing graphic design with AI technology. Create professional visuals with intelligent prompt generation and advanced design automation.
+                        </p>
+                        <div class="footer-social">
+                            <a href="#" class="social-link" title="GitHub">
+                                <i data-lucide="github"></i>
+                            </a>
+                            <a href="#" class="social-link" title="Twitter">
+                                <i data-lucide="twitter"></i>
+                            </a>
+                            <a href="#" class="social-link" title="LinkedIn">
+                                <i data-lucide="linkedin"></i>
+                            </a>
+                            <a href="#" class="social-link" title="Instagram">
+                                <i data-lucide="instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3 class="footer-title">
+                            <i data-lucide="navigation"></i>
+                            Quick Links
+                        </h3>
+                        <div class="footer-links">
+                            <a href="#home" class="footer-link" data-page="home">
+                                <i data-lucide="home"></i>
+                                <span>Home</span>
+                            </a>
+                            <a href="#about" class="footer-link" data-page="about">
+                                <i data-lucide="info"></i>
+                                <span>About Us</span>
+                            </a>
+                            <a href="#developer" class="footer-link" data-page="developer">
+                                <i data-lucide="code"></i>
+                                <span>Developer</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3 class="footer-title">
+                            <i data-lucide="mail"></i>
+                            Contact Info
+                        </h3>
+                        <div class="footer-contact">
+                            <div class="contact-item">
+                                <i data-lucide="globe"></i>
+                                <span>www.amtics.com</span>
+                            </div>
+                            <div class="contact-item">
+                                <i data-lucide="mail"></i>
+                                <span>contact@amtics.com</span>
+                            </div>
+                            <div class="contact-item">
+                                <i data-lucide="phone"></i>
+                                <span>+1 (555) 123-4567</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3 class="footer-title">
+                            <i data-lucide="tools"></i>
+                            AI Platforms
+                        </h3>
+                        <div class="footer-platforms">
+                            <div class="platform-item">
+                                <i data-lucide="brain"></i>
+                                <span>OpenAI DALL-E</span>
+                            </div>
+                            <div class="platform-item">
+                                <i data-lucide="sparkles"></i>
+                                <span>Google Gemini</span>
+                            </div>
+                            <div class="platform-item">
+                                <i data-lucide="image"></i>
+                                <span>Adobe Firefly</span>
+                            </div>
+                            <div class="platform-item">
+                                <i data-lucide="palette"></i>
+                                <span>Canva Magic</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-bottom">
+                    <div class="footer-copyright">
+                        <p>&copy; 2024 AMTICS. All rights reserved. Powered by AI technology.</p>
+                    </div>
+                    <div class="footer-legal">
+                        <a href="#" class="legal-link">Privacy Policy</a>
+                        <a href="#" class="legal-link">Terms of Service</a>
+                        <a href="#" class="legal-link">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Injection Modal -->
+    <div id="injectionModal" class="modal hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-content glass-card">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    <i data-lucide="rocket"></i>
+                    Auto-Injection Instructions
+                </h3>
+                <button class="modal-close" id="closeModal">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Follow these steps for automatic prompt injection:</p>
+                <ol id="injectionSteps">
+                    <!-- Steps will be populated by JavaScript -->
+                </ol>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-primary" id="startInjection">
+                    <i data-lucide="play"></i>
+                    Start Auto-Injection
+                </button>
+                <button class="btn btn-outline" id="closeModal2">
+                    <i data-lucide="copy"></i>
+                    Manual Copy
+                </button>
+            </div>
         </div>
-      </div>
-    </main>
+    </div>
 
-    <footer class="footer">
-      <p class="footer__text">Built for AMTICS Design Team • Modern Graphics Automation</p>
-    </footer>
-  </div>
-
-  <!-- Toast Notifications -->
-  <div id="toastContainer" class="toast-container"></div>
-
-  <script src="app.js"></script>
+    <script src="app.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
 </body>
-
 </html>
