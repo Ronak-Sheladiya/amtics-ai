@@ -1,11 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Zap, Navigation, Mail, Github, Twitter, Linkedin, Instagram, Globe, Phone } from 'lucide-react';
+import { Zap, Navigation, Mail, Github, Twitter, Linkedin, Instagram, Globe, Phone, Users, Code } from 'lucide-react';
 
 export const Footer = () => {
   const quickLinks = [
     { path: '/', label: 'Home', icon: Navigation },
-    { path: '/about', label: 'About Us', icon: Mail }
+    { path: '/about', label: 'About Us', icon: Mail },
+    { path: '/team', label: 'Our Team', icon: Users },
+    { path: '/developer', label: 'Developer', icon: Code }
   ];
 
   const platforms = [
@@ -80,7 +82,7 @@ export const Footer = () => {
               </div>
               <div className="contact-item">
                 <Mail size={16} />
-                <span>contact@amtics.com</span>
+                <span>22amtics221@gmail.com</span>
               </div>
               <div className="contact-item">
                 <Phone size={16} />
