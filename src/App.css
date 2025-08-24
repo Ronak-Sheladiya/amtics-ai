@@ -670,6 +670,22 @@ select.form-control option {
   font-weight: 500;
 }
 
+/* Dark theme specific dropdown fixes */
+[data-theme="dark"] select.form-control option {
+  background: rgba(15, 15, 35, 0.9);
+  color: #ffffff;
+}
+
+[data-theme="dark"] select.form-control option:hover {
+  background: rgba(212, 0, 117, 0.2);
+  color: #ffffff;
+}
+
+[data-theme="dark"] select.form-control option:checked {
+  background: var(--amtics-magenta);
+  color: #ffffff;
+}
+
 [data-theme="light"] select.form-control {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%231a202c' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
