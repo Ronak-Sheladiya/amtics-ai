@@ -2863,6 +2863,49 @@ select.form-control option {
   }
 }
 
+/* Team Actions Section */
+.team-actions {
+  margin-top: 80px;
+  padding: 48px;
+  text-align: center;
+  background: var(--glass-bg);
+  border-radius: 24px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: var(--glass-border);
+  box-shadow: 0 20px 60px rgba(212, 0, 117, 0.1);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.team-actions h3 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+
+.team-actions p {
+  font-size: 16px;
+  color: var(--text-secondary);
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.action-buttons .btn {
+  min-width: 180px;
+  padding: 14px 28px;
+  font-weight: 600;
+}
+
 /* Vertical ID Card Overrides */
 .professional-id-card .member-name-card {
   font-size: 16px !important;
