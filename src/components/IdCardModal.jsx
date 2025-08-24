@@ -24,16 +24,18 @@ export const IdCardModal = ({ member, isOpen, onClose }) => {
   };
 
   const downloadAsPDF = () => {
-    // Create a canvas from the ID card element
+    // Create a canvas from the complete ID card element including header and footer
     const element = document.getElementById('id-card-content');
 
     // Use html2canvas to capture the element
     import('html2canvas').then(html2canvas => {
       html2canvas.default(element, {
-        width: 400,
-        height: 320,
+        width: 324,
+        height: 204,
         backgroundColor: null,
-        scale: 2
+        scale: 3,
+        useCORS: true,
+        allowTaint: true
       }).then(canvas => {
         // Create PDF using jsPDF
         import('jspdf').then(({ jsPDF }) => {
@@ -44,8 +46,8 @@ export const IdCardModal = ({ member, isOpen, onClose }) => {
           });
 
           const imgData = canvas.toDataURL('image/png');
-          const imgWidth = 100; // Width in mm for A4
-          const imgHeight = 80;  // Height in mm to maintain aspect ratio
+          const imgWidth = 85.6; // Exact credit card width in mm
+          const imgHeight = 54;   // Exact credit card height in mm
 
           // Center the image on A4 page
           const pageWidth = pdf.internal.pageSize.getWidth();
@@ -68,10 +70,12 @@ export const IdCardModal = ({ member, isOpen, onClose }) => {
 
     import('html2canvas').then(html2canvas => {
       html2canvas.default(element, {
-        width: 400,
-        height: 320,
+        width: 324,
+        height: 204,
         backgroundColor: null,
-        scale: 2
+        scale: 3,
+        useCORS: true,
+        allowTaint: true
       }).then(canvas => {
         const link = document.createElement('a');
         link.download = `${member.name}-ID-Card.png`;
