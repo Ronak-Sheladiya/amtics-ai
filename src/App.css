@@ -1635,14 +1635,62 @@ select.form-control option {
 }
 
 .id-card-content {
-  padding: 40px;
+  padding: 0;
 }
 
-.id-card-header {
+.modal-card-replica {
+  position: relative;
+  overflow: hidden;
+  min-height: 320px;
+  background: linear-gradient(135deg, var(--glass-bg) 0%, var(--glass-bg-light) 100%);
+  border-radius: 24px;
+}
+
+.modal-card-replica .id-card-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--amtics-blue) 0%, var(--amtics-magenta) 100%);
+  opacity: 0.1;
+}
+
+.modal-card-replica .card-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 2px, transparent 2px),
+    radial-gradient(circle at 80% 50%, rgba(255,255,255,0.1) 2px, transparent 2px);
+  background-size: 30px 30px;
+}
+
+.modal-card-replica .id-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.modal-card-replica .id-card-content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  margin-bottom: 32px;
-  padding-bottom: 24px;
-  border-bottom: 2px solid var(--glass-border);
+}
+
+.modal-card-replica .id-card-footer {
+  padding: 16px 24px;
+  background: var(--glass-bg-dark);
+  border-top: 1px solid var(--glass-border);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .company-brand {
