@@ -68,20 +68,51 @@ export class PromptInjector {
     }
   }
 
-  async injectPromptIntoTab(tabWindow, prompt, platform) {
+  async injectPromptIntoTab(tabWindow, prompt, platform, index) {
     try {
+      console.log(`Attempting to inject prompt ${index + 1} into ${platform} tab`);
+
+      // Check if tab is still open
+      if (tabWindow.closed) {
+        console.error(`Tab ${index + 1} was closed before injection`);
+        return { success: false, error: 'Tab was closed' };
+      }
+
       // Wait for the page to fully load
       await this.waitForPageLoad(tabWindow);
-      
+
       const platformConfig = this.getPlatformConfig(platform);
-      const script = this.generateInjectionScript(prompt, platformConfig);
-      
-      // Inject the script into the tab
-      tabWindow.eval(script);
+
+      try {
+        // Try direct injection first
+        const script = this.generateInjectionScript(prompt, platformConfig, index);
+        tabWindow.eval(script);
+        console.log(`Prompt ${index + 1} injected successfully via script`);
+        return { success: true, method: 'script' };
+      } catch (scriptError) {
+        console.warn(`Script injection failed for tab ${index + 1}, trying postMessage:`, scriptError);
+
+        // Try postMessage as fallback
+        try {
+          tabWindow.postMessage({
+            type: 'AMTICS_INJECT_PROMPT',
+            prompt: prompt,
+            selectors: platformConfig.selectors,
+            index: index
+          }, '*');
+          console.log(`Prompt ${index + 1} sent via postMessage`);
+          return { success: true, method: 'postMessage' };
+        } catch (postMessageError) {
+          console.error(`PostMessage failed for tab ${index + 1}:`, postMessageError);
+          // Final fallback - copy to clipboard
+          await this.copyToClipboard(prompt);
+          console.log(`Prompt ${index + 1} copied to clipboard as fallback`);
+          return { success: true, method: 'clipboard' };
+        }
+      }
     } catch (error) {
-      console.error('Cross-origin injection failed, using clipboard fallback:', error);
-      // Fallback to clipboard copy
-      await this.copyToClipboard(prompt);
+      console.error(`Failed to inject prompt ${index + 1}:`, error);
+      return { success: false, error: error.message };
     }
   }
 
