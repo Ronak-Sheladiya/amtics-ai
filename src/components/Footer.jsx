@@ -89,20 +89,6 @@ export const Footer = ({ onPageChange }) => {
             </div>
           </div>
           
-          <div className="footer-section">
-            <h3 className="footer-title">
-              <Wrench size={18} />
-              AI Platforms
-            </h3>
-            <div className="footer-platforms">
-              {platforms.map((platform, index) => (
-                <div key={index} className="platform-item">
-                  <span className="platform-icon">{platform.icon}</span>
-                  <span>{platform.name}</span>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
         
         <div className="footer-bottom">
