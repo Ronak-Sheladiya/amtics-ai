@@ -1,14 +1,9 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Users, Target, Eye, Award, Check, Lightbulb, Heart, Globe, Zap, Shield, User } from 'lucide-react';
+import { Users, Target, Eye, Award, Check, Lightbulb, Heart, Globe, Zap, Shield } from 'lucide-react';
 import teamMembersData from '../../data/teamMembers.json';
+import { MemberCard } from '../MemberCard';
 
 export const AboutPage = () => {
-  const navigate = useNavigate();
-
-  const handleCardClick = (member) => {
-    navigate(`/card/${member.id}`);
-  };
   const values = [
     { icon: Lightbulb, text: "Innovation in AI technology" },
     { icon: Users, text: "User-centric design approach" },
@@ -156,74 +151,13 @@ export const AboutPage = () => {
           </div>
         </div>
 
-        {/* Team Section */}
+        {/* Our Board Section */}
         <div className="team-section">
-          <h2 className="section-title">Meet Our Team</h2>
+          <h2 className="section-title">Our Board</h2>
           <p className="section-subtitle">Click on any ID card to view details and share</p>
           <div className="team-grid">
-            {teamMembersData.teamMembers.map((member) => (
-              <div
-                key={member.id}
-                className="professional-id-card glass-card"
-                onClick={() => handleCardClick(member)}
-              >
-                <div className="id-card-background">
-                  <div className="card-pattern"></div>
-                  <div className="card-shine"></div>
-                </div>
-
-                <div className="id-card-header">
-                  <div className="company-logo">
-                    <Zap size={20} />
-                    <span>AMTICS</span>
-                  </div>
-                  <div className="card-type">MEDIA ID</div>
-                </div>
-
-                <div className="id-card-content">
-                  <div className="member-photo-container">
-                    <img
-                      src={member.imageUrl}
-                      alt={member.name}
-                      className="member-photo-circle"
-                      onError={(e) => {
-                        e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHZpZXdCb3g9IjAgMCA4MCA4MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjgwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjRjFGNUY5Ii8+CjxjaXJjbGUgY3g9IjQwIiBjeT0iMzAiIHI9IjEyIiBmaWxsPSIjRDQwMDc1Ii8+CjxwYXRoIGQ9Ik0yMCA2MEMyMCA1My4zNzI2IDI1LjM3MjYgNDggMzIgNDhINDhDNTQuNjI3NCA0OCA2MCA1My4zNzI2IDYwIDYwVjY1SDIwVjYwWiIgZmlsbD0iI0Q0MDA3NSIvPgo8L3N2Zz4K';
-                      }}
-                    />
-                    <div className="employee-id-badge">
-                      <User size={12} />
-                      <span>{member.enrollmentNumber}</span>
-                    </div>
-                  </div>
-
-                  <div className="member-info-card">
-                    <h3 className="member-name-card">{member.name}</h3>
-                    <p className="member-position-card">{member.position}</p>
-                    <p className="member-department">{member.department}</p>
-
-                    <div className="member-meta">
-                      <div className="meta-item">
-                        <span className="meta-label">ID:</span>
-                        <span className="meta-value">{member.enrollmentNumber}</span>
-                      </div>
-                      <div className="meta-item">
-                        <span className="meta-label">Since:</span>
-                        <span className="meta-value">{new Date(member.joinDate).getFullYear()}</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="id-card-footer">
-                  <div className="footer-brand-card">
-                    <Zap size={14} />
-                    <span>AMTICS Multi-Media</span>
-                  </div>
-                  <div className="card-action-hint">
-                    Click to view details
-                  </div>
-                </div>
-              </div>
+            {teamMembersData.teamMembers.filter(member => member.section === 'body').map((member) => (
+              <MemberCard key={member.id} member={member} />
             ))}
           </div>
         </div>
