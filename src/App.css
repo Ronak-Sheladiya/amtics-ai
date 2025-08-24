@@ -1765,8 +1765,9 @@ select.form-control option {
   position: absolute;
   bottom: -6px;
   right: -6px;
-  background: var(--amtics-blue);
-  color: white;
+  background: var(--glass-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--glass-border);
   border-radius: 8px;
   padding: 2px 4px;
   font-size: 8px;
@@ -1774,7 +1775,7 @@ select.form-control option {
   display: flex;
   align-items: center;
   gap: 2px;
-  box-shadow: 0 2px 8px rgba(0, 51, 102, 0.4);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .modal-card-replica .member-info-card {
