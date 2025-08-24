@@ -90,14 +90,47 @@ export const PromptDisplay = ({ prompts, isGenerating, onAutoExecute, hasPrompts
         <div key={index} className="prompt-card">
           <div className="prompt-header">
             <div className="prompt-number">Prompt {index + 1}</div>
-            <button
-              className="prompt-copy-btn"
-              onClick={() => copyPrompt(prompt, index)}
-            >
-              <span>📋</span> Copy
-            </button>
+            <div className="prompt-actions">
+              <button
+                className={`prompt-copy-btn ${copyingIndex === index ? 'copying' : ''}`}
+                onClick={() => handleCopyPrompt(prompt, index)}
+                disabled={copyingIndex === index}
+                title="Copy prompt to clipboard"
+              >
+                {copyingIndex === index ? (
+                  <>
+                    <span className="loading-spinner-sm"></span>
+                    <span>Copying...</span>
+                  </>
+                ) : (
+                  <>
+                    <Copy size={14} />
+                    <span>Copy</span>
+                  </>
+                )}
+              </button>
+              <button
+                className="prompt-copy-btn prompt-copy-meta"
+                onClick={() => handleCopyWithMetadata(prompt, index)}
+                title="Copy prompt with metadata"
+              >
+                <Clipboard size={14} />
+                <span>Copy+</span>
+              </button>
+            </div>
           </div>
           <pre className="prompt-text">{prompt}</pre>
+          <div className="prompt-footer">
+            <div className="prompt-stats">
+              <span className="char-count">{prompt.length} characters</span>
+              <span className="word-count">{prompt.split(/\s+/).length} words</span>
+            </div>
+            {!isClipboardSupported() && (
+              <div className="clipboard-warning">
+                <span title="Clipboard API not supported - fallback mode">⚠️ Fallback mode</span>
+              </div>
+            )}
+          </div>
         </div>
       ))}
     </div>
