@@ -6,8 +6,8 @@ export const IdCardModal = ({ member, isOpen, onClose }) => {
   if (!isOpen || !member) return null;
 
   const handleShare = async () => {
-    const shareUrl = `${window.location.origin}${window.location.pathname}?id=${member.id}`;
-    
+    const shareUrl = `${window.location.origin}/card/${member.id}`;
+
     try {
       await navigator.clipboard.writeText(shareUrl);
       showToast('success', 'ID card link copied to clipboard! 🔗');
