@@ -6,6 +6,7 @@ import { HomePage } from './components/pages/HomePage';
 import { AboutPage } from './components/pages/AboutPage';
 import { OurTeamPage } from './components/pages/OurTeamPage';
 import { IdCardPage } from './components/pages/IdCardPage';
+import { DeveloperPage } from './components/pages/DeveloperPage';
 import { ToastContainer } from './components/ToastContainer';
 import './App.css';
 
@@ -19,6 +20,7 @@ function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/team" element={<OurTeamPage />} />
+              <Route path="/developer" element={<DeveloperPage />} />
               <Route path="/card/:id" element={<IdCardPage />} />
             </Routes>
           </Layout>
