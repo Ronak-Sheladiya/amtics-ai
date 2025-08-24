@@ -1,319 +1,150 @@
-import React, { useState } from 'react';
-import { Terminal, Code2, Users, BookOpen, Globe, Zap, Palette, Cpu, Smartphone, Shield, Eye, EyeOff, Award } from 'lucide-react';
+import React from 'react';
+import { User, Code, Github, Linkedin, Mail, MapPin, Calendar, Trophy } from 'lucide-react';
 
 export const DeveloperPage = () => {
-  const [showApiKey, setShowApiKey] = useState(false);
-
-  const techStack = [
-    { icon: Globe, name: "React 18", description: "Modern frontend framework" },
-    { icon: Zap, name: "Vite", description: "Lightning-fast build tool" },
-    { icon: Palette, name: "CSS3 + Glassmorphism", description: "Modern design system" },
-    { icon: Cpu, name: "AI Integration APIs", description: "Multi-platform support" },
-    { icon: Smartphone, name: "Responsive Design", description: "Mobile-first approach" },
-    { icon: Shield, name: "Security Standards", description: "Best practices implementation" }
-  ];
-
-  const apiIntegrations = [
-    { icon: "🧠", name: "OpenAI DALL-E Integration", status: "Active" },
-    { icon: "✨", name: "Google Gemini Imagen", status: "Active" },
-    { icon: "🖼️", name: "Adobe Firefly API", status: "Active" },
-    { icon: "🎨", name: "Canva Magic Design", status: "Active" },
-    { icon: "🪄", name: "Midjourney Integration", status: "Active" }
-  ];
-
-  const projectStats = [
-    { label: "Lines of Code", value: "15,000+" },
-    { label: "Components", value: "25+" },
-    { label: "API Endpoints", value: "12" },
-    { label: "Test Coverage", value: "95%" }
-  ];
-
-  const architectureDetails = [
-    {
-      title: "Component Architecture",
-      description: "Modular React components with separation of concerns"
-    },
-    {
-      title: "State Management",
-      description: "Context API for theme and global state management"
-    },
-    {
-      title: "API Layer",
-      description: "Abstracted prompt injection with platform-specific adapters"
-    },
-    {
-      title: "Design System",
-      description: "Consistent glassmorphism UI with dark/light theme support"
-    }
-  ];
+  // Single developer information
+  const developer = {
+    id: "DEV-2024-001",
+    name: "Alex Thompson",
+    position: "Full Stack Developer",
+    department: "Development Team",
+    enrollmentNumber: "DEV-2024-001",
+    email: "alex.thompson@amtics.com",
+    phone: "+1 (555) 987-6543",
+    joinDate: "2024-01-10",
+    imageUrl: "/src/data/member-images/developer-avatar.svg",
+    skills: ["React", "Node.js", "Python", "JavaScript", "TypeScript", "MongoDB", "PostgreSQL", "AWS"],
+    location: "San Francisco, CA",
+    bio: "Passionate full-stack developer with 5+ years of experience building scalable web applications. Specialized in modern JavaScript frameworks and cloud technologies. Lead developer behind the AMTICS AI Graphic Designer platform.",
+    github: "https://github.com/alexthompson",
+    linkedin: "https://linkedin.com/in/alexthompson",
+    achievements: [
+      "Led development of AMTICS AI Platform",
+      "Winner of 2023 Tech Innovation Award",
+      "Open source contributor with 10k+ GitHub stars",
+      "Published 15+ technical articles"
+    ],
+    projects: [
+      {
+        name: "AMTICS AI Graphic Designer",
+        description: "AI-powered graphic design platform with intelligent prompt generation",
+        tech: ["React", "Node.js", "OpenAI API", "MongoDB"]
+      },
+      {
+        name: "Smart Automation Suite", 
+        description: "Workflow automation tools for creative teams",
+        tech: ["Python", "FastAPI", "PostgreSQL", "Docker"]
+      },
+      {
+        name: "Design System Library",
+        description: "Reusable component library for AMTICS products",
+        tech: ["React", "TypeScript", "Storybook", "CSS-in-JS"]
+      }
+    ]
+  };
 
   return (
     <div id="developer-page" className="page active">
       <div className="container">
         <div className="page-header">
           <h1 className="page-title">
-            <Terminal className="page-icon" />
-            Developer Information
+            <Code className="page-icon" />
+            Meet Our Developer
           </h1>
-          <p className="page-subtitle">Technical insights and development details</p>
+          <p className="page-subtitle">The technical mind behind AMTICS innovations</p>
         </div>
 
-        {/* Project Stats */}
-        <div className="stats-grid">
-          {projectStats.map((stat, index) => (
-            <div key={index} className="stat-card glass-card">
-              <div className="stat-number">{stat.value}</div>
-              <div className="stat-label">{stat.label}</div>
-            </div>
-          ))}
-        </div>
-        
-        <div className="content-grid">
-          {/* Technology Stack */}
-          <div className="glass-card">
-            <div className="card-header">
-              <h2 className="card-title">
-                <Code2 size={20} />
-                Technology Stack
-              </h2>
-            </div>
-            <div className="card-body">
-              <div className="tech-stack">
-                {techStack.map((tech, index) => {
-                  const IconComponent = tech.icon;
-                  return (
-                    <div key={index} className="tech-item">
-                      <IconComponent size={20} />
-                      <div className="tech-info">
-                        <span className="tech-name">{tech.name}</span>
-                        <span className="tech-desc">{tech.description}</span>
-                      </div>
-                    </div>
-                  );
-                })}
+        <div className="developer-profile glass-card">
+          <div className="developer-header">
+            <div className="developer-photo-container">
+              <img
+                src={developer.imageUrl}
+                alt={developer.name}
+                className="developer-photo"
+                onError={(e) => {
+                  e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgdmlld0JveD0iMCAwIDEyMCAxMjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiBmaWxsPSIjRjFGNUY5Ii8+CjxjaXJjbGUgY3g9IjYwIiBjeT0iNDUiIHI9IjE4IiBmaWxsPSIjRDQwMDc1Ii8+CjxwYXRoIGQ9Ik0zMCA5MEMzMCA4MC4wNTg5IDM4LjA1ODkgNzIgNDggNzJINzJDODEuOTQxMSA3MiA5MCA4MC4wNTg5IDkwIDkwVjk3LjVIMzBWOTBaIiBmaWxsPSIjRDQwMDc1Ii8+Cjwvc3ZnPgo=';
+                }}
+              />
+              <div className="developer-status">
+                <span className="status-dot"></span>
+                <span>Available</span>
               </div>
             </div>
-          </div>
-          
-          {/* Lead Developer */}
-        <div className="glass-card developer-card">
-          <div className="card-header">
-            <h2 className="card-title">
-              <Users size={20} />
-              Lead Developer
-            </h2>
-          </div>
-          <div className="card-body">
-            <div className="developer-profile">
-              <div className="developer-photo">
-                <img
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face&auto=format&q=80"
-                  alt="Lead Developer"
-                  className="profile-image"
-                />
-                <div className="status-indicator online"></div>
-              </div>
-              <div className="developer-info">
-                <h3 className="developer-name">Alex Rivera</h3>
-                <p className="developer-title">Senior Full-Stack Developer & AI Architect</p>
-                <p className="developer-description">
-                  Passionate software engineer with 8+ years of experience in building scalable web applications
-                  and AI-powered solutions. Specialized in React, Node.js, and machine learning integration.
-                </p>
-
-                <div className="developer-details">
-                  <div className="detail-item">
-                    <Globe size={16} />
-                    <span>San Francisco, CA</span>
-                  </div>
-                  <div className="detail-item">
-                    <Award size={16} />
-                    <span>8+ Years Experience</span>
-                  </div>
-                  <div className="detail-item">
-                    <Zap size={16} />
-                    <span>AI & Web Development</span>
-                  </div>
+            
+            <div className="developer-info">
+              <h2 className="developer-name">{developer.name}</h2>
+              <p className="developer-position">{developer.position}</p>
+              <p className="developer-department">{developer.department}</p>
+              
+              <div className="developer-meta">
+                <div className="meta-item">
+                  <MapPin size={16} />
+                  <span>{developer.location}</span>
                 </div>
-
-                <div className="developer-skills">
-                  <h4>Core Technologies</h4>
-                  <div className="skill-tags">
-                    <span className="skill-tag primary">React</span>
-                    <span className="skill-tag primary">TypeScript</span>
-                    <span className="skill-tag primary">Node.js</span>
-                    <span className="skill-tag secondary">Python</span>
-                    <span className="skill-tag secondary">AI/ML</span>
-                    <span className="skill-tag secondary">PostgreSQL</span>
-                    <span className="skill-tag accent">Docker</span>
-                    <span className="skill-tag accent">AWS</span>
-                  </div>
+                <div className="meta-item">
+                  <Calendar size={16} />
+                  <span>Joined {new Date(developer.joinDate).getFullYear()}</span>
                 </div>
-
-                <div className="developer-contact">
-                  <a href="mailto:alex@amtics.com" className="contact-button">
-                    <span>📧</span>
-                    alex@amtics.com
-                  </a>
-                  <a href="#" className="contact-button">
-                    <span>💼</span>
-                    LinkedIn
-                  </a>
-                  <a href="#" className="contact-button">
-                    <span>🐙</span>
-                    GitHub
-                  </a>
+                <div className="meta-item">
+                  <User size={16} />
+                  <span>ID: {developer.enrollmentNumber}</span>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-          
-          {/* API Integrations */}
-          <div className="glass-card">
-            <div className="card-header">
-              <h2 className="card-title">
-                <BookOpen size={20} />
-                API Integrations
-              </h2>
-            </div>
-            <div className="card-body">
-              <p>Our platform integrates with multiple AI providers to ensure the best results:</p>
-              <div className="api-list">
-                {apiIntegrations.map((api, index) => (
-                  <div key={index} className="api-item">
-                    <span className="api-icon">{api.icon}</span>
-                    <span className="api-name">{api.name}</span>
-                    <span className={`api-status status-${api.status.toLowerCase()}`}>
-                      {api.status}
-                    </span>
-                  </div>
-                ))}
+
+              <div className="developer-social">
+                <a href={developer.github} target="_blank" rel="noopener noreferrer" className="social-link">
+                  <Github size={20} />
+                </a>
+                <a href={developer.linkedin} target="_blank" rel="noopener noreferrer" className="social-link">
+                  <Linkedin size={20} />
+                </a>
+                <a href={`mailto:${developer.email}`} className="social-link">
+                  <Mail size={20} />
+                </a>
               </div>
             </div>
           </div>
 
-          {/* Architecture */}
-          <div className="glass-card full-width">
-            <div className="card-header">
-              <h2 className="card-title">
-                <Cpu size={20} />
-                System Architecture
-              </h2>
-            </div>
-            <div className="card-body">
-              <div className="architecture-grid">
-                {architectureDetails.map((detail, index) => (
-                  <div key={index} className="architecture-item">
-                    <h4>{detail.title}</h4>
-                    <p>{detail.description}</p>
-                  </div>
-                ))}
-              </div>
+          <div className="developer-bio">
+            <h3>About</h3>
+            <p>{developer.bio}</p>
+          </div>
+
+          <div className="developer-skills">
+            <h3>Technical Skills</h3>
+            <div className="skills-grid">
+              {developer.skills.map((skill, index) => (
+                <span key={index} className="skill-tag">{skill}</span>
+              ))}
             </div>
           </div>
 
-          {/* Development Tools */}
-          <div className="glass-card">
-            <div className="card-header">
-              <h2 className="card-title">
-                <Terminal size={20} />
-                Development Environment
-              </h2>
-            </div>
-            <div className="card-body">
-              <div className="dev-tools">
-                <div className="tool-section">
-                  <h4>Build Tools</h4>
-                  <ul>
-                    <li>Vite - Fast build tool and dev server</li>
-                    <li>ESLint - Code quality and consistency</li>
-                    <li>Prettier - Code formatting</li>
-                  </ul>
-                </div>
-                <div className="tool-section">
-                  <h4>Libraries</h4>
-                  <ul>
-                    <li>Lucide React - Icon library</li>
-                    <li>CLSX - Conditional class utilities</li>
-                    <li>React Context - State management</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+          <div className="developer-achievements">
+            <h3>
+              <Trophy size={20} />
+              Key Achievements
+            </h3>
+            <ul className="achievements-list">
+              {developer.achievements.map((achievement, index) => (
+                <li key={index}>{achievement}</li>
+              ))}
+            </ul>
           </div>
 
-          {/* API Documentation */}
-          <div className="glass-card">
-            <div className="card-header">
-              <h2 className="card-title">
-                <BookOpen size={20} />
-                API Documentation
-              </h2>
-            </div>
-            <div className="card-body">
-              <div className="api-docs">
-                <h4>Prompt Injection API</h4>
-                <div className="code-block">
-                  <code>
-                    {`// Example usage
-const injector = new PromptInjector();
-await injector.openTabsWithPrompts(
-  'gemini', 
-  prompts
-);`}
-                  </code>
-                </div>
-                
-                <h4>Theme Context</h4>
-                <div className="code-block">
-                  <code>
-                    {`// Theme toggle
-const { theme, toggleTheme } = useTheme();`}
-                  </code>
-                </div>
-
-                <div className="api-key-section">
-                  <h4>API Configuration</h4>
-                  <div className="api-key-display">
-                    <input 
-                      type={showApiKey ? "text" : "password"}
-                      value="amtics_dev_key_2024_secure"
-                      readOnly
-                      className="api-key-input"
-                    />
-                    <button 
-                      className="api-key-toggle"
-                      onClick={() => setShowApiKey(!showApiKey)}
-                    >
-                      {showApiKey ? <EyeOff size={16} /> : <Eye size={16} />}
-                    </button>
+          <div className="developer-projects">
+            <h3>Featured Projects</h3>
+            <div className="projects-grid">
+              {developer.projects.map((project, index) => (
+                <div key={index} className="project-card glass-card">
+                  <h4>{project.name}</h4>
+                  <p>{project.description}</p>
+                  <div className="project-tech">
+                    {project.tech.map((tech, techIndex) => (
+                      <span key={techIndex} className="tech-tag">{tech}</span>
+                    ))}
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Performance Metrics */}
-        <div className="performance-section">
-          <h2 className="section-title">Performance Metrics</h2>
-          <div className="metrics-grid">
-            <div className="metric-card glass-card">
-              <div className="metric-value">98</div>
-              <div className="metric-label">Performance Score</div>
-            </div>
-            <div className="metric-card glass-card">
-              <div className="metric-value">100</div>
-              <div className="metric-label">Accessibility</div>
-            </div>
-            <div className="metric-card glass-card">
-              <div className="metric-value">95</div>
-              <div className="metric-label">Best Practices</div>
-            </div>
-            <div className="metric-card glass-card">
-              <div className="metric-value">100</div>
-              <div className="metric-label">SEO</div>
+              ))}
             </div>
           </div>
         </div>
