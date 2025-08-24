@@ -1,11 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Zap, Navigation, Mail, Github, Twitter, Linkedin, Instagram, Globe, Phone } from 'lucide-react';
+import { Zap, Navigation, Mail, Globe, Facebook, Linkedin, Instagram, Phone, Users, Code } from 'lucide-react';
 
 export const Footer = () => {
   const quickLinks = [
     { path: '/', label: 'Home', icon: Navigation },
-    { path: '/about', label: 'About Us', icon: Mail }
+    { path: '/about', label: 'About Us', icon: Mail },
+    { path: '/team', label: 'Our Team', icon: Users },
+    { path: '/developer', label: 'Developer', icon: Code }
   ];
 
   const platforms = [
@@ -16,17 +18,13 @@ export const Footer = () => {
   ];
 
   const socialLinks = [
-    { icon: Github, href: "#", title: "GitHub" },
-    { icon: Twitter, href: "#", title: "Twitter" },
+    { icon: Globe, href: "#", title: "Website" },
+    { icon: Facebook, href: "#", title: "Facebook" },
     { icon: Linkedin, href: "#", title: "LinkedIn" },
     { icon: Instagram, href: "#", title: "Instagram" }
   ];
 
-  const legalLinks = [
-    { href: "#", label: "Privacy Policy" },
-    { href: "#", label: "Terms of Service" },
-    { href: "#", label: "Cookie Policy" }
-  ];
+  const legalLinks = [];
 
   return (
     <footer className="footer">
@@ -80,7 +78,7 @@ export const Footer = () => {
               </div>
               <div className="contact-item">
                 <Mail size={16} />
-                <span>contact@amtics.com</span>
+                <span>22amtics221@gmail.com</span>
               </div>
               <div className="contact-item">
                 <Phone size={16} />
@@ -93,7 +91,7 @@ export const Footer = () => {
         
         <div className="footer-bottom">
           <div className="footer-copyright">
-            <p>&copy; 2024 AMTICS. All rights reserved. Powered by AI technology.</p>
+            <p>&copy; 2024 AMTICS. All rights reserved.</p>
           </div>
           <div className="footer-legal">
             {legalLinks.map((link, index) => (
