@@ -2830,7 +2830,7 @@ select.form-control option {
 }
 
 .professional-id-card .member-position-card {
-  font-size: 12px !important;
+  font-size: 14px !important;
   color: var(--amtics-magenta);
   font-weight: 600;
   margin-bottom: 4px;
