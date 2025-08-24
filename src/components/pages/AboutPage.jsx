@@ -1,5 +1,7 @@
-import React from 'react';
-import { Users, Target, Eye, Award, Check, Lightbulb, Heart, Globe, Zap, Shield } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Users, Target, Eye, Award, Check, Lightbulb, Heart, Globe, Zap, Shield, User } from 'lucide-react';
+import { IdCardModal } from '../IdCardModal';
+import teamMembersData from '../../data/teamMembers.json';
 
 export const AboutPage = () => {
   const values = [
