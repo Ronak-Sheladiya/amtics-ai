@@ -184,65 +184,80 @@ export const AboutPage = () => {
         {/* Team Section */}
         <div className="team-section">
           <h2 className="section-title">Meet Our Team</h2>
+          <p className="section-subtitle">Click on any ID card to view details and share</p>
           <div className="team-grid">
-            <div className="team-member-card glass-card">
-              <div className="member-content">
-                <div className="member-image">
-                  <Users size={48} />
+            {teamMembersData.teamMembers.map((member) => (
+              <div
+                key={member.id}
+                className="professional-id-card glass-card"
+                onClick={() => handleCardClick(member)}
+              >
+                <div className="id-card-background">
+                  <div className="card-pattern"></div>
+                  <div className="card-shine"></div>
                 </div>
-                <div className="member-details">
-                  <h3>John Smith</h3>
-                  <p className="member-position">AI Research Lead</p>
-                  <p className="enrollment-number">ID: EMP-2024-001</p>
-                </div>
-              </div>
-              <div className="card-footer">
-                <div className="footer-brand">
-                  <Zap size={16} />
-                  <span>AMTICS Multi-Media</span>
-                </div>
-              </div>
-            </div>
 
-            <div className="team-member-card glass-card">
-              <div className="member-content">
-                <div className="member-image">
-                  <Award size={48} />
+                <div className="id-card-header">
+                  <div className="company-logo">
+                    <Zap size={20} />
+                    <span>AMTICS</span>
+                  </div>
+                  <div className="card-type">EMPLOYEE ID</div>
                 </div>
-                <div className="member-details">
-                  <h3>Sarah Johnson</h3>
-                  <p className="member-position">Lead UX Designer</p>
-                  <p className="enrollment-number">ID: EMP-2024-002</p>
-                </div>
-              </div>
-              <div className="card-footer">
-                <div className="footer-brand">
-                  <Zap size={16} />
-                  <span>AMTICS Multi-Media</span>
-                </div>
-              </div>
-            </div>
 
-            <div className="team-member-card glass-card">
-              <div className="member-content">
-                <div className="member-image">
-                  <Globe size={48} />
+                <div className="id-card-content">
+                  <div className="member-photo-container">
+                    <img
+                      src={member.imageUrl}
+                      alt={member.name}
+                      className="member-photo-circle"
+                      onError={(e) => {
+                        e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHZpZXdCb3g9IjAgMCA4MCA4MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjgwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjRjFGNUY5Ii8+CjxjaXJjbGUgY3g9IjQwIiBjeT0iMzAiIHI9IjEyIiBmaWxsPSIjRDQwMDc1Ii8+CjxwYXRoIGQ9Ik0yMCA2MEMyMCA1My4zNzI2IDI1LjM3MjYgNDggMzIgNDhINDhDNTQuNjI3NCA0OCA2MCA1My4zNzI2IDYwIDYwVjY1SDIwVjYwWiIgZmlsbD0iI0Q0MDA3NSIvPgo8L3N2Zz4K';
+                      }}
+                    />
+                    <div className="employee-id-badge">
+                      <User size={12} />
+                      <span>{member.employeeId}</span>
+                    </div>
+                  </div>
+
+                  <div className="member-info-card">
+                    <h3 className="member-name-card">{member.name}</h3>
+                    <p className="member-position-card">{member.position}</p>
+                    <p className="member-department">{member.department}</p>
+
+                    <div className="member-meta">
+                      <div className="meta-item">
+                        <span className="meta-label">ID:</span>
+                        <span className="meta-value">{member.enrollmentNumber}</span>
+                      </div>
+                      <div className="meta-item">
+                        <span className="meta-label">Since:</span>
+                        <span className="meta-value">{new Date(member.joinDate).getFullYear()}</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div className="member-details">
-                  <h3>Mike Chen</h3>
-                  <p className="member-position">Full-Stack Developer</p>
-                  <p className="enrollment-number">ID: EMP-2024-003</p>
+
+                <div className="id-card-footer">
+                  <div className="footer-brand-card">
+                    <Zap size={14} />
+                    <span>AMTICS Multi-Media</span>
+                  </div>
+                  <div className="card-action-hint">
+                    Click to view details
+                  </div>
                 </div>
               </div>
-              <div className="card-footer">
-                <div className="footer-brand">
-                  <Zap size={16} />
-                  <span>AMTICS Multi-Media</span>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
+
+        <IdCardModal
+          member={selectedMember}
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+        />
       </div>
     </div>
   );
