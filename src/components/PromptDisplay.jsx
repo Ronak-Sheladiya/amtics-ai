@@ -88,15 +88,17 @@ export const PromptDisplay = ({ prompts, isGenerating, onAutoExecute, hasPrompts
           {hasPrompts && (
             <>
               <button
-                className="btn btn-outline btn-sm"
+                className="btn btn-copy btn-sm"
                 onClick={copyAllPrompts}
+                title="Copy all prompts to clipboard"
               >
                 <Clipboard size={16} />
                 <span className="btn-text">Copy All</span>
               </button>
               <button
-                className="btn btn-secondary btn-sm"
+                className="btn btn-execute btn-sm"
                 onClick={onAutoExecute}
+                title="Auto-execute prompts in multiple tabs"
               >
                 <Rocket size={16} />
                 <span className="btn-text">Auto-Execute</span>
