@@ -154,46 +154,58 @@ export const AboutPage = () => {
           <h2 className="section-title">Meet Our Team</h2>
           <div className="team-grid">
             <div className="team-member-card glass-card">
-              <div className="member-avatar">
-                <Users size={32} />
+              <div className="member-content">
+                <div className="member-image">
+                  <Users size={48} />
+                </div>
+                <div className="member-details">
+                  <h3>John Smith</h3>
+                  <p className="member-position">AI Research Lead</p>
+                  <p className="enrollment-number">ID: EMP-2024-001</p>
+                </div>
               </div>
-              <div className="member-info">
-                <h3>AMTICS AI Team</h3>
-                <p>Artificial Intelligence Specialists</p>
-                <div className="member-skills">
-                  <span className="skill-tag">Machine Learning</span>
-                  <span className="skill-tag">Computer Vision</span>
-                  <span className="skill-tag">NLP</span>
+              <div className="card-footer">
+                <div className="footer-brand">
+                  <Zap size={16} />
+                  <span>AMTICS Multi-Media</span>
                 </div>
               </div>
             </div>
 
             <div className="team-member-card glass-card">
-              <div className="member-avatar">
-                <Award size={32} />
+              <div className="member-content">
+                <div className="member-image">
+                  <Award size={48} />
+                </div>
+                <div className="member-details">
+                  <h3>Sarah Johnson</h3>
+                  <p className="member-position">Lead UX Designer</p>
+                  <p className="enrollment-number">ID: EMP-2024-002</p>
+                </div>
               </div>
-              <div className="member-info">
-                <h3>Design Team</h3>
-                <p>UX/UI Design Experts</p>
-                <div className="member-skills">
-                  <span className="skill-tag">User Experience</span>
-                  <span className="skill-tag">Visual Design</span>
-                  <span className="skill-tag">Prototyping</span>
+              <div className="card-footer">
+                <div className="footer-brand">
+                  <Zap size={16} />
+                  <span>AMTICS Multi-Media</span>
                 </div>
               </div>
             </div>
 
             <div className="team-member-card glass-card">
-              <div className="member-avatar">
-                <Globe size={32} />
+              <div className="member-content">
+                <div className="member-image">
+                  <Globe size={48} />
+                </div>
+                <div className="member-details">
+                  <h3>Mike Chen</h3>
+                  <p className="member-position">Full-Stack Developer</p>
+                  <p className="enrollment-number">ID: EMP-2024-003</p>
+                </div>
               </div>
-              <div className="member-info">
-                <h3>Engineering Team</h3>
-                <p>Full-Stack Developers</p>
-                <div className="member-skills">
-                  <span className="skill-tag">React</span>
-                  <span className="skill-tag">Node.js</span>
-                  <span className="skill-tag">AI Integration</span>
+              <div className="card-footer">
+                <div className="footer-brand">
+                  <Zap size={16} />
+                  <span>AMTICS Multi-Media</span>
                 </div>
               </div>
             </div>
