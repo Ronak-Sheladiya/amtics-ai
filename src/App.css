@@ -1581,13 +1581,13 @@ select.form-control option {
   line-height: 1;
 } */
 
-.meta-value {
+/* .meta-value {
   font-size: 9px;
   color: var(--text-primary);
   font-weight: 600;
   font-family: var(--font-family-mono);
   line-height: 1;
-}
+} */
 
 .id-card-footer {
   padding: 8px 16px;
@@ -1821,13 +1821,13 @@ select.form-control option {
   line-height: 1;
 } */
 
-.modal-card-replica .meta-value {
+/* .modal-card-replica .meta-value {
   font-size: 9px;
   color: var(--text-primary);
   font-weight: 600;
   font-family: var(--font-family-mono);
   line-height: 1;
-}
+} */
 
 .modal-card-replica .id-card-footer {
   padding: 6px 16px;
@@ -3300,7 +3300,7 @@ select.form-control option {
 }
 
 .professional-id-card .meta-value {
-  font-size: 10px;
+  font-size: 12px;
   color: var(--text-primary);
   font-weight: 600;
   font-family: var(--font-family-mono);
