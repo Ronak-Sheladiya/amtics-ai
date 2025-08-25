@@ -1496,7 +1496,6 @@ select.form-control option {
 
 .id-card-content {
   padding: 16px;
-  padding-top: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1676,9 +1675,7 @@ select.form-control option {
   transform: scale(1.1);
 }
 
-.id-card-content {
-  padding: 0;
-}
+
 
 .modal-card-replica {
   position: relative;
@@ -1738,7 +1735,7 @@ select.form-control option {
   border-radius: 3px;
 }
 
-.modal-card-replica .id-card-content {
+/* .modal-card-replica .id-card-content {
   padding: 12px 16px;
   display: flex;
   flex-direction: row;
@@ -1746,7 +1743,7 @@ select.form-control option {
   text-align: left;
   gap: 12px;
   height: calc(204px - 40px - 30px);
-}
+} */
 
 .modal-card-replica .member-photo-container {
   position: relative;
