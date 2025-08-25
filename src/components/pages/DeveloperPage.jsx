@@ -4,16 +4,16 @@ import { User, Code, Github, Linkedin, Mail, MapPin, Calendar } from 'lucide-rea
 export const DeveloperPage = () => {
   // Single developer information
   const developer = {
-    id: "DEV-2024-001",
-    name: "Alex Thompson",
-    position: "Full Stack Developer",
-    department: "Development Team",
-    enrollmentNumber: "DEV-2024-001",
-    email: "alex.thompson@amtics.com",
-    phone: "+1 (555) 987-6543",
-    joinDate: "2024-01-10",
+    id: "20220310510221",
+    name: "Ronak Ashvinbhai Sheladiya",
+    position: "Vice-Chair Person",
+    department: "Board Member",
+    enrollmentNumber: "20220310510221",
+    email: "ronaksheladiya652@gmail.com",
+    phone: "+91 95865 99031",
+    joinDate: "2022-12-12",
     imageUrl: "/src/data/member-images/developer-avatar.svg",
-    location: "San Francisco, CA",
+    location: "Surat, Gujarat",
     github: "https://github.com/alexthompson",
     linkedin: "https://linkedin.com/in/alexthompson"
   };
