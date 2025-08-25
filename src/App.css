@@ -1543,7 +1543,7 @@ select.form-control option {
 }
 
 .member-name-card {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 2px;
@@ -1735,7 +1735,7 @@ select.form-control option {
   border-radius: 3px;
 }
 
-/* .modal-card-replica .id-card-content {
+.modal-card-replica {
   padding: 12px 16px;
   display: flex;
   flex-direction: row;
@@ -1743,7 +1743,7 @@ select.form-control option {
   text-align: left;
   gap: 12px;
   height: calc(204px - 40px - 30px);
-} */
+}
 
 .modal-card-replica .member-photo-container {
   position: relative;
