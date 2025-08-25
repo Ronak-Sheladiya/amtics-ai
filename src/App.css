@@ -1543,7 +1543,7 @@ select.form-control option {
 }
 
 .member-name-card {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 2px;
