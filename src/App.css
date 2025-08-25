@@ -1551,7 +1551,7 @@ select.form-control option {
 }
 
 .member-position-card {
-  font-size: 10px;
+  font-size: 14px;
   color: var(--amtics-magenta);
   font-weight: 600;
   margin-bottom: 2px;
