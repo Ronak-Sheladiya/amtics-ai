@@ -39,13 +39,17 @@ export const IdCardPage = () => {
 
   const downloadAsPDF = () => {
     const element = document.getElementById('standalone-id-card');
-    
+
     import('html2canvas').then(html2canvas => {
       html2canvas.default(element, {
         width: 280,
         height: 380,
         backgroundColor: null,
-        scale: 2
+        scale: 2,
+        useCORS: true,
+        allowTaint: false,
+        logging: false,
+        removeContainer: true
       }).then(canvas => {
         import('jspdf').then(({ jsPDF }) => {
           const pdf = new jsPDF({
@@ -76,13 +80,17 @@ export const IdCardPage = () => {
 
   const downloadAsPNG = () => {
     const element = document.getElementById('standalone-id-card');
-    
+
     import('html2canvas').then(html2canvas => {
       html2canvas.default(element, {
         width: 280,
         height: 380,
         backgroundColor: null,
-        scale: 2
+        scale: 2,
+        useCORS: true,
+        allowTaint: false,
+        logging: false,
+        removeContainer: true
       }).then(canvas => {
         const link = document.createElement('a');
         link.download = `${member.name}-ID-Card.png`;
