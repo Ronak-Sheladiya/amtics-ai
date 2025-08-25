@@ -3268,7 +3268,7 @@ select.form-control option {
 
 /* Vertical ID Card Overrides */
 .professional-id-card .member-name-card {
-  font-size: 16px !important;
+  font-size: 18px !important;
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 4px;
@@ -3284,7 +3284,7 @@ select.form-control option {
 }
 
 .professional-id-card .member-department {
-  font-size: 10px !important;
+  font-size: 12px !important;
   color: var(--text-secondary);
   margin-bottom: 12px;
   line-height: 1.2;
