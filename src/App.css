@@ -1790,7 +1790,7 @@ select.form-control option {
   line-height: 1.2;
 }
 
-.modal-card-replica .member-position-card {
+.modal-card-replica {
   font-size: 10px;
   color: var(--amtics-magenta);
   font-weight: 600;
@@ -1798,14 +1798,14 @@ select.form-control option {
   line-height: 1.2;
 }
 
-.modal-card-replica .member-department {
+.modal-card-replica{
   font-size: 8px;
   color: var(--text-secondary);
   margin-bottom: 8px;
   line-height: 1.2;
 }
 
-.modal-card-replica .member-meta {
+.modal-card-replica {
   display: flex;
   justify-content: flex-start;
   gap: 12px;
@@ -3275,7 +3275,7 @@ select.form-control option {
   line-height: 1.2;
 }
 
-.professional-id-card .member-position-card {
+.professional-id-card {
   font-size: 14px !important;
   color: var(--amtics-magenta);
   font-weight: 600;
@@ -3283,14 +3283,14 @@ select.form-control option {
   line-height: 1.2;
 }
 
-.professional-id-card .member-department {
+.professional-id-card{
   font-size: 10px !important;
   color: var(--text-secondary);
   margin-bottom: 12px;
   line-height: 1.2;
 }
 
-.professional-id-card .member-meta {
+.professional-id-card  {
   display: flex;
   justify-content: center;
   gap: 20px;
