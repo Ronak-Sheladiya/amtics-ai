@@ -10,11 +10,23 @@ import { DeveloperPage } from './components/pages/DeveloperPage';
 import { ToastContainer } from './components/ToastContainer';
 import './App.css';
 
+// Component to scroll to top on route change
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
 function App() {
   return (
     <ThemeProvider>
       <Router>
         <div className="app">
+          <ScrollToTop />
           <Layout>
             <Routes>
               <Route path="/" element={<HomePage />} />
