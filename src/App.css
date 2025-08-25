@@ -2090,7 +2090,7 @@ select.form-control option {
 }
 
 .developer-meta .meta-item {
-  display: flex;
+  /* display: flex; */
   align-items: center;
   gap: 6px;
   font-size: 14px;
