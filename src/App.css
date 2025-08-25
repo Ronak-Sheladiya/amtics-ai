@@ -3289,6 +3289,7 @@ select.form-control option {
   display: flex;
   justify-content: center;
   gap: 20px;
+  flex-direction: column;
 }
 
 .professional-id-card .meta-label {
