@@ -2072,9 +2072,14 @@ select.form-control option {
 
 .developer-position {
   font-size: 18px;
-  color: var(--amtics-blue);
+  color: var(--text-primary);
   font-weight: 600;
   margin: 0 0 4px 0;
+}
+
+/* Dark mode specific adjustments */
+[data-theme="dark"] .developer-position {
+  color: var(--text-secondary);
 }
 
 .developer-department {
