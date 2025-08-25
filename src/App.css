@@ -3312,7 +3312,7 @@ select.form-control option {
 .full-amtics{
   font-size: 8px;
     font-weight: 600;
-    line-height: 1.9;
-    color: var(--amtics-magenta);
+    line-height: 0.5;
+      color: var(--amtics-magenta);
     padding-bottom: 40px;
 }
