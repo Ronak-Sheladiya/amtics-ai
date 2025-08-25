@@ -1500,7 +1500,7 @@ select.form-control option {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 16px;
+  gap: 10px;
   height: calc(380px - 50px - 40px);
 }
 
@@ -3310,7 +3310,7 @@ select.form-control option {
 }
 
 .full-amtics{
-  font-size: 12px;
+  font-size: 8px;
     font-weight: 600;
     line-height: 0.5;
       color: var(--amtics-magenta);
