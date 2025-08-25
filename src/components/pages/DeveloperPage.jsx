@@ -12,7 +12,7 @@ export const DeveloperPage = () => {
     email: "ronaksheladiya652@gmail.com",
     phone: "+91 95865 99031",
     joinDate: "2022-12-12",
-    imageUrl: "/src/data/member-images/developer-avatar.svg",
+    imageUrl: "/src/data/member-images/202203103510221.jpeg",
     location: "Surat, Gujarat",
     github: "https://github.com/Ronak-Sheladiya",
     linkedin: "https://www.linkedin.com/in/ronak-sheladiya/"
