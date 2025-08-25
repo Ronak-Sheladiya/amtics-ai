@@ -3314,4 +3314,5 @@ select.form-control option {
     font-weight: 600;
     line-height: 1.9;
     color: var(--amtics-magenta);
+    padding-bottom: 20px;
 }
