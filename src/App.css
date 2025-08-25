@@ -1543,7 +1543,7 @@ select.form-control option {
 }
 
 .member-name-card {
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 2px;
@@ -1551,7 +1551,7 @@ select.form-control option {
 }
 
 .member-position-card {
-  font-size: 14px;
+  font-size: 10px;
   color: var(--amtics-magenta);
   font-weight: 600;
   margin-bottom: 2px;
@@ -1559,7 +1559,7 @@ select.form-control option {
 }
 
 .member-department {
-  font-size: 12px;
+  font-size: 8px;
   color: var(--text-secondary);
   margin-bottom: 8px;
   line-height: 1.2;
@@ -1782,7 +1782,7 @@ select.form-control option {
   text-align: left;
 }
 
-.modal-card-replica {
+.modal-card-replica .member-name-card {
   font-size: 14px;
   font-weight: 700;
   color: var(--text-primary);
@@ -1790,7 +1790,7 @@ select.form-control option {
   line-height: 1.2;
 }
 
-.modal-card-replica {
+.modal-card-replica .member-position-card {
   font-size: 10px;
   color: var(--amtics-magenta);
   font-weight: 600;
@@ -1798,14 +1798,14 @@ select.form-control option {
   line-height: 1.2;
 }
 
-.modal-card-replica{
+.modal-card-replica .member-department {
   font-size: 8px;
   color: var(--text-secondary);
   margin-bottom: 8px;
   line-height: 1.2;
 }
 
-.modal-card-replica {
+.modal-card-replica .member-meta {
   display: flex;
   justify-content: flex-start;
   gap: 12px;
@@ -3267,7 +3267,7 @@ select.form-control option {
 }
 
 /* Vertical ID Card Overrides */
-.professional-id-card {
+.professional-id-card .member-name-card {
   font-size: 16px !important;
   font-weight: 700;
   color: var(--text-primary);
@@ -3275,7 +3275,7 @@ select.form-control option {
   line-height: 1.2;
 }
 
-.professional-id-card {
+.professional-id-card .member-position-card {
   font-size: 14px !important;
   color: var(--amtics-magenta);
   font-weight: 600;
@@ -3283,14 +3283,14 @@ select.form-control option {
   line-height: 1.2;
 }
 
-.professional-id-card{
+.professional-id-card .member-department {
   font-size: 10px !important;
   color: var(--text-secondary);
   margin-bottom: 12px;
   line-height: 1.2;
 }
 
-.professional-id-card  {
+.professional-id-card .member-meta {
   display: flex;
   justify-content: center;
   gap: 20px;
