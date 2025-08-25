@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Zap, User } from 'lucide-react';
+import { Zap } from 'lucide-react';
 
 export const MemberCard = ({ member, clickable = true, standalone = false }) => {
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ export const MemberCard = ({ member, clickable = true, standalone = false }) => 
     }
   };
 
-  const cardClass = standalone ? 'professional-id-card glass-card' : 'professional-id-card glass-card';
+  const cardClass = 'professional-id-card glass-card';
   const cardId = standalone ? 'standalone-id-card' : undefined;
 
   return (
@@ -21,11 +21,13 @@ export const MemberCard = ({ member, clickable = true, standalone = false }) => 
       onClick={handleCardClick}
       style={{ cursor: clickable ? 'pointer' : 'default' }}
     >
+      {/* Background effects */}
       <div className="id-card-background">
         <div className="card-pattern"></div>
         <div className="card-shine"></div>
       </div>
 
+      {/* Header */}
       <div className="id-card-header">
         <div className="company-logo">
           <Zap size={20} />
@@ -34,17 +36,14 @@ export const MemberCard = ({ member, clickable = true, standalone = false }) => 
         <div className="card-type">MEDIA ID</div>
       </div>
 
+      {/* Content */}
       <div className="id-card-content">
         <div className="member-photo-container">
           <img
             src={member.imageUrl}
             alt={member.name}
             className="member-photo-circle"
-            onError={(e) => {
-              e.target.src = member.imageUrl;
-            }}
           />
-          
         </div>
 
         <div className="member-info-card">
@@ -59,17 +58,21 @@ export const MemberCard = ({ member, clickable = true, standalone = false }) => 
             </div>
             <div className="meta-item">
               <span className="meta-label">Since:</span>
-              <span className="meta-value">{new Date(member.joinDate).getFullYear()}</span>
+              <span className="meta-value">
+                {new Date(member.joinDate).getFullYear()}
+              </span>
             </div>
-            
           </div>
-         
         </div>
+
         <div>
-          <span className="full-amtics">Asha M. Tarsadia Institute of <br/> Computer Science and Technology</span>
+          <span className="full-amtics">
+            Asha M. Tarsadia Institute of <br /> Computer Science and Technology
+          </span>
         </div>
       </div>
 
+      {/* Footer */}
       <div className="id-card-footer">
         <div className="footer-brand-card">
           <Zap size={14} />
