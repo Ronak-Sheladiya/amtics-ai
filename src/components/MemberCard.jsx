@@ -62,7 +62,7 @@ export const MemberCard = ({ member, clickable = true, standalone = false }) => 
               <span className="meta-value">{new Date(member.joinDate).getFullYear()}</span>
             </div>
             <div>
-            <span className = "full-amtics">Asha M. Tarsadia Institute of <br>Computer Science and Technology</span>
+              <span className="full-amtics">Asha M. Tarsadia Institute of <br /> Computer Science and Technology</span>
             </div>
           </div>
         </div>
