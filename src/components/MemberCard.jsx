@@ -66,11 +66,7 @@ export const MemberCard = ({ member, clickable = true, standalone = false }) => 
          
         </div>
         <div>
-<<<<<<< HEAD
           <span className="full-amtics">Asha M. Tarsadia Institute of <br/> Computer Science and Technology</span>
-=======
-          <span className="full-amtics">Asha M. Tarsadia Institute of <br/>  Computer Science and Technology</span>
->>>>>>> refs/remotes/origin/main
         </div>
       </div>
 
