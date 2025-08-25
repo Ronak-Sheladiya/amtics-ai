@@ -3306,5 +3306,5 @@ select.form-control option {
   font-weight: 600;
   font-family: var(--font-family-mono);
   line-height: 1;
-  padding-left: 10px;
+  padding-left: 5px;
 }
