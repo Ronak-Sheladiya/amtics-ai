@@ -41,7 +41,7 @@ export const MemberCard = ({ member, clickable = true, standalone = false }) => 
             alt={member.name}
             className="member-photo-circle"
             onError={(e) => {
-              e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHZpZXdCb3g9IjAgMCA4MCA4MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjgwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjRjFGNUY5Ii8+CjxjaXJjbGUgY3g9IjQwIiBjeT0iMzAiIHI9IjEyIiBmaWxsPSIjRDQwMDc1Ii8+CjxwYXRoIGQ9Ik0yMCA2MEMyMCA1My4zNzI2IDI1LjM3MjYgNDggMzIgNDhINDhDNTQuNjI3NCA0OCA2MCA1My4zNzI2IDYwIDYwVjY1SDIwVjYwWiIgZmlsbD0iI0Q0MDA3NSIvPgo8L3N2Zz4K';
+              e.target.src = member.imageUrl;
             }}
           />
           
@@ -66,7 +66,11 @@ export const MemberCard = ({ member, clickable = true, standalone = false }) => 
          
         </div>
         <div>
+<<<<<<< HEAD
           <span className="full-amtics">Asha M. Tarsadia Institute of <br/> Computer Science and Technology</span>
+=======
+          <span className="full-amtics">Asha M. Tarsadia Institute of <br/>  Computer Science and Technology</span>
+>>>>>>> refs/remotes/origin/main
         </div>
       </div>
 

@@ -4,18 +4,32 @@ import { User, Code, Github, Linkedin, Mail, MapPin, Calendar } from 'lucide-rea
 export const DeveloperPage = () => {
   // Single developer information
   const developer = {
+<<<<<<< HEAD
     id: "20220310510221",
     name: "Ronak Ashvinbhai Sheladiya",
     position: "Vice-Chair Person",
     department: "Board Member",
     enrollmentNumber: "20220310510221",
+=======
+    id: "202203103510221",
+    name: "Ronak Ashvinbhai Sheladiya",
+    position: "Vice-Chair Person",
+    department: "Board Member",
+    enrollmentNumber: "202203103510221",
+>>>>>>> refs/remotes/origin/main
     email: "ronaksheladiya652@gmail.com",
     phone: "+91 95865 99031",
     joinDate: "2022-12-12",
     imageUrl: "/src/data/member-images/developer-avatar.svg",
+<<<<<<< HEAD
     location: "Surat, Gujarat",
     github: "https://github.com/alexthompson",
     linkedin: "https://linkedin.com/in/alexthompson"
+=======
+    location: "Surat , Gujarat",
+    github: "https://github.com/Ronak-Sheladiya",
+    linkedin: "https://www.linkedin.com/in/ronak-sheladiya/"
+>>>>>>> refs/remotes/origin/main
   };
 
   return (
