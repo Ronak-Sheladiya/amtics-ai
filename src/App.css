@@ -3297,7 +3297,7 @@ select.form-control option {
 }
 
 .professional-id-card .meta-label {
-  font-size: 8px;
+  font-size: 10px;
   color: var(--text-muted);
   font-weight: 500;
   text-transform: uppercase;
