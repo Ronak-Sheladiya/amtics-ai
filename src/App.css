@@ -3311,7 +3311,6 @@ select.form-control option {
 
 .full-amtics{
   font-size: 12px;
-    color: var(--text-primary);
-    font-weight: 400;
-    line-height: 0;
+    font-weight: 600;
+    color: var(--amtics-magenta);
 }
