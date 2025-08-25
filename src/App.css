@@ -2274,6 +2274,29 @@ select.form-control option {
   font-weight: 500;
 }
 
+/* Dark mode text fixes for developer page */
+[data-theme="dark"] .developer-position {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+[data-theme="dark"] .developer-department {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .developer-meta .meta-item {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .social-link {
+  color: var(--text-secondary) !important;
+  background: var(--glass-bg-dark) !important;
+}
+
+[data-theme="dark"] .social-link:hover {
+  color: var(--text-primary) !important;
+  background: var(--glass-bg) !important;
+}
+
 /* Responsive Design for Developer Page */
 @media (max-width: 768px) {
   .developer-profile {
@@ -2445,7 +2468,7 @@ select.form-control option {
 
 .developer-title {
   font-size: 16px;
-  color: var(--amtics-blue);
+  color: var(--text-primary);
   font-weight: 600;
   margin: 0;
 }
