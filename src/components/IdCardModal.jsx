@@ -35,8 +35,9 @@ export const IdCardModal = ({ member, isOpen, onClose }) => {
         backgroundColor: null,
         scale: 3,
         useCORS: true,
-        allowTaint: true,
-        foreignObjectRendering: true
+        allowTaint: false,
+        logging: false,
+        removeContainer: true
       }).then(canvas => {
         // Create PDF using jsPDF
         import('jspdf').then(({ jsPDF }) => {
@@ -76,8 +77,9 @@ export const IdCardModal = ({ member, isOpen, onClose }) => {
         backgroundColor: null,
         scale: 3,
         useCORS: true,
-        allowTaint: true,
-        foreignObjectRendering: true
+        allowTaint: false,
+        logging: false,
+        removeContainer: true
       }).then(canvas => {
         const link = document.createElement('a');
         link.download = `${member.name}-ID-Card.png`;

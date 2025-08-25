@@ -47,8 +47,9 @@ export const IdCardPage = () => {
         backgroundColor: null,
         scale: 2,
         useCORS: true,
-        allowTaint: true,
-        foreignObjectRendering: true
+        allowTaint: false,
+        logging: false,
+        removeContainer: true
       }).then(canvas => {
         import('jspdf').then(({ jsPDF }) => {
           const pdf = new jsPDF({
@@ -87,8 +88,9 @@ export const IdCardPage = () => {
         backgroundColor: null,
         scale: 2,
         useCORS: true,
-        allowTaint: true,
-        foreignObjectRendering: true
+        allowTaint: false,
+        logging: false,
+        removeContainer: true
       }).then(canvas => {
         const link = document.createElement('a');
         link.download = `${member.name}-ID-Card.png`;
