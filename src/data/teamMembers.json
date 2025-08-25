@@ -29,16 +29,16 @@
       "location": "New York, NY"
     },
     {
-      "id": "MED-2024-003",
-      "name": "Mike Chen",
+      "id": "202203103510221",
+      "name": "Ronak Sheladiya",
       "position": "Vice-chair",
       "department": "Board Member",
       "section": "body",
-      "enrollmentNumber": "MED-2024-003",
-      "email": "mike.chen@amtics.com",
-      "phone": "+1 (555) 345-6789",
-      "joinDate": "2024-01-20",
-      "imageUrl": "/src/data/member-images/mike-chen.svg",
+      "enrollmentNumber": "202203103510221",
+      "email": "22amtics221@gmail.com",
+      "phone": "+91 95865 99031",
+      "joinDate": "2022-12-12",
+      "imageUrl": "../src/data/member-images/202203103510221.jpeg",
       "skills": ["Support Operations", "Team Coordination", "Process Management", "Quality Assurance"],
       "location": "Seattle, WA"
     },

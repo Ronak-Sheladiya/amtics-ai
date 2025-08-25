@@ -4,18 +4,18 @@ import { User, Code, Github, Linkedin, Mail, MapPin, Calendar } from 'lucide-rea
 export const DeveloperPage = () => {
   // Single developer information
   const developer = {
-    id: "DEV-2024-001",
-    name: "Alex Thompson",
-    position: "Full Stack Developer",
-    department: "Development Team",
-    enrollmentNumber: "DEV-2024-001",
-    email: "alex.thompson@amtics.com",
-    phone: "+1 (555) 987-6543",
-    joinDate: "2024-01-10",
+    id: "202203103510221",
+    name: "Ronak Ashvinbhai Sheladiya",
+    position: "Vice-Chair Person",
+    department: "Board Member",
+    enrollmentNumber: "202203103510221",
+    email: "ronaksheladiya652@gmail.com",
+    phone: "+91 95865 99031",
+    joinDate: "2022-12-12",
     imageUrl: "/src/data/member-images/developer-avatar.svg",
-    location: "San Francisco, CA",
-    github: "https://github.com/alexthompson",
-    linkedin: "https://linkedin.com/in/alexthompson"
+    location: "Surat , Gujarat",
+    github: "https://github.com/Ronak-Sheladiya",
+    linkedin: "https://www.linkedin.com/in/ronak-sheladiya/"
   };
 
   return (
@@ -40,10 +40,7 @@ export const DeveloperPage = () => {
                   e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgdmlld0JveD0iMCAwIDEyMCAxMjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiBmaWxsPSIjRjFGNUY5Ii8+CjxjaXJjbGUgY3g9IjYwIiBjeT0iNDUiIHI9IjE4IiBmaWxsPSIjRDQwMDc1Ii8+CjxwYXRoIGQ9Ik0zMCA5MEMzMCA4MC4wNTg5IDM4LjA1ODkgNzIgNDggNzJINzJDODEuOTQxMSA3MiA5MCA4MC4wNTg5IDkwIDkwVjk3LjVIMzBWOTBaIiBmaWxsPSIjRDQwMDc1Ii8+Cjwvc3ZnPgo=';
                 }}
               />
-              <div className="developer-status">
-                <span className="status-dot"></span>
-                <span>Available</span>
-              </div>
+              
             </div>
             
             <div className="developer-info">

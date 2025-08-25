@@ -1540,6 +1540,7 @@ select.form-control option {
   flex: 1;
   text-align: center;
   width: 100%;
+
 }
 
 .member-name-card {
@@ -1803,7 +1804,7 @@ select.form-control option {
 .modal-card-replica .member-meta {
   display: flex;
   justify-content: flex-start;
-  gap: 12px;
+  gap: 10px;
 }
 
 .modal-card-replica .meta-item {
@@ -3281,7 +3282,7 @@ select.form-control option {
 .professional-id-card .member-department {
   font-size: 12px !important;
   color: var(--text-secondary);
-  margin-bottom: 12px;
+  margin-bottom: 1px;
   line-height: 1.2;
 }
 
@@ -3312,7 +3313,7 @@ select.form-control option {
 .full-amtics{
   font-size: 12px;
     font-weight: 600;
-    line-height: 1;
+    line-height: 0;
       color: var(--amtics-magenta);
     padding-bottom: 40px;
 }
