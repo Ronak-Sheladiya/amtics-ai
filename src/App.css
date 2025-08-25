@@ -1790,13 +1790,13 @@ select.form-control option {
   line-height: 1.2;
 }
 
-.modal-card-replica .member-position-card {
+/* .modal-card-replica .member-position-card {
   font-size: 10px;
   color: var(--amtics-magenta);
   font-weight: 600;
   margin-bottom: 2px;
   line-height: 1.2;
-}
+} */
 
 .modal-card-replica .member-department {
   font-size: 8px;
