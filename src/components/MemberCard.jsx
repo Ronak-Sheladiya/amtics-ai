@@ -65,11 +65,11 @@ export const MemberCard = ({ member, clickable = true, standalone = false }) => 
           </div>
         </div>
 
-        <div>
-          <span className="full-amtics">
-            Asha M. Tarsadia Institute of <br /> Computer Science and Technology
-          </span>
-        </div>
+        <span className="full-amtics">
+          <span>Asha M. Tarsadia Institute of</span><br />
+          <span>Computer Science and Technology</span>
+        </span>
+
       </div>
 
       {/* Footer */}
