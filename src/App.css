@@ -1782,7 +1782,7 @@ select.form-control option {
   text-align: left;
 }
 
-.modal-card-replica .member-name-card {
+.modal-card-replica {
   font-size: 14px;
   font-weight: 700;
   color: var(--text-primary);
@@ -3267,7 +3267,7 @@ select.form-control option {
 }
 
 /* Vertical ID Card Overrides */
-.professional-id-card .member-name-card {
+.professional-id-card {
   font-size: 16px !important;
   font-weight: 700;
   color: var(--text-primary);
