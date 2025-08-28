@@ -21,6 +21,10 @@ Since this is a demo implementation, you can use these test credentials:
 - **Role**: Administrator
 - **Name**: Ronak Sheladiya
 
+### Additional Demo Users
+- **Moderator**: `moderator@amtics.com` / `mod123`
+- **Member**: `member@amtics.com` / `member123`
+
 ## 🚀 Quick Start
 
 1. **Navigate to the login page**: Click the "Admin Login" button in the top-right corner
