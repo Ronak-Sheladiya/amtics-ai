@@ -222,7 +222,7 @@ export const SetupPage = () => {
 
         {allChecksPass && (
           <div className="success-message">
-            <Check className="w-6 h-6 text-green-500" />
+            <Check className="success-icon" />
             <div>
               <h3>Setup Complete!</h3>
               <p>Your Supabase integration is working correctly. You can now use the admin dashboard.</p>
