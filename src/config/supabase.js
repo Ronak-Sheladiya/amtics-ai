@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
+import { demoAuth, isDemoMode } from '../utils/demoAuth';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://rtugujirmkcwdmdiwzow.supabase.co';
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
