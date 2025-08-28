@@ -17,7 +17,8 @@ export const HomePage = () => {
       return;
     }
 
-    onShowModal({
+    // TODO: Implement modal functionality
+    console.log('Auto execute triggered with:', {
       prompts: generatedPrompts,
       platform: formData.platform,
       platformName: getPlatformName(formData.platform)
