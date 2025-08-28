@@ -101,6 +101,10 @@ export const dbHelpers = {
 
   // Content
   getContent: async (filters = {}) => {
+    if (isDemoMode()) {
+      return await demoAuth.getContent(filters);
+    }
+
     let query = supabase
       .from('user_content')
       .select(`
@@ -130,6 +134,10 @@ export const dbHelpers = {
 
   // Activity Logs
   getActivityLogs: async (filters = {}) => {
+    if (isDemoMode()) {
+      return await demoAuth.getActivityLogs(filters);
+    }
+
     let query = supabase
       .from('user_activity_logs')
       .select(`
@@ -150,6 +158,10 @@ export const dbHelpers = {
   },
 
   logActivity: async (userId, actionType, description, metadata = {}) => {
+    if (isDemoMode()) {
+      return await demoAuth.logActivity(userId, actionType, description, metadata);
+    }
+
     return await supabase
       .from('user_activity_logs')
       .insert({
@@ -164,6 +176,10 @@ export const dbHelpers = {
 
   // Analytics
   getDashboardStats: async () => {
+    if (isDemoMode()) {
+      return await demoAuth.getDashboardStats();
+    }
+
     try {
       const { data, error } = await supabase.rpc('get_user_stats');
       if (error) throw error;
