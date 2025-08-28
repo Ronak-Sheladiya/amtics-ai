@@ -14,12 +14,18 @@ export const AdminNavHelper = () => {
   return (
     <div className="admin-nav-helper">
       <div className="nav-helper-content">
+        {isDemoMode() && (
+          <div className="demo-indicator">
+            <Info size={14} />
+            <span>Demo Mode</span>
+          </div>
+        )}
         <div className="nav-links">
           <Link to="/" className="nav-link">
             <Home size={16} />
             Home
           </Link>
-          
+
           {!isAuthenticated ? (
             <Link to="/login" className="nav-link login-link">
               <LogIn size={16} />
