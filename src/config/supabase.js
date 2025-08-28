@@ -57,6 +57,10 @@ export const authHelpers = {
 export const dbHelpers = {
   // Users
   getUsers: async (filters = {}) => {
+    if (isDemoMode()) {
+      return await demoAuth.getUsers(filters);
+    }
+
     let query = supabase
       .from('users')
       .select('*')
