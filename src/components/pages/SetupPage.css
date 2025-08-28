@@ -129,6 +129,46 @@
   color: #28a745;
 }
 
+.status-icon-sm {
+  width: 20px;
+  height: 20px;
+}
+
+.status-icon-md {
+  width: 24px;
+  height: 24px;
+}
+
+.text-green {
+  color: #28a745;
+}
+
+.text-red {
+  color: #dc3545;
+}
+
+.text-yellow {
+  color: #ffc107;
+}
+
+.text-blue {
+  color: #007bff;
+}
+
+.loading-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #007bff;
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 .success-message p {
   margin: 0 0 1rem 0;
   color: #155724;
