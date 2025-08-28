@@ -26,6 +26,11 @@ export const AdminNavHelper = () => {
             Home
           </Link>
 
+          <Link to="/setup" className="nav-link setup-link">
+            <Database size={16} />
+            Setup
+          </Link>
+
           {!isAuthenticated ? (
             <Link to="/login" className="nav-link login-link">
               <LogIn size={16} />
