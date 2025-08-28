@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { Mail, ArrowLeft, CheckCircle, AlertCircle } from 'lucide-react';
+import './ForgotPasswordPage.css';
 
 export const ForgotPasswordPage = () => {
   const [email, setEmail] = useState('');
