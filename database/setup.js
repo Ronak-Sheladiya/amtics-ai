@@ -2,9 +2,10 @@ import { createClient } from '@supabase/supabase-js';
 import fs from 'fs';
 import path from 'path';
 
-// Database setup script for Supabase
-const supabaseUrl = process.env.VITE_SUPABASE_URL || 'https://rtugujirmkcwdmdiwzow.supabase.co';
-const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY; // Service role key needed for admin operations
+/// Project URL
+const supabaseUrl = "https://rtugujirmkcwdmdiwzow.supabase.co";
+// ✅ Service role key (only safe in backend)
+const supabaseServiceRoleKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ0dWd1amlybWtjd2RtZGl3em93Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1NjE0NjEzNywiZXhwIjoyMDcxNzIyMTM3fQ.nXSUl8rMGPQiGEXzOMQCEK8Hdbt79NQJh1z6aPnT7iw";
 
 if (!supabaseServiceKey) {
   console.error('SUPABASE_SERVICE_ROLE_KEY is required for database setup');
