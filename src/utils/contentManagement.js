@@ -103,4 +103,323 @@ export const contentManager = {
       }
 
       // Pagination
-      if (filters.page && filters.limit) {\n        const offset = (filters.page - 1) * filters.limit;\n        query = query.range(offset, offset + filters.limit - 1);\n      }\n\n      return await query.order('uploaded_at', { ascending: false });\n    } catch (error) {\n      return { data: null, error };\n    }\n  },\n\n  // Verify content (admin function)\n  verifyContent: async (contentId, verificationData, adminId) => {\n    try {\n      const { status, notes } = verificationData;\n      \n      if (!['verified', 'declined'].includes(status)) {\n        return { success: false, error: 'Invalid verification status' };\n      }\n\n      const { data: updatedContent, error } = await supabase\n        .from('user_content')\n        .update({\n          verification_status: status,\n          verified_by: adminId,\n          verification_notes: notes,\n          verified_at: new Date().toISOString()\n        })\n        .eq('id', contentId)\n        .select(`\n          *,\n          users:user_id (id, name, email)\n        `)\n        .single();\n\n      if (error) {\n        return { success: false, error: error.message };\n      }\n\n      // Log verification activity\n      await dbHelpers.logActivity(\n        adminId,\n        'content_verified',\n        `${status.charAt(0).toUpperCase() + status.slice(1)} content: ${updatedContent.title}`,\n        {\n          content_id: contentId,\n          verification_status: status,\n          user_id: updatedContent.user_id\n        }\n      );\n\n      // Log activity for content owner\n      await dbHelpers.logActivity(\n        updatedContent.user_id,\n        'content_status_changed',\n        `Content \"${updatedContent.title}\" was ${status}`,\n        {\n          content_id: contentId,\n          verification_status: status,\n          verified_by: adminId\n        }\n      );\n\n      return { success: true, data: updatedContent };\n    } catch (error) {\n      return { success: false, error: error.message };\n    }\n  },\n\n  // Get user's content\n  getUserContent: async (userId, filters = {}) => {\n    try {\n      let query = supabase\n        .from('user_content')\n        .select(`\n          id, title, description, file_url, thumbnail_url,\n          content_type, verification_status, uploaded_at,\n          file_size, mime_type, verification_notes, verified_at,\n          tags, metadata\n        `)\n        .eq('user_id', userId);\n\n      if (filters.status && filters.status !== 'all') {\n        query = query.eq('verification_status', filters.status);\n      }\n      if (filters.contentType && filters.contentType !== 'all') {\n        query = query.eq('content_type', filters.contentType);\n      }\n\n      return await query.order('uploaded_at', { ascending: false });\n    } catch (error) {\n      return { data: null, error };\n    }\n  },\n\n  // Delete content\n  deleteContent: async (contentId, userId, isAdmin = false) => {\n    try {\n      // Get content details first\n      const { data: content, error: fetchError } = await supabase\n        .from('user_content')\n        .select('*')\n        .eq('id', contentId)\n        .single();\n\n      if (fetchError) {\n        return { success: false, error: fetchError.message };\n      }\n\n      // Check permissions\n      if (!isAdmin && content.user_id !== userId) {\n        return { success: false, error: 'Unauthorized to delete this content' };\n      }\n\n      // Delete from storage\n      const filePath = content.file_url.split('/').pop();\n      await storageHelpers.deleteFile('user-portfolios', `${content.user_id}/${filePath}`);\n      \n      // Delete thumbnail if exists\n      if (content.thumbnail_url) {\n        const thumbnailPath = content.thumbnail_url.split('/').pop();\n        await storageHelpers.deleteFile('thumbnails', `${content.user_id}/${thumbnailPath}`);\n      }\n\n      // Delete from database\n      const { error: deleteError } = await supabase\n        .from('user_content')\n        .delete()\n        .eq('id', contentId);\n\n      if (deleteError) {\n        return { success: false, error: deleteError.message };\n      }\n\n      // Log activity\n      await dbHelpers.logActivity(\n        userId,\n        'content_deleted',\n        `Deleted content: ${content.title}`,\n        {\n          content_id: contentId,\n          content_type: content.content_type,\n          was_verified: content.verification_status === 'verified'\n        }\n      );\n\n      return { success: true };\n    } catch (error) {\n      return { success: false, error: error.message };\n    }\n  },\n\n  // Update content metadata\n  updateContent: async (contentId, updates, userId, isAdmin = false) => {\n    try {\n      // Get current content\n      const { data: content, error: fetchError } = await supabase\n        .from('user_content')\n        .select('user_id')\n        .eq('id', contentId)\n        .single();\n\n      if (fetchError) {\n        return { success: false, error: fetchError.message };\n      }\n\n      // Check permissions\n      if (!isAdmin && content.user_id !== userId) {\n        return { success: false, error: 'Unauthorized to update this content' };\n      }\n\n      // Filter allowed updates\n      const allowedUpdates = {\n        title: updates.title,\n        description: updates.description,\n        tags: updates.tags\n      };\n\n      // Remove undefined values\n      Object.keys(allowedUpdates).forEach(key => {\n        if (allowedUpdates[key] === undefined) {\n          delete allowedUpdates[key];\n        }\n      });\n\n      const { data: updatedContent, error } = await supabase\n        .from('user_content')\n        .update(allowedUpdates)\n        .eq('id', contentId)\n        .select()\n        .single();\n\n      if (error) {\n        return { success: false, error: error.message };\n      }\n\n      // Log activity\n      await dbHelpers.logActivity(\n        userId,\n        'content_updated',\n        `Updated content: ${updatedContent.title}`,\n        {\n          content_id: contentId,\n          updated_fields: Object.keys(allowedUpdates)\n        }\n      );\n\n      return { success: true, data: updatedContent };\n    } catch (error) {\n      return { success: false, error: error.message };\n    }\n  }\n};\n\n// Helper functions\nconst determineContentType = (mimeType) => {\n  if (mimeType.startsWith('image/')) return 'image';\n  if (mimeType.startsWith('video/')) return 'video';\n  if (mimeType.includes('pdf') || mimeType.includes('document')) return 'document';\n  return 'portfolio';\n};\n\nconst createThumbnail = async (file, userId) => {\n  try {\n    // Create a canvas thumbnail (simplified version)\n    const canvas = document.createElement('canvas');\n    const ctx = canvas.getContext('2d');\n    const img = new Image();\n    \n    return new Promise((resolve) => {\n      img.onload = async () => {\n        // Set thumbnail dimensions\n        const maxSize = 300;\n        const ratio = Math.min(maxSize / img.width, maxSize / img.height);\n        canvas.width = img.width * ratio;\n        canvas.height = img.height * ratio;\n        \n        // Draw and resize\n        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);\n        \n        // Convert to blob\n        canvas.toBlob(async (blob) => {\n          if (blob) {\n            const thumbnailFile = new File([blob], `thumbnail_${Date.now()}.jpg`, {\n              type: 'image/jpeg'\n            });\n            \n            // Upload thumbnail\n            const { data, error } = await storageHelpers.uploadUserContent(\n              userId, \n              thumbnailFile, \n              'thumbnail'\n            );\n            \n            resolve(error ? null : data.url);\n          } else {\n            resolve(null);\n          }\n        }, 'image/jpeg', 0.8);\n      };\n      \n      img.onerror = () => resolve(null);\n      img.src = URL.createObjectURL(file);\n    });\n  } catch (error) {\n    console.error('Error creating thumbnail:', error);\n    return null;\n  }\n};\n\n// Content validation\nexport const contentValidator = {\n  validateFile: (file, maxSize = 10 * 1024 * 1024) => { // 10MB default\n    const errors = [];\n    \n    if (!file) {\n      errors.push('No file selected');\n      return { isValid: false, errors };\n    }\n    \n    if (file.size > maxSize) {\n      errors.push(`File size must be less than ${Math.round(maxSize / 1024 / 1024)}MB`);\n    }\n    \n    const allowedTypes = [\n      'image/jpeg', 'image/png', 'image/webp', 'image/gif',\n      'application/pdf', 'video/mp4', 'video/webm',\n      'application/msword', \n      'application/vnd.openxmlformats-officedocument.wordprocessingml.document'\n    ];\n    \n    if (!allowedTypes.includes(file.type)) {\n      errors.push('File type not supported');\n    }\n    \n    return {\n      isValid: errors.length === 0,\n      errors\n    };\n  },\n  \n  validateMetadata: (metadata) => {\n    const errors = [];\n    \n    if (metadata.title && metadata.title.length > 255) {\n      errors.push('Title must be less than 255 characters');\n    }\n    \n    if (metadata.description && metadata.description.length > 1000) {\n      errors.push('Description must be less than 1000 characters');\n    }\n    \n    return {\n      isValid: errors.length === 0,\n      errors\n    };\n  }\n};\n\nexport default contentManager;\n
+      if (filters.page && filters.limit) {
+        const offset = (filters.page - 1) * filters.limit;
+        query = query.range(offset, offset + filters.limit - 1);
+      }
+
+      return await query.order('uploaded_at', { ascending: false });
+    } catch (error) {
+      return { data: null, error };
+    }
+  },
+
+  // Verify content (admin function)
+  verifyContent: async (contentId, verificationData, adminId) => {
+    try {
+      const { status, notes } = verificationData;
+      
+      if (!['verified', 'declined'].includes(status)) {
+        return { success: false, error: 'Invalid verification status' };
+      }
+
+      const { data: updatedContent, error } = await supabase
+        .from('user_content')
+        .update({
+          verification_status: status,
+          verified_by: adminId,
+          verification_notes: notes,
+          verified_at: new Date().toISOString()
+        })
+        .eq('id', contentId)
+        .select(`
+          *,
+          users:user_id (id, name, email)
+        `)
+        .single();
+
+      if (error) {
+        return { success: false, error: error.message };
+      }
+
+      // Log verification activity
+      await dbHelpers.logActivity(
+        adminId,
+        'content_verified',
+        `${status.charAt(0).toUpperCase() + status.slice(1)} content: ${updatedContent.title}`,
+        {
+          content_id: contentId,
+          verification_status: status,
+          user_id: updatedContent.user_id
+        }
+      );
+
+      // Log activity for content owner
+      await dbHelpers.logActivity(
+        updatedContent.user_id,
+        'content_status_changed',
+        `Content "${updatedContent.title}" was ${status}`,
+        {
+          content_id: contentId,
+          verification_status: status,
+          verified_by: adminId
+        }
+      );
+
+      return { success: true, data: updatedContent };
+    } catch (error) {
+      return { success: false, error: error.message };
+    }
+  },
+
+  // Get user's content
+  getUserContent: async (userId, filters = {}) => {
+    try {
+      let query = supabase
+        .from('user_content')
+        .select(`
+          id, title, description, file_url, thumbnail_url,
+          content_type, verification_status, uploaded_at,
+          file_size, mime_type, verification_notes, verified_at,
+          tags, metadata
+        `)
+        .eq('user_id', userId);
+
+      if (filters.status && filters.status !== 'all') {
+        query = query.eq('verification_status', filters.status);
+      }
+      if (filters.contentType && filters.contentType !== 'all') {
+        query = query.eq('content_type', filters.contentType);
+      }
+
+      return await query.order('uploaded_at', { ascending: false });
+    } catch (error) {
+      return { data: null, error };
+    }
+  },
+
+  // Delete content
+  deleteContent: async (contentId, userId, isAdmin = false) => {
+    try {
+      // Get content details first
+      const { data: content, error: fetchError } = await supabase
+        .from('user_content')
+        .select('*')
+        .eq('id', contentId)
+        .single();
+
+      if (fetchError) {
+        return { success: false, error: fetchError.message };
+      }
+
+      // Check permissions
+      if (!isAdmin && content.user_id !== userId) {
+        return { success: false, error: 'Unauthorized to delete this content' };
+      }
+
+      // Delete from storage
+      const filePath = content.file_url.split('/').pop();
+      await storageHelpers.deleteFile('user-portfolios', `${content.user_id}/${filePath}`);
+      
+      // Delete thumbnail if exists
+      if (content.thumbnail_url) {
+        const thumbnailPath = content.thumbnail_url.split('/').pop();
+        await storageHelpers.deleteFile('thumbnails', `${content.user_id}/${thumbnailPath}`);
+      }
+
+      // Delete from database
+      const { error: deleteError } = await supabase
+        .from('user_content')
+        .delete()
+        .eq('id', contentId);
+
+      if (deleteError) {
+        return { success: false, error: deleteError.message };
+      }
+
+      // Log activity
+      await dbHelpers.logActivity(
+        userId,
+        'content_deleted',
+        `Deleted content: ${content.title}`,
+        {
+          content_id: contentId,
+          content_type: content.content_type,
+          was_verified: content.verification_status === 'verified'
+        }
+      );
+
+      return { success: true };
+    } catch (error) {
+      return { success: false, error: error.message };
+    }
+  },
+
+  // Update content metadata
+  updateContent: async (contentId, updates, userId, isAdmin = false) => {
+    try {
+      // Get current content
+      const { data: content, error: fetchError } = await supabase
+        .from('user_content')
+        .select('user_id')
+        .eq('id', contentId)
+        .single();
+
+      if (fetchError) {
+        return { success: false, error: fetchError.message };
+      }
+
+      // Check permissions
+      if (!isAdmin && content.user_id !== userId) {
+        return { success: false, error: 'Unauthorized to update this content' };
+      }
+
+      // Filter allowed updates
+      const allowedUpdates = {
+        title: updates.title,
+        description: updates.description,
+        tags: updates.tags
+      };
+
+      // Remove undefined values
+      Object.keys(allowedUpdates).forEach(key => {
+        if (allowedUpdates[key] === undefined) {
+          delete allowedUpdates[key];
+        }
+      });
+
+      const { data: updatedContent, error } = await supabase
+        .from('user_content')
+        .update(allowedUpdates)
+        .eq('id', contentId)
+        .select()
+        .single();
+
+      if (error) {
+        return { success: false, error: error.message };
+      }
+
+      // Log activity
+      await dbHelpers.logActivity(
+        userId,
+        'content_updated',
+        `Updated content: ${updatedContent.title}`,
+        {
+          content_id: contentId,
+          updated_fields: Object.keys(allowedUpdates)
+        }
+      );
+
+      return { success: true, data: updatedContent };
+    } catch (error) {
+      return { success: false, error: error.message };
+    }
+  }
+};
+
+// Helper functions
+const determineContentType = (mimeType) => {
+  if (mimeType.startsWith('image/')) return 'image';
+  if (mimeType.startsWith('video/')) return 'video';
+  if (mimeType.includes('pdf') || mimeType.includes('document')) return 'document';
+  return 'portfolio';
+};
+
+const createThumbnail = async (file, userId) => {
+  try {
+    // Create a canvas thumbnail (simplified version)
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    const img = new Image();
+    
+    return new Promise((resolve) => {
+      img.onload = async () => {
+        // Set thumbnail dimensions
+        const maxSize = 300;
+        const ratio = Math.min(maxSize / img.width, maxSize / img.height);
+        canvas.width = img.width * ratio;
+        canvas.height = img.height * ratio;
+        
+        // Draw and resize
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        
+        // Convert to blob
+        canvas.toBlob(async (blob) => {
+          if (blob) {
+            const thumbnailFile = new File([blob], `thumbnail_${Date.now()}.jpg`, {
+              type: 'image/jpeg'
+            });
+            
+            // Upload thumbnail
+            const { data, error } = await storageHelpers.uploadUserContent(
+              userId, 
+              thumbnailFile, 
+              'thumbnail'
+            );
+            
+            resolve(error ? null : data.url);
+          } else {
+            resolve(null);
+          }
+        }, 'image/jpeg', 0.8);
+      };
+      
+      img.onerror = () => resolve(null);
+      img.src = URL.createObjectURL(file);
+    });
+  } catch (error) {
+    console.error('Error creating thumbnail:', error);
+    return null;
+  }
+};
+
+// Content validation
+export const contentValidator = {
+  validateFile: (file, maxSize = 10 * 1024 * 1024) => { // 10MB default
+    const errors = [];
+    
+    if (!file) {
+      errors.push('No file selected');
+      return { isValid: false, errors };
+    }
+    
+    if (file.size > maxSize) {
+      errors.push(`File size must be less than ${Math.round(maxSize / 1024 / 1024)}MB`);
+    }
+    
+    const allowedTypes = [
+      'image/jpeg', 'image/png', 'image/webp', 'image/gif',
+      'application/pdf', 'video/mp4', 'video/webm',
+      'application/msword', 
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+    ];
+    
+    if (!allowedTypes.includes(file.type)) {
+      errors.push('File type not supported');
+    }
+    
+    return {
+      isValid: errors.length === 0,
+      errors
+    };
+  },
+  
+  validateMetadata: (metadata) => {
+    const errors = [];
+    
+    if (metadata.title && metadata.title.length > 255) {
+      errors.push('Title must be less than 255 characters');
+    }
+    
+    if (metadata.description && metadata.description.length > 1000) {
+      errors.push('Description must be less than 1000 characters');
+    }
+    
+    return {
+      isValid: errors.length === 0,
+      errors
+    };
+  }
+};
+
+export default contentManager;
