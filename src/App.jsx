@@ -12,8 +12,10 @@ import { LoginPage } from './components/pages/LoginPage';
 import { AdminDashboard } from './components/admin/AdminDashboard';
 import { ProtectedRoute, AdminRoute, GuestRoute, RoleRedirect } from './components/ProtectedRoute';
 import { ToastContainer } from './components/ToastContainer';
+import { AdminNavHelper } from './components/AdminNavHelper';
 import './App.css';
 import './styles/admin.css';
+import './styles/nav-helper.css';
 
 // Component to scroll to top on route change
 function ScrollToTop() {
@@ -33,6 +35,7 @@ function App() {
         <Router>
           <div className="app">
             <ScrollToTop />
+            <AdminNavHelper />
             <Routes>
               {/* Public Routes */}
               <Route path="/" element={<Layout><HomePage /></Layout>} />
@@ -59,7 +62,7 @@ function App() {
 
               {/* Admin Routes */}
               <Route
-                path="/admin/*"
+                path="/admin/dashboard"
                 element={
                   <AdminRoute>
                     <AdminDashboard />
