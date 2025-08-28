@@ -10,6 +10,7 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.56.0",
     "clsx": "^2.0.0",
     "html2canvas": "^1.4.1",
     "jspdf": "^3.0.1",
