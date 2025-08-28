@@ -55,7 +55,7 @@ export const authHelpers = {
 
 // Database helper functions
 export const dbHelpers = {
-  // Users
+  // Users Management
   getUsers: async (filters = {}) => {
     if (isDemoMode()) {
       return await demoAuth.getUsers(filters);
@@ -63,30 +63,88 @@ export const dbHelpers = {
 
     let query = supabase
       .from('users')
-      .select('*')
-      .neq('role', 'admin');
+      .select(`
+        id, name, enrollment_number, email, position, role,
+        user_role, status, profile_image_url, last_login,
+        created_at, created_by, bio, is_first_login, is_onboarded
+      `);
 
-    if (filters.status) query = query.eq('status', filters.status);
-    if (filters.role) query = query.eq('role', filters.role);
+    // Apply filters
+    if (filters.status && filters.status !== 'all') {
+      query = query.eq('status', filters.status);
+    }
+    if (filters.role && filters.role !== 'all') {
+      query = query.eq('role', filters.role);
+    }
     if (filters.search) {
-      query = query.or(`name.ilike.%${filters.search}%,email.ilike.%${filters.search}%`);
+      query = query.or(`name.ilike.%${filters.search}%,email.ilike.%${filters.search}%,enrollment_number.ilike.%${filters.search}%`);
+    }
+    if (filters.excludeAdmins) {
+      query = query.neq('role', 'admin');
+    }
+
+    // Pagination
+    if (filters.page && filters.limit) {
+      const offset = (filters.page - 1) * filters.limit;
+      query = query.range(offset, offset + filters.limit - 1);
     }
 
     return await query.order('created_at', { ascending: false });
   },
 
-  createUser: async (userData) => {
+  getUserById: async (id) => {
     return await supabase
       .from('users')
-      .insert(userData)
+      .select('*')
+      .eq('id', id)
+      .single();
+  },
+
+  getUserByEmail: async (email) => {
+    return await supabase
+      .from('users')
+      .select('*')
+      .eq('email', email)
+      .single();
+  },
+
+  createUser: async (userData) => {
+    // Add created timestamp
+    const userWithTimestamp = {
+      ...userData,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
+    };
+
+    return await supabase
+      .from('users')
+      .insert(userWithTimestamp)
       .select()
       .single();
   },
 
   updateUser: async (id, updates) => {
+    // Add updated timestamp
+    const updatesWithTimestamp = {
+      ...updates,
+      updated_at: new Date().toISOString()
+    };
+
     return await supabase
       .from('users')
-      .update(updates)
+      .update(updatesWithTimestamp)
+      .eq('id', id)
+      .select()
+      .single();
+  },
+
+  updateUserStatus: async (id, status) => {
+    return await supabase
+      .from('users')
+      .update({
+        status,
+        updated_at: new Date().toISOString()
+      })
       .eq('id', id)
       .select()
       .single();
@@ -97,6 +155,22 @@ export const dbHelpers = {
       .from('users')
       .delete()
       .eq('id', id);
+  },
+
+  updateLastLogin: async (id) => {
+    return await supabase
+      .from('users')
+      .update({
+        last_login: new Date().toISOString(),
+        updated_at: new Date().toISOString()
+      })
+      .eq('id', id);
+  },
+
+  // User count and statistics
+  getUserCounts: async () => {
+    const { data, error } = await supabase.rpc('get_user_stats');
+    return { data: data?.[0], error };
   },
 
   // Content
@@ -174,7 +248,7 @@ export const dbHelpers = {
       });
   },
 
-  // Analytics
+  // Analytics and Dashboard Stats
   getDashboardStats: async () => {
     if (isDemoMode()) {
       return await demoAuth.getDashboardStats();
@@ -183,19 +257,136 @@ export const dbHelpers = {
     try {
       const { data, error } = await supabase.rpc('get_user_stats');
       if (error) throw error;
-      return { data: data[0], error: null };
+      return { data: data?.[0], error: null };
     } catch (error) {
       return { data: null, error };
     }
   },
 
   getRegistrationTrend: async (days = 30) => {
+    const startDate = new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString();
     const { data, error } = await supabase
       .from('users')
       .select('created_at')
-      .gte('created_at', new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString())
+      .gte('created_at', startDate)
+      .neq('role', 'admin')
       .order('created_at');
 
     return { data, error };
+  },
+
+  getContentStats: async () => {
+    const { data, error } = await supabase
+      .from('user_content')
+      .select('verification_status, content_type, uploaded_at')
+      .gte('uploaded_at', new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString());
+
+    return { data, error };
+  },
+
+  getRecentActivity: async (limit = 10) => {
+    return await supabase
+      .from('user_activity_logs')
+      .select(`
+        id, action_type, action_description, created_at,
+        users:user_id (name, email, profile_image_url)
+      `)
+      .order('created_at', { ascending: false })
+      .limit(limit);
+  }
+};
+
+// Storage helper functions
+export const storageHelpers = {
+  uploadProfileImage: async (userId, file) => {
+    const fileExt = file.name.split('.').pop();
+    const fileName = `${userId}/avatar.${fileExt}`;
+
+    const { data, error } = await supabase.storage
+      .from('profile-images')
+      .upload(fileName, file, {
+        cacheControl: '3600',
+        upsert: true
+      });
+
+    if (error) return { data: null, error };
+
+    const { data: { publicUrl } } = supabase.storage
+      .from('profile-images')
+      .getPublicUrl(fileName);
+
+    return { data: { path: data.path, url: publicUrl }, error: null };
+  },
+
+  uploadUserContent: async (userId, file, contentType = 'portfolio') => {
+    const fileExt = file.name.split('.').pop();
+    const fileName = `${userId}/${Date.now()}.${fileExt}`;
+
+    const { data, error } = await supabase.storage
+      .from('user-portfolios')
+      .upload(fileName, file);
+
+    if (error) return { data: null, error };
+
+    // Get signed URL for private bucket
+    const { data: signedUrlData, error: urlError } = await supabase.storage
+      .from('user-portfolios')
+      .createSignedUrl(fileName, 3600); // 1 hour expiry
+
+    if (urlError) return { data: null, error: urlError };
+
+    return {
+      data: {
+        path: data.path,
+        url: signedUrlData.signedUrl,
+        file_size: file.size,
+        mime_type: file.type
+      },
+      error: null
+    };
+  },
+
+  deleteFile: async (bucket, filePath) => {
+    return await supabase.storage
+      .from(bucket)
+      .remove([filePath]);
+  }
+};
+
+// Utility functions
+export const utilityHelpers = {
+  generateSecurePassword: (length = 12) => {
+    const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*';
+    let password = '';
+    for (let i = 0; i < length; i++) {
+      password += charset.charAt(Math.floor(Math.random() * charset.length));
+    }
+    return password;
+  },
+
+  formatFileSize: (bytes) => {
+    if (bytes === 0) return '0 Bytes';
+    const k = 1024;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+  },
+
+  formatDate: (dateString) => {
+    return new Date(dateString).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    });
+  },
+
+  formatDateTime: (dateString) => {
+    return new Date(dateString).toLocaleString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
   }
 };
