@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Check, X, AlertCircle, Database, Users, Shield, Settings } from 'lucide-react';
 import { supabase } from '../../config/supabase';
 import { runSupabaseTests } from '../../utils/supabaseTest';
+import './SetupPage.css';
 
 export const SetupPage = () => {
   const [setupStatus, setSetupStatus] = useState({
