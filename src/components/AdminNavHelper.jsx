@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import { LogIn, Shield, Home, Info } from 'lucide-react';
+import { LogIn, Shield, Home, Info, Database } from 'lucide-react';
 import { isDemoMode } from '../utils/demoAuth';
 
 export const AdminNavHelper = () => {
