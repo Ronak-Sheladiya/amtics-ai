@@ -21,8 +21,19 @@ export const AuthProvider = ({ children }) => {
     // Get initial session
     const getInitialSession = async () => {
       try {
+        // Check for demo mode first
+        if (isDemoMode()) {
+          const { user, error } = await demoAuth.getCurrentUser();
+          if (user) {
+            setUser(user);
+            setIsAuthenticated(true);
+          }
+          setLoading(false);
+          return;
+        }
+
         const { data: { session }, error } = await supabase.auth.getSession();
-        
+
         if (error) {
           console.error('Error getting session:', error);
           setLoading(false);
