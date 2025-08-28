@@ -1,0 +1,132 @@
+/* Admin Navigation Helper Styles */
+.admin-nav-helper {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  padding: 12px;
+}
+
+[data-theme="dark"] .admin-nav-helper {
+  background: rgba(30, 41, 59, 0.95);
+  border-color: #334155;
+}
+
+.nav-helper-content {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: #64748b;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.nav-link:hover {
+  background-color: #f1f5f9;
+  color: #1e293b;
+  border-color: #e2e8f0;
+}
+
+[data-theme="dark"] .nav-link {
+  color: #cbd5e1;
+}
+
+[data-theme="dark"] .nav-link:hover {
+  background-color: #334155;
+  color: #f1f5f9;
+  border-color: #475569;
+}
+
+.login-link {
+  background-color: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+
+.login-link:hover {
+  background-color: #2563eb;
+  color: white;
+  border-color: #2563eb;
+}
+
+.admin-link {
+  background-color: #10b981;
+  color: white;
+  border-color: #10b981;
+}
+
+.admin-link:hover {
+  background-color: #059669;
+  color: white;
+  border-color: #059669;
+}
+
+.logout-btn {
+  background-color: #ef4444;
+  color: white;
+  border-color: #ef4444;
+}
+
+.logout-btn:hover {
+  background-color: #dc2626;
+  color: white;
+  border-color: #dc2626;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .admin-nav-helper {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    left: 10px;
+    max-width: none;
+  }
+  
+  .nav-links {
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .nav-link {
+    flex: 1;
+    justify-content: center;
+    padding: 10px 8px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-links {
+    flex-direction: column;
+    gap: 6px;
+  }
+  
+  .nav-link {
+    width: 100%;
+  }
+}
