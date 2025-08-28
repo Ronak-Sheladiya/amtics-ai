@@ -20,6 +20,20 @@
 .nav-helper-content {
   display: flex;
   align-items: center;
+  gap: 8px;
+}
+
+.demo-indicator {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 10px;
+  background-color: #f59e0b;
+  color: white;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
 }
 
 .nav-links {
