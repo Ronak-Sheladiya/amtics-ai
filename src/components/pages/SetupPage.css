@@ -123,6 +123,12 @@
   color: #155724;
 }
 
+.success-icon {
+  width: 24px;
+  height: 24px;
+  color: #28a745;
+}
+
 .success-message p {
   margin: 0 0 1rem 0;
   color: #155724;
