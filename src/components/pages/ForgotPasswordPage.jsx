@@ -5,7 +5,7 @@ import { Mail, ArrowLeft, CheckCircle, AlertCircle } from 'lucide-react';
 import './ForgotPasswordPage.css';
 
 export const ForgotPasswordPage = () => {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState('22amtics221@gmail.com');
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
