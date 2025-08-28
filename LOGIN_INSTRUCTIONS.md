@@ -62,11 +62,14 @@ A convenient navigation helper is displayed in the top-right corner of all pages
 
 ## 🔄 Demo Mode
 
-Currently, the system is running in demo mode with:
+The system automatically detects if Supabase is not configured and switches to demo mode. You'll see a "Demo Mode" indicator in the top-right corner when this is active.
+
+Demo mode includes:
 - Mock authentication (bypasses Supabase for demo purposes)
 - Sample data for dashboard analytics
 - All admin features fully functional
 - No real database connections required
+- Persistent login state (using localStorage)
 
 ## 🎯 Available Admin Features
 
