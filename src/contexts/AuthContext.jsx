@@ -115,8 +115,27 @@ export const AuthProvider = ({ children }) => {
   const signIn = async (email, password) => {
     try {
       setLoading(true);
+
+      // Use demo mode if Supabase is not configured
+      if (isDemoMode()) {
+        const result = await demoAuth.signIn(email, password);
+        if (result.success) {
+          setUser(result.user);
+          setIsAuthenticated(true);
+
+          // Log demo activity
+          await demoAuth.logActivity(
+            result.user.id,
+            'login',
+            'User logged in (demo mode)',
+            { ip_address: null, user_agent: navigator.userAgent }
+          );
+        }
+        return result;
+      }
+
       const { data, error } = await authHelpers.signIn(email, password);
-      
+
       if (error) {
         return { success: false, error: error.message };
       }
