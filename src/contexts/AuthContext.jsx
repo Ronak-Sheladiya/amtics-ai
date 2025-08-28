@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { supabase, authHelpers, dbHelpers } from '../config/supabase';
+import { demoAuth, isDemoMode } from '../utils/demoAuth';
 
 const AuthContext = createContext();
 
