@@ -9,6 +9,7 @@ import { OurTeamPage } from './components/pages/OurTeamPage';
 import { IdCardPage } from './components/pages/IdCardPage';
 import { DeveloperPage } from './components/pages/DeveloperPage';
 import { LoginPage } from './components/pages/LoginPage';
+import { SetupPage } from './components/pages/SetupPage';
 import { AdminDashboard } from './components/admin/AdminDashboard';
 import { ProtectedRoute, AdminRoute, GuestRoute, RoleRedirect } from './components/ProtectedRoute';
 import { ToastContainer } from './components/ToastContainer';
