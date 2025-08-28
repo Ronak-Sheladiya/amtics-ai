@@ -55,6 +55,9 @@ function App() {
                 }
               />
 
+              {/* Setup Route */}
+              <Route path="/setup" element={<SetupPage />} />
+
               {/* Dashboard Redirect */}
               <Route
                 path="/dashboard"
