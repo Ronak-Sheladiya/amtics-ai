@@ -111,13 +111,13 @@ export const SetupPage = () => {
   const getStatusIcon = (status) => {
     switch (status) {
       case 'success':
-        return <Check className="w-5 h-5 text-green-500" />;
+        return <Check className="status-icon-sm text-green" />;
       case 'failed':
-        return <X className="w-5 h-5 text-red-500" />;
+        return <X className="status-icon-sm text-red" />;
       case 'checking':
-        return <div className="w-5 h-5 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />;
+        return <div className="loading-spinner" />;
       default:
-        return <AlertCircle className="w-5 h-5 text-yellow-500" />;
+        return <AlertCircle className="status-icon-sm text-yellow" />;
     }
   };
 
@@ -147,7 +147,7 @@ export const SetupPage = () => {
         <div className="setup-checks">
           <div className="check-item">
             <div className="check-icon">
-              <Database className="w-6 h-6" />
+              <Database className="status-icon-md" />
             </div>
             <div className="check-content">
               <h3>Database Connection</h3>
@@ -161,7 +161,7 @@ export const SetupPage = () => {
 
           <div className="check-item">
             <div className="check-icon">
-              <Settings className="w-6 h-6" />
+              <Settings className="status-icon-md" />
             </div>
             <div className="check-content">
               <h3>Database Tables</h3>
@@ -175,7 +175,7 @@ export const SetupPage = () => {
 
           <div className="check-item">
             <div className="check-icon">
-              <Users className="w-6 h-6" />
+              <Users className="status-icon-md" />
             </div>
             <div className="check-content">
               <h3>Admin User</h3>
@@ -189,7 +189,7 @@ export const SetupPage = () => {
 
           <div className="check-item">
             <div className="check-icon">
-              <Shield className="w-6 h-6" />
+              <Shield className="status-icon-md" />
             </div>
             <div className="check-content">
               <h3>Authentication</h3>
