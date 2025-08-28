@@ -153,21 +153,32 @@ export const AuthProvider = ({ children }) => {
   const signOut = async () => {
     try {
       setLoading(true);
-      
+
       // Log logout activity before signing out
       if (user) {
-        await dbHelpers.logActivity(
-          user.id,
-          'logout',
-          'User logged out'
-        );
+        if (isDemoMode()) {
+          await demoAuth.logActivity(
+            user.id,
+            'logout',
+            'User logged out (demo mode)'
+          );
+        } else {
+          await dbHelpers.logActivity(
+            user.id,
+            'logout',
+            'User logged out'
+          );
+        }
       }
 
-      const { error } = await authHelpers.signOut();
-      
-      if (error) {
-        console.error('Sign out error:', error);
-        return { success: false, error: error.message };
+      if (isDemoMode()) {
+        await demoAuth.signOut();
+      } else {
+        const { error } = await authHelpers.signOut();
+        if (error) {
+          console.error('Sign out error:', error);
+          return { success: false, error: error.message };
+        }
       }
 
       setUser(null);
